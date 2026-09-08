@@ -42,8 +42,8 @@ async def _password_gate(request: Request, call_next):
     hdr = request.headers.get("authorization", "")
     if hdr.startswith("Basic "):
         try:
-            _, pw = base64.b64decode(hdr[6:]).decode().split(":", 1)
-            if secrets.compare_digest(pw, _APP_PASSWORD):
+            _, pw = base64.b64decode(hdr[6:]).decode("utf-8").split(":", 1)
+            if secrets.compare_digest(pw.strip().encode(), _APP_PASSWORD.encode()):
                 return await call_next(request)
         except Exception:  # noqa: BLE001
             pass
