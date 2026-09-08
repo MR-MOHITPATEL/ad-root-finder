@@ -35,6 +35,8 @@ _APP_PASSWORD = os.getenv("APP_PASSWORD", "").strip()
 
 @app.middleware("http")
 async def _password_gate(request: Request, call_next):
+    if request.url.path == "/health":
+        return await call_next(request)
     if not _APP_PASSWORD:
         return await call_next(request)                      # local dev: open
     hdr = request.headers.get("authorization", "")
@@ -239,6 +241,20 @@ def _job_partial(request: Request):
 def add_competitor(name: str = Form(...), tier: str = Form("broad_only")):
     comp.add(name, tier=tier)
     return RedirectResponse("/", status_code=303)
+
+
+@app.get("/health")
+def health():
+    from rootfinder import store
+    out = {"mode": store.mode(), "app_password": bool(_APP_PASSWORD)}
+    try:
+        out["roots"] = len(store.catalogue_load().get("roots", []))
+        out["matches"] = len(store.matches_all())
+        out["ok"] = True
+    except Exception as e:  # noqa: BLE001
+        out["ok"] = False
+        out["error"] = f"{type(e).__name__}: {e}"
+    return out
 
 
 # ── images ──────────────────────────────────────────────────────────────────
