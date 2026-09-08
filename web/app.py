@@ -92,9 +92,14 @@ def _cards_ctx():
 
 @app.get("/", response_class=HTMLResponse)
 def review(request: Request, rf_user: str = Cookie(default="")):
-    ctx = _cards_ctx()
-    ctx.update(request=request, nav="review", fresh=ledger.competitor_stats(), me=rf_user)
-    return templates.TemplateResponse("review.html", ctx)
+    try:
+        ctx = _cards_ctx()
+        ctx.update(request=request, nav="review", fresh=ledger.competitor_stats(), me=rf_user)
+        return templates.TemplateResponse("review.html", ctx)
+    except Exception as e:  # noqa: BLE001 — surface the real error while stabilising
+        import traceback
+        return HTMLResponse(f"<pre>{type(e).__name__}: {e}\n\n{traceback.format_exc()}</pre>",
+                            status_code=500)
 
 
 @app.get("/queue", response_class=HTMLResponse)
