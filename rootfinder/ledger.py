@@ -59,5 +59,5 @@ def competitor_stats() -> dict[str, dict]:
         try:
             s["days_since_new"] = (now - datetime.fromisoformat(s["last_new"])).days
         except (ValueError, TypeError):
-            s["days_since_new"] = None
+            s["days_since_new"] = 9999
     return out

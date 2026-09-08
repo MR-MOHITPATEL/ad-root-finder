@@ -68,8 +68,8 @@
         <span>{{ c }}</span>
         <span class="muted">
           {% set d = s.days_since_new %}
-          {% if d==0 %}<span style="color:var(--skip)">today</span>
-          {% elif d and d<=7 %}{{ d }} days
+          {% if d is none or d >= 9999 %}—
+          {% elif d==0 %}<span style="color:var(--skip)">today</span>
           {% else %}{{ d }} days{% endif %}
         </span>
       </div>
