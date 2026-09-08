@@ -1,0 +1,42 @@
+name: deploy web UI to hugging face space
+
+on:
+  push:
+    branches: [main]
+    paths: ["web/**", "rootfinder/**", "compliance/**", "config/**", "Dockerfile", "requirements.txt"]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Prepare Space README (docker metadata)
+        run: |
+          cat > README.md <<'EOF'
+          ---
+          title: Ad Root Finder
+          emoji: 🌱
+          colorFrom: green
+          colorTo: gray
+          sdk: docker
+          app_port: 7860
+          pinned: false
+          short_description: Competitor ad root finder — internal
+          ---
+          Internal tool. Source: https://github.com/MR-MOHITPATEL/ad-root-finder
+          EOF
+
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE: ${{ vars.HF_SPACE }}   # e.g. MR-MOHITPATEL/ad-root-finder
+        run: |
+          git config user.email "deploy-bot@users.noreply.github.com"
+          git config user.name "deploy-bot"
+          git add README.md
+          git commit -m "Space metadata" || true
+          git push --force "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}" HEAD:main

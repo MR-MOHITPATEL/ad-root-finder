@@ -4,7 +4,10 @@ Run:  python run.py web        (or)  uvicorn web.app:app --reload
 """
 from __future__ import annotations
 
+import base64
 import json
+import os
+import secrets
 import subprocess
 import sys
 import threading
@@ -26,6 +29,24 @@ from . import data as D
 app = FastAPI(title="Ad Root Finder")
 templates = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 templates.env.globals["comp"] = comp
+
+_APP_PASSWORD = os.getenv("APP_PASSWORD", "").strip()
+
+
+@app.middleware("http")
+async def _password_gate(request: Request, call_next):
+    if not _APP_PASSWORD:
+        return await call_next(request)                      # local dev: open
+    hdr = request.headers.get("authorization", "")
+    if hdr.startswith("Basic "):
+        try:
+            _, pw = base64.b64decode(hdr[6:]).decode().split(":", 1)
+            if secrets.compare_digest(pw, _APP_PASSWORD):
+                return await call_next(request)
+        except Exception:  # noqa: BLE001
+            pass
+    return Response("Sign in", status_code=401,
+                    headers={"WWW-Authenticate": 'Basic realm="Ad Root Finder"'})
 
 # ── background job (scan) ────────────────────────────────────────────────────
 _job = {"running": False, "label": "", "log": "", "rc": None}
@@ -155,14 +176,45 @@ def make_brief(ad_id: str):
 
 
 # ── scan control ────────────────────────────────────────────────────────────
+_GH_REPO = os.getenv("GH_REPO", "").strip()
+_GH_TOKEN = os.getenv("GH_DISPATCH_TOKEN", "").strip()
+
+
+def _gh_dispatch(terms: list[str], deep: bool, full: bool) -> tuple[bool, str]:
+    import urllib.error
+    import urllib.request
+    body = json.dumps({"ref": "main", "inputs": {
+        "terms": "" if full else " ".join(terms),
+        "deep": "true" if deep else "false",
+        "broad": "true" if full else "false",
+    }}).encode()
+    req = urllib.request.Request(
+        f"https://api.github.com/repos/{_GH_REPO}/actions/workflows/scan.yml/dispatches",
+        data=body, method="POST", headers={
+            "Authorization": f"Bearer {_GH_TOKEN}",
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+        })
+    try:
+        urllib.request.urlopen(req)
+        return True, "Scan started on GitHub Actions — results land here as it runs."
+    except urllib.error.HTTPError as e:
+        return False, f"GitHub API {e.code}: {e.read().decode()[:200]}"
+
+
 @app.post("/scan", response_class=HTMLResponse)
 def start_scan(request: Request, terms: list[str] = Form(default=[]),
                deep: str = Form(""), full: str = Form("")):
+    if _GH_TOKEN and _GH_REPO:
+        ok, msg = _gh_dispatch(list(terms), bool(deep), bool(full))
+        _job.update(running=False, label=msg, log="",
+                    rc=0 if ok else 1)
+        return _job_partial(request)
+
     if _job["running"]:
         return _job_partial(request)
     if full:
-        cmds = [["run.py", "scan"]]
-        label = "Full scan"
+        cmds, label = [["run.py", "scan"]], "Full scan"
     elif terms:
         fetch_cmd = ["run.py", "fetch"] + (["--deep"] if deep else []) + list(terms)
         cmds = [fetch_cmd, ["run.py", "analyze", *terms]]

@@ -1,0 +1,62 @@
+name: scan
+
+on:
+  schedule:
+    - cron: "0 2 * * *"        # daily 02:00 UTC (~07:30 IST) — active-ad refresh
+  workflow_dispatch:
+    inputs:
+      terms:
+        description: "Space-separated brand search terms (blank = every-run list)"
+        required: false
+        default: ""
+      deep:
+        description: "Include past (inactive) ads"
+        type: boolean
+        default: false
+      broad:
+        description: "Also scan broad_only brands + keyword searches"
+        type: boolean
+        default: false
+
+concurrency:
+  group: scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      GROQ_API_KEY_1: ${{ secrets.GROQ_API_KEY_1 }}
+      GROQ_API_KEY_2: ${{ secrets.GROQ_API_KEY_2 }}
+      GROQ_API_KEY_3: ${{ secrets.GROQ_API_KEY_3 }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+      FACEBOOK_EMAIL: ${{ secrets.FACEBOOK_EMAIL }}
+      FACEBOOK_PASSWORD: ${{ secrets.FACEBOOK_PASSWORD }}
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Run scan
+        run: |
+          ARGS="scan"
+          [ "${{ inputs.broad }}" = "true" ] && ARGS="$ARGS --broad"
+          [ "${{ inputs.deep }}" = "true" ] && ARGS="$ARGS --deep"
+          if [ -n "${{ inputs.terms }}" ]; then
+            python run.py fetch ${{ inputs.terms }} $( [ "${{ inputs.deep }}" = "true" ] && echo --deep )
+            python run.py analyze ${{ inputs.terms }}
+          else
+            python run.py $ARGS
+          fi
