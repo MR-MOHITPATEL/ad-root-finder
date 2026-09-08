@@ -1,108 +1,90 @@
-# Deploy — free, no card
+# Deploy
 
 ```
 GitHub (code + scraper Action)  ──dispatch──►  scraper runs on GitHub Actions
         │                                              │
-        │ push to main mirrors ─────►  writes to  ◄────┘
-        ▼                              Supabase (data + images)
-Hugging Face Space (web UI)  ◄──reads/writes──┘
+        │ Railway auto-deploys on push                 ▼
+        ▼                                     writes to Supabase (data + images)
+Railway (web UI, Dockerfile)  ◄──reads/writes────────┘
 ```
 
-Everything below is free and needs no credit card.
+Web UI runs on **Railway** (already on the $5 plan). Scraper runs on **GitHub Actions**
+(free). Data lives in **Supabase** (free). No card needed beyond the Railway account
+you already have.
 
 ---
 
 ## 1. GitHub repo secrets
 
-Repo → **Settings → Secrets and variables → Actions**.
+`github.com/MR-MOHITPATEL/ad-root-finder` → **Settings → Secrets and variables → Actions**
 
-**Secrets** (New repository secret):
+**Secrets** (one Name/Secret pair each — not combined):
 
 | Name | Value |
 |---|---|
 | `GOOGLE_API_KEY` | your Gemini key |
-| `GROQ_API_KEY_1` | Groq key |
-| `GROQ_API_KEY_2` | Groq key (optional) |
-| `GROQ_API_KEY_3` | Groq key (optional) |
+| `GROQ_API_KEY_1` / `_2` / `_3` | Groq keys |
 | `SUPABASE_URL` | `https://qbivdsztqwfgpwqzgxkd.supabase.co` |
 | `SUPABASE_KEY` | the `sb_secret_…` key |
-| `FACEBOOK_EMAIL` | a Facebook account for the scraper |
+| `FACEBOOK_EMAIL` | the scraper's Facebook account |
 | `FACEBOOK_PASSWORD` | its password |
-| `HF_TOKEN` | Hugging Face token — see step 3 |
-
-**Variables** tab → New variable:
-
-| Name | Value |
-|---|---|
-| `HF_SPACE` | `<your-hf-username>/ad-root-finder` |
 
 ---
 
-## 2. Facebook account for the scraper
+## 2. Railway — new service in your existing project
 
-GitHub Actions runs from a datacenter IP, so anonymous scraping mostly fails.
-Use a **throwaway / secondary Facebook account** (not your personal one — Meta may
-flag automated logins). It only needs to be able to view the public Ad Library.
-Put its email + password in the secrets above.
+1. Railway dashboard → open your project → **+ New** → **GitHub Repo** →
+   select `MR-MOHITPATEL/ad-root-finder`
+2. It finds the `Dockerfile` at the repo root and builds automatically.
+3. New service → **Variables** tab → add:
 
----
+   | Name | Value |
+   |---|---|
+   | `GOOGLE_API_KEY` | same as above |
+   | `GROQ_API_KEY_1` / `_2` / `_3` | same as above |
+   | `SUPABASE_URL` | same as above |
+   | `SUPABASE_KEY` | same as above |
+   | `APP_PASSWORD` | a password your team types to get in — pick one |
+   | `GH_REPO` | `MR-MOHITPATEL/ad-root-finder` |
+   | `GH_DISPATCH_TOKEN` | see step 3 |
 
-## 3. Hugging Face Space
-
-1. **huggingface.co** → your profile → **New Space**
-   - Owner: you · Space name: **ad-root-finder** · License: any
-   - **SDK: Docker** · **Blank** template · Visibility: **Private**
-   - Create
-2. Space → **Settings → Variables and secrets** → add **secrets**:
-   `GOOGLE_API_KEY`, `GROQ_API_KEY_1..3`, `SUPABASE_URL`, `SUPABASE_KEY`,
-   `APP_PASSWORD` (the shared password your team types to get in),
-   `GH_REPO` = `MR-MOHITPATEL/ad-root-finder`,
-   `GH_DISPATCH_TOKEN` (a GitHub token with `actions: write` on the repo — a
-   fine-grained PAT scoped to this one repo).
-3. **huggingface.co/settings/tokens** → **New token** → type **Write** → copy it →
-   this is `HF_TOKEN` for GitHub (step 1).
+4. Service → **Settings → Networking → Generate Domain** → gives you a public
+   `https://….up.railway.app` URL. That's what your team opens.
 
 ---
 
-## 4. Push — it deploys itself
+## 3. GitHub dispatch token (lets the "Run scan" button trigger the Action)
 
-```bash
-git add -A && git commit -m "deploy config" && git push
-```
-
-- The **deploy-space** workflow mirrors the repo to your HF Space → the Space builds
-  the Docker image and starts the web UI.
-- Open the Space URL, enter `APP_PASSWORD`, and you're in.
+`github.com/settings/tokens?type=beta` → **Generate new token** (fine-grained)
+→ Repository access: only `ad-root-finder` → Permissions → **Actions: Read and
+write** → Generate → paste as `GH_DISPATCH_TOKEN` in the Railway service
+Variables above.
 
 ---
 
-## 5. First data load
+## 4. First data load
 
-The Supabase tables start empty. Trigger the first scan:
+Supabase tables start empty. Either:
+- In the web UI sidebar → tick a few brands → **Fetch and analyze** (dispatches
+  the Action), or
+- GitHub → **Actions → scan → Run workflow** → tick **deep**, leave terms blank
+  → pulls the every-run brands' full back-catalogue (~30–40 min).
 
-- In the web UI sidebar → tick a few brands → **Fetch and analyze**
-  (this dispatches the GitHub Action), **or**
-- GitHub → **Actions → scan → Run workflow** → leave inputs blank for the every-run
-  list, or type brand names, tick **deep** for the full back-catalogue.
-
-The Action runs ~15–40 min, writes everything to Supabase, and the Space shows it.
-
-The scan also runs **automatically every day at 07:30 IST**.
+The scan also runs automatically every day at 07:30 IST.
 
 ---
 
 ## Costs
 
-| | Free tier | Our usage |
+| | Plan | Our usage |
 |---|---|---|
-| GitHub Actions | 2000 min/mo (private) | ~1 daily scan ≈ 450 min/mo |
-| Supabase | 500 MB DB · 1 GB storage | plenty for text + hero images |
-| Hugging Face Space | 2 vCPU · 16 GB RAM, sleeps after 48h idle | fine for a workday tool |
-
-**₹0/month.**
+| Railway | $5/mo plan you already have | one lightweight service, shared with whatever else is on the plan |
+| GitHub Actions | 2000 min/mo free (private repo) | ~1 daily scan ≈ 450 min/mo |
+| Supabase | free tier — 500 MB DB, 1 GB storage | plenty for text + hero images |
 
 ## Housekeeping
 
-- Rotate the Supabase DB password (Settings → Database) — it was pasted in chat setup.
+- Rotate the Supabase DB password (Settings → Database) and the Groq keys — both
+  were pasted in chat during setup.
 - If the scraper's Facebook account gets a checkpoint, log into it once from a
   normal browser to clear it, then re-run.
