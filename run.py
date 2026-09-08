@@ -1,12 +1,15 @@
 """
-Competitor Ad Root Finder — CLI (Phase 1, local).
+Competitor Ad Root Finder — CLI.
 
   python run.py scan                    # fetch + analyze every_run competitors
   python run.py scan --broad            # + broad_only competitors + keyword searches
+  python run.py scan --deep             # include past (inactive) ads
   python run.py fetch "Kapiva"          # fetch one term only
   python run.py analyze                 # analyze whatever's already fetched
   python run.py brief 1234567890        # adaptation brief for a matched ad
-  python run.py dashboard               # local Streamlit
+  python run.py web                     # local review UI at localhost:8000
+
+Storage: Supabase when SUPABASE_URL is set, else local files under data/rf/.
 """
 from __future__ import annotations
 
@@ -67,11 +70,6 @@ def cmd_fetch(terms: list[str], headed: bool, login: bool, deep: bool = False) -
     fetch(terms, _opts(cfg, headless=not headed, login=login, deep=deep))
 
 
-def cmd_dashboard() -> None:
-    app = ROOT / "dashboard" / "rf_app.py"
-    subprocess.run([sys.executable, "-m", "streamlit", "run", str(app)], check=False)
-
-
 def cmd_web(port: int = 8000) -> None:
     subprocess.run([sys.executable, "-m", "uvicorn", "web.app:app",
                     "--host", "127.0.0.1", "--port", str(port), "--reload"],
@@ -108,7 +106,6 @@ def main() -> None:
     b.add_argument("--all-approved", action="store_true",
                    help="generate a brief for every 'works' ad that doesn't have one yet")
 
-    sub.add_parser("dashboard")
     w = sub.add_parser("web")
     w.add_argument("--port", type=int, default=8000)
 
@@ -137,8 +134,6 @@ def main() -> None:
             generate(args.ad_id, args.product)
         else:
             print("give an ad_id or --all-approved")
-    elif args.cmd == "dashboard":
-        cmd_dashboard()
     elif args.cmd == "web":
         cmd_web(args.port)
 
