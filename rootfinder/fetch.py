@@ -350,7 +350,8 @@ def _collect(page: Page, ads: dict, url: str, o: FetchOptions, started: float,
         stale = stale + 1 if len(ads) == before else 0
 
 
-def scrape_one(context: BrowserContext, term: str, o: FetchOptions) -> list[dict]:
+def scrape_one(context: BrowserContext, term: str, o: FetchOptions,
+               page_ids: list[str] | None = None) -> list[dict]:
     ads: dict[str, dict] = {}
     page = context.new_page()
     page.add_init_script(_STEALTH)
@@ -371,24 +372,32 @@ def scrape_one(context: BrowserContext, term: str, o: FetchOptions) -> list[dict
     page.on("response", on_response)
     started = time.monotonic()
     try:
-        # Phase A — keyword search (small, just to discover the advertiser page)
-        _collect(page, ads, build_search_url(term, o), o, started, target=40)
-
-        # Phase B — page-scoped: pull each matching advertiser page's full library.
-        # This is the reliable source; the keyword search is only for discovery.
-        if o.brand_filter and o.page_scoped:
-            def _brand_img_count() -> int:
-                return sum(1 for a in ads.values()
-                           if a.get("image_urls") and _brand_match(term, a.get("page_name", "")))
-
-            for pid in _dominant_page_ids(ads, term)[:3]:
-                if _brand_img_count() >= o.max_ads:
-                    break
+        if page_ids:
+            # Pinned advertiser pages — scrape each directly, no keyword guessing.
+            for pid in page_ids:
                 if time.monotonic() - started >= o.hard_cap_seconds:
                     break
-                print(f"    -> page-scoped: view_all_page_id={pid}")
+                print(f"    -> page {pid}")
                 _collect(page, ads, build_page_url(pid, o), o, started,
                          target=len(ads) + o.max_ads)
+        else:
+            # Phase A — keyword search (small, just to discover the advertiser page)
+            _collect(page, ads, build_search_url(term, o), o, started, target=40)
+
+            # Phase B — page-scoped: pull each matching advertiser page's full library.
+            if o.brand_filter and o.page_scoped:
+                def _brand_img_count() -> int:
+                    return sum(1 for a in ads.values()
+                               if a.get("image_urls") and _brand_match(term, a.get("page_name", "")))
+
+                for pid in _dominant_page_ids(ads, term)[:3]:
+                    if _brand_img_count() >= o.max_ads:
+                        break
+                    if time.monotonic() - started >= o.hard_cap_seconds:
+                        break
+                    print(f"    -> page-scoped: view_all_page_id={pid}")
+                    _collect(page, ads, build_page_url(pid, o), o, started,
+                             target=len(ads) + o.max_ads)
     finally:
         page.close()
 
@@ -513,8 +522,14 @@ def _make_context(browser: Browser, o: FetchOptions) -> BrowserContext:
     return browser.new_context(**kwargs)
 
 
-def fetch(terms: list[str], o: FetchOptions) -> dict[str, list[dict]]:
-    """Scrape each term, save data/rf/ads/{slug}.json, return {term: ads}."""
+def fetch(terms: list[str], o: FetchOptions,
+          page_ids_map: dict[str, list[str]] | None = None) -> dict[str, list[dict]]:
+    """Scrape each term, save data/rf/ads/{slug}.json, return {term: ads}.
+
+    page_ids_map: {term: [advertiser page id, ...]} — when set for a term, scrape
+    those pages directly instead of keyword discovery.
+    """
+    page_ids_map = page_ids_map or {}
     results: dict[str, list[dict]] = {}
     with sync_playwright() as pw:
         browser = pw.chromium.launch(
@@ -531,9 +546,10 @@ def fetch(terms: list[str], o: FetchOptions) -> dict[str, list[dict]]:
 
         for term in terms:
             mode = "DEEP (all-time)" if o.active_status == "all" else "active"
-            print(f">> {term}  [{mode}]")
+            pids = page_ids_map.get(term) or []
+            print(f">> {term}  [{mode}]" + (f"  {len(pids)} pinned page(s)" if pids else ""))
             try:
-                ads = scrape_one(context, term, o)
+                ads = scrape_one(context, term, o, page_ids=pids or None)
             except Exception as e:  # noqa: BLE001
                 print(f"  ERROR: {e}")
                 ads = []

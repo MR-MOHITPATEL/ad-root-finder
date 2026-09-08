@@ -46,6 +46,16 @@ def _opts(cfg: dict, **over) -> FetchOptions:
     return FetchOptions(**base)
 
 
+def _page_ids_map(cfg: dict) -> dict[str, list[str]]:
+    m: dict[str, list[str]] = {}
+    for c in cfg.get("competitors", []):
+        pids = [str(p) for p in (c.get("page_ids") or [])]
+        for key in (c.get("search"), c.get("name")):
+            if key:
+                m[key] = pids
+    return m
+
+
 def cmd_scan(broad: bool, headed: bool, login: bool, skip_analyze: bool, deep: bool = False) -> None:
     cfg = _load_config()
     comps = [c for c in cfg["competitors"] if broad or c.get("tier") == "every_run"]
@@ -55,7 +65,7 @@ def cmd_scan(broad: bool, headed: bool, login: bool, skip_analyze: bool, deep: b
     o = _opts(cfg, headless=not headed, login=login, deep=deep)
     if brand_terms:
         print(f"=== FETCH brands ({len(brand_terms)}) ===")
-        fetch(brand_terms, o)
+        fetch(brand_terms, o, _page_ids_map(cfg))
     if kw_terms:
         print(f"=== FETCH keyword searches ({len(kw_terms)}) ===")
         fetch(kw_terms, FetchOptions(**{**o.__dict__, "brand_filter": False}))
@@ -67,7 +77,7 @@ def cmd_scan(broad: bool, headed: bool, login: bool, skip_analyze: bool, deep: b
 
 def cmd_fetch(terms: list[str], headed: bool, login: bool, deep: bool = False) -> None:
     cfg = _load_config()
-    fetch(terms, _opts(cfg, headless=not headed, login=login, deep=deep))
+    fetch(terms, _opts(cfg, headless=not headed, login=login, deep=deep), _page_ids_map(cfg))
 
 
 def cmd_web(port: int = 8000) -> None:

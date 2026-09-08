@@ -1,62 +1,77 @@
-# Competitors to scan for ad roots.
-# Edit freely — no code changes needed.
+# Competitors to scan for ad roots. Edit freely — no code changes needed.
 #
 # tier:
-#   every_run   -> scanned on every `run.py --scan` and the daily refresh
-#   broad_only  -> scanned only with `run.py --scan --broad`
+#   every_run   -> scanned on every `run.py scan` and the daily refresh
+#   broad_only  -> scanned only with `run.py scan --broad`
 #
-# search: the exact text to type into the Meta Ad Library search box
-#         (keyword search across advertisers — matches the manual workflow)
+# page_ids:  the exact Meta Ad Library advertiser page id(s). STRONGLY preferred —
+#            keyword search is unreliable (misses pages, picks reseller pages).
+#            To find one: open facebook.com/ads/library, search the brand, click the
+#            brand's page, copy the number after `view_all_page_id=` in the URL.
+# search:    fallback keyword used only when page_ids is empty.
 
 defaults:
   country: IN
-  media_type: all              # we filter to image ads ourselves (Meta's image filter is unreliable)
-  active_status: active         # "Active ads" only
-  max_ads: 60                   # stop after this many per competitor
+  media_type: all
+  active_status: active
+  max_ads: 80
 
 competitors:
   - name: OZiva
     search: OZiva
+    page_ids: ["603903383105760"]
     tier: every_run
 
   - name: Kapiva
     search: Kapiva
+    page_ids:
+      - "1721818904736494"   # Kapiva
+      - "116128397752155"    # Chronic Health Solutions by Kapiva
+      - "116568587707681"    # Daily Wellness Solutions by Kapiva
+      - "104968639165111"    # Kapiva Performance
+      - "114956504536072"    # Kapiva Wellness
     tier: every_run
-    # TODO team: confirm exact Ad Library page name(s) — "2-3 brands of Kapiva"
 
   - name: Wellbeing Nutrition
-    search: Wellbeing Nutrition
+    search: wellbeingnutrition
+    page_ids: ["107959920549143"]
     tier: every_run
 
   - name: Plix
     search: Plix Life
+    page_ids: ["444025482768886"]
     tier: every_run
 
   - name: "&Me"
-    search: "&Me"
-    tier: every_run
+    search: "andme"
+    page_ids: []              # TODO: find &Me's Ad Library page id and paste here
+    tier: broad_only
 
   - name: Man Matters
     search: Man Matters
+    page_ids: []
     tier: broad_only
 
   - name: Be Bodywise
     search: Bodywise
+    page_ids: []
     tier: broad_only
 
   - name: Traya
     search: Traya
+    page_ids: []
     tier: broad_only
 
   - name: Setu
     search: Setu Nutrition
+    page_ids: []
     tier: broad_only
 
   - name: Saffola Life
     search: Saffola
+    page_ids: []
     tier: broad_only
 
-# Non-brand keyword searches — run with `run.py --scan --broad`
 keyword_searches:
   - arjuna tea
   - cardio tea
