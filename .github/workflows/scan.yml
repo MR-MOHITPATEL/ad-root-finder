@@ -49,29 +49,16 @@ jobs:
           pip install -r requirements.txt
           python -m playwright install --with-deps chromium
 
-      - name: Restore Facebook session (avoid logging in every run)
-        uses: actions/cache/restore@v4
-        with:
-          path: data/rf/state
-          key: fb-session-v1-${{ github.run_id }}   # never hit on restore; forces restore-keys match
-          restore-keys: |
-            fb-session-v1-
-
       - name: Run scan
         run: |
-          ARGS="scan --login"
+          ARGS="scan"
           [ "${{ inputs.broad }}" = "true" ] && ARGS="$ARGS --broad"
           [ "${{ inputs.deep }}" = "true" ] && ARGS="$ARGS --deep"
           if [ -n "${{ inputs.terms }}" ]; then
-            python run.py fetch ${{ inputs.terms }} --login $( [ "${{ inputs.deep }}" = "true" ] && echo --deep )
+            python run.py fetch ${{ inputs.terms }} $( [ "${{ inputs.deep }}" = "true" ] && echo --deep )
             python run.py analyze ${{ inputs.terms }}
           else
             python run.py $ARGS
           fi
 
-      - name: Save Facebook session for next run
-        if: always()
-        uses: actions/cache/save@v4
-        with:
-          path: data/rf/state
           key: fb-session-v1-${{ github.run_id }}
