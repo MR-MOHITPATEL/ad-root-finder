@@ -245,8 +245,15 @@ def add_competitor(name: str = Form(...), tier: str = Form("broad_only")):
 
 @app.get("/health")
 def health():
+    import hashlib
     from rootfinder import store
-    out = {"mode": store.mode(), "app_password": bool(_APP_PASSWORD)}
+    out = {
+        "mode": store.mode(),
+        "app_password_set": bool(_APP_PASSWORD),
+        "app_password_len": len(_APP_PASSWORD),
+        "app_password_sha8": hashlib.sha256(_APP_PASSWORD.encode()).hexdigest()[:8],
+        "build": "auth-bytes-v2",
+    }
     try:
         out["roots"] = len(store.catalogue_load().get("roots", []))
         out["matches"] = len(store.matches_all())
