@@ -92,14 +92,9 @@ def _cards_ctx():
 
 @app.get("/", response_class=HTMLResponse)
 def review(request: Request, rf_user: str = Cookie(default="")):
-    try:
-        ctx = _cards_ctx()
-        ctx.update(request=request, nav="review", fresh=ledger.competitor_stats(), me=rf_user)
-        return templates.TemplateResponse(request, "review.html", ctx)
-    except Exception as e:  # noqa: BLE001 — surface the real error while stabilising
-        import traceback
-        return HTMLResponse(f"<pre>{type(e).__name__}: {e}\n\n{traceback.format_exc()}</pre>",
-                            status_code=500)
+    ctx = _cards_ctx()
+    ctx.update(request=request, nav="review", fresh=ledger.competitor_stats(), me=rf_user)
+    return templates.TemplateResponse(request, "review.html", ctx)
 
 
 @app.get("/queue", response_class=HTMLResponse)
@@ -252,16 +247,9 @@ def add_competitor(name: str = Form(...), tier: str = Form("broad_only")):
 
 @app.get("/health")
 def health():
-    import hashlib
     from rootfinder import store
-    out = {
-        "mode": store.mode(),
-        "app_password_set": bool(_APP_PASSWORD),
-        "app_password_len": len(_APP_PASSWORD),
-        "app_password_sha8": hashlib.sha256(_APP_PASSWORD.encode()).hexdigest()[:8],
-        "build": "auth-bytes-v2",
-    }
-    import traceback
+    out = {"mode": store.mode(), "auth": bool(_APP_PASSWORD),
+           "commit": os.getenv("RAILWAY_GIT_COMMIT_SHA", "")[:7]}
     try:
         out["roots"] = len(store.catalogue_load().get("roots", []))
         out["matches"] = len(store.matches_all())
@@ -269,12 +257,6 @@ def health():
     except Exception as e:  # noqa: BLE001
         out["ok"] = False
         out["error"] = f"{type(e).__name__}: {e}"
-    try:
-        _cards_ctx()  # the exact thing the review page does
-        out["review_render"] = "ok"
-    except Exception as e:  # noqa: BLE001
-        out["review_render"] = f"{type(e).__name__}: {e}"
-        out["review_trace"] = traceback.format_exc()[-800:]
     return out
 
 
