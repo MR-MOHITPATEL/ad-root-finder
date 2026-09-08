@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% if not me %}
+<form method="post" action="/whoami" style="margin-bottom:1.25rem; display:flex; gap:.5rem; align-items:center; font-size:.9rem">
+  <input name="name" placeholder="your name" autofocus style="width:11rem">
+  <button class="primary">Start reviewing</button>
+  <span class="muted">Names each decision. Saved on this browser only.</span>
+</form>
+{% endif %}
+
+<div style="display:grid; grid-template-columns:1fr 260px; gap:1.75rem">
+  <section>
+    <div style="display:flex; align-items:baseline; gap:.75rem; margin-bottom:.25rem">
+      <h1>Review queue</h1>
+      {% if me %}<span class="muted" style="font-size:.85rem">reviewing as {{ me }}</span>{% endif %}
+    </div>
+    <p class="muted" style="font-size:.85rem; margin:.25rem 0 1.25rem">
+      <kbd>1</kbd> keep &nbsp; <kbd>2</kbd> maybe &nbsp; <kbd>3</kbd> skip — acts on the top card.
+      One decision covers every copy of a creative.
+    </p>
+
+    <div id="queue"
+         hx-get="/queue" hx-trigger="every 60s" hx-swap="innerHTML"
+         hx-sync="this:replace">
+      {% include "_queue.html" %}
+    </div>
+  </section>
+
+  <aside style="display:flex; flex-direction:column; gap:1rem; font-size:.85rem">
+    <div class="panel" style="padding:.9rem">
+      <div style="font-weight:600; margin-bottom:.5rem">Run a scan</div>
+      <form hx-post="/scan" hx-target="#job" hx-swap="innerHTML">
+        <div style="max-height:11rem; overflow-y:auto; display:flex; flex-direction:column; gap:.3rem; margin-bottom:.5rem">
+          {% for b in comp.brands() %}
+          <label style="display:flex; gap:.4rem; align-items:center">
+            <input type="checkbox" name="terms" value="{{ b.search }}" {{ 'checked' if b.tier=='every_run' }}>
+            {{ b.name }}{% if b.tier=='every_run' %} <span class="muted" style="font-size:.72rem">every run</span>{% endif %}
+          </label>
+          {% endfor %}
+        </div>
+        <label style="display:flex; gap:.4rem; align-items:center" class="muted">
+          <input type="checkbox" name="deep" value="1"> include past ads (slower)
+        </label>
+        <button class="keep" style="width:100%; margin-top:.5rem">Fetch and analyze</button>
+      </form>
+      <form hx-post="/scan" hx-target="#job" hx-swap="innerHTML" style="margin-top:.4rem">
+        <input type="hidden" name="full" value="1">
+        <button style="width:100%; font-size:.8rem">Full scan (every-run list)</button>
+      </form>
+      <div id="job" style="margin-top:.5rem; font-size:.78rem"></div>
+    </div>
+
+    <form method="post" action="/competitors/add" class="panel" style="padding:.9rem; display:flex; flex-direction:column; gap:.4rem">
+      <div style="font-weight:600">Add a brand</div>
+      <input name="name" placeholder="e.g. Traya">
+      <select name="tier">
+        <option value="broad_only">scan only when I pick it</option>
+        <option value="every_run">scan every run</option>
+      </select>
+      <button style="font-size:.8rem">Add brand</button>
+    </form>
+
+    <div class="panel" style="padding:.9rem">
+      <div style="font-weight:600; margin-bottom:.4rem">Last new ad</div>
+      {% for c, s in fresh.items()|sort(attribute='1.days_since_new') %}
+      <div style="display:flex; justify-content:space-between; padding:.15rem 0">
+        <span>{{ c }}</span>
+        <span class="muted">
+          {% set d = s.days_since_new %}
+          {% if d==0 %}<span style="color:var(--skip)">today</span>
+          {% elif d and d<=7 %}{{ d }} days
+          {% else %}{{ d }} days{% endif %}
+        </span>
+      </div>
+      {% else %}<span class="muted">No scans yet.</span>{% endfor %}
+    </div>
+  </aside>
+</div>
+
+<script>
+document.addEventListener('keydown', e => {
+  if (['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) return;
+  const m = {'1':'works','2':'maybe','3':'no'}[e.key];
+  if (!m) return;
+  const b = document.querySelector('#queue .card button[data-status="'+m+'"]');
+  if (b) b.click();
+});
+</script>
+{% endblock %}

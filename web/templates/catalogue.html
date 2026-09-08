@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block body %}
+<div style="display:flex; align-items:baseline; gap:.75rem; margin-bottom:1.25rem">
+  <h1>Roots</h1><span class="muted" style="font-size:.85rem">{{ cat.roots|length }} named</span>
+</div>
+<div style="display:flex; flex-direction:column; gap:1.5rem">
+{% for r in cat.roots %}
+<article style="border-bottom:1px solid var(--line); padding-bottom:1.25rem">
+  <div style="font-weight:600">{{ r.name }} <span class="muted" style="font-weight:400">— {{ r.competitor_examples|length }} competitor examples</span></div>
+  <dl style="margin:.5rem 0 0; font-size:.9rem; display:grid; grid-template-columns:auto 1fr; gap:.15rem .7rem; max-width:70ch">
+    <dt class="muted">Mechanism</dt><dd style="margin:0">{{ r.mechanism }}</dd>
+    <dt class="muted">Why it works</dt><dd style="margin:0">{{ r.why_it_works }}</dd>
+    <dt class="muted">Visual motif</dt><dd style="margin:0">{{ r.visual_motif }}</dd>
+    <dt class="muted">For our brand</dt><dd style="margin:0">{{ r.fits_our_brand }}</dd>
+    <dt class="muted">When we adapt it</dt><dd style="margin:0">{{ r.compliance_notes }}</dd>
+  </dl>
+  {% set imgs = r.competitor_examples|selectattr('image_url')|list %}
+  {% if imgs %}
+  <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:.5rem; margin-top:.9rem">
+    {% for e in imgs[:12] %}
+    <div><img class="shot" src="/img?path={{ e.image_url|urlencode }}" alt="">
+      <div class="muted" style="font-size:.72rem">{{ e.brand }}</div></div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</article>
+{% endfor %}
+</div>
+{% endblock %}

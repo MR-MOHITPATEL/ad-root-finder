@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ad Root Finder{% block title %}{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/htmx/1.9.12/htmx.min.js"></script>
+<style>
+  :root{
+    --paper:#FAFAF7; --panel:#FFFFFF; --ink:#1A1A17; --muted:#6B6A62;
+    --line:#E3E1D9; --keep:#1F5E3D; --skip:#8A3B2E; --keep-soft:#EAF1EC;
+  }
+  *{box-sizing:border-box}
+  html{font-size:15px}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:Archivo, ui-sans-serif, system-ui, sans-serif;
+    font-variant-numeric:tabular-nums; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--keep); text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1{font-size:1.4rem; font-weight:600; letter-spacing:-.01em; margin:0}
+  input,select,textarea{
+    font:inherit; color:var(--ink); background:var(--panel);
+    border:1px solid var(--line); border-radius:4px; padding:.35rem .5rem;
+  }
+  input:focus,select:focus,textarea:focus,button:focus-visible{
+    outline:2px solid var(--keep); outline-offset:1px;
+  }
+  button{font:inherit; cursor:pointer; border-radius:4px; border:1px solid var(--line);
+    background:var(--panel); color:var(--ink); padding:.4rem .8rem; font-weight:500}
+  button.keep{background:var(--keep); border-color:var(--keep); color:#fff}
+  button.skip{background:transparent; border-color:transparent; color:var(--skip)}
+  button.skip:hover{background:#F3E9E7}
+  button.primary{background:var(--ink); border-color:var(--ink); color:var(--paper)}
+  .muted{color:var(--muted)}
+  dl{margin:0}
+  dl dt{color:var(--muted); font-weight:400}
+  dl dd{color:var(--ink); margin:0}
+  .hairline{border-bottom:1px solid var(--line)}
+  header{
+    position:sticky; top:0; z-index:20; background:var(--paper);
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:baseline; gap:1.5rem; padding:.85rem 1.5rem;
+  }
+  header .mark{font-weight:600; letter-spacing:-.02em}
+  nav a{color:var(--muted); font-weight:500; padding-bottom:.85rem;
+    border-bottom:2px solid transparent; margin-bottom:-.85rem}
+  nav a.on{color:var(--ink); border-color:var(--keep)}
+  main{max-width:1120px; margin:0 auto; padding:1.5rem}
+  .panel{background:var(--panel); border:1px solid var(--line); border-radius:6px}
+  .shot{border:1px solid var(--line); border-radius:3px; display:block; width:100%}
+  /* one motion moment: a decided card fades as it leaves */
+  .card.htmx-swapping{opacity:0; transition:opacity .15s ease}
+  @media (prefers-reduced-motion:reduce){.card.htmx-swapping{transition:none}}
+  kbd{border:1px solid var(--line); border-bottom-width:2px; border-radius:3px;
+    padding:0 .3rem; font-size:.72rem; background:var(--panel)}
+</style>
+</head>
+<body>
+<header>
+  <span class="mark">Ad Root Finder</span>
+  {% set n = nav|default('') %}
+  <nav style="display:flex; gap:1.1rem">
+    <a href="/" class="{{ 'on' if n=='review' }}">Review</a>
+    <a href="/approved" class="{{ 'on' if n=='approved' }}">Approved</a>
+    <a href="/catalogue" class="{{ 'on' if n=='catalogue' }}">Roots</a>
+    <a href="/candidates" class="{{ 'on' if n=='candidates' }}">Candidates</a>
+    <a href="/briefs" class="{{ 'on' if n=='briefs' }}">Briefs</a>
+  </nav>
+</header>
+<main>{% block body %}{% endblock %}</main>
+</body>
+</html>

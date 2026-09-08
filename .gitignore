@@ -1,13 +1,16 @@
 # Secrets — never commit
 .env
+.env.*
+!.env.example
 .streamlit/secrets.toml
 
-# Data files — live on server persistent disk, not in git
-data/raw/*.json
-data/raw/images/
-data/scored/
-data/analyzed/
-data/raw/master/
+# All runtime data (scraped ads, images, SQLite, decisions, briefs) — regenerated / in Supabase
+data/
+
+# SQLite
+*.db
+*.db-wal
+*.db-shm
 
 # Python
 __pycache__/
@@ -21,10 +24,17 @@ venv/
 
 # Playwright
 .playwright/
+ms-playwright/
 
-# OS
+# Debug artifacts
+debug_*.png
+debug_*.html
+
+# OS / editor
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/
 
-# Project context — local only
+# Local-only project context
 CLAUDE.md

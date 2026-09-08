@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+<div style="display:flex; align-items:baseline; gap:.75rem; margin-bottom:1.25rem">
+  <h1>Briefs</h1><span class="muted" style="font-size:.85rem">{{ briefs|length }}</span>
+</div>
+{% if not briefs %}
+<div class="panel" style="padding:2.5rem; text-align:center">
+  <div style="font-weight:600">No briefs yet.</div>
+  <p class="muted" style="margin:.4rem 0 0">Approve an ad, then write its adaptation brief.</p>
+</div>
+{% endif %}
+<div style="display:flex; flex-direction:column; gap:.6rem">
+{% for b in briefs %}
+<details class="panel" style="padding:.9rem 1.1rem">
+  <summary style="cursor:pointer; font-weight:600">{{ b.name }}</summary>
+  <pre style="white-space:pre-wrap; font-family:Archivo, sans-serif; font-size:.9rem; margin:.75rem 0 0">{{ b.md }}</pre>
+</details>
+{% endfor %}
+</div>
+{% endblock %}

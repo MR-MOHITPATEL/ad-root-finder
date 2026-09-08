@@ -1,0 +1,168 @@
+# Compliance ruleset — Dr. Bimal's Arjuna Cardio Care Tea (Jaadu Diet)
+# AUTHORITATIVE. Team-supplied (REBUILD_SPEC.md §5). Do not soften.
+# Consumed by compliance/validate.py.
+
+product:
+  name: "Dr. Bimal's Arjuna Cardio Care Tea"
+  brand: "Jaadu Diet"
+  site: "jaadudiet.com"
+  formulator: "Dr. Bimal Chhajer MBBS MD"
+  price_inr: 599
+  pack: "50 Tea Bags"
+  per_day_inr: 12
+  ingredient_count: "14-15 Ayurvedic herbs"
+  key_herbs: [Arjuna Chhal, Green Tea, Ashwagandha, Tulsi, Dry Ginger, Cinnamon]
+  type: "Herbal tea — not a drug"
+  fssai_category: "Food for Special Dietary Use"
+
+governing:
+  - NMC Code of Ethics 2023
+  - FSSAI Health Claims Regulations 2022
+  - ASCI Guidelines
+  - Drugs and Magic Remedies (Objectionable Advertisements) Act 1954
+  - Consumer Protection Act 2019
+  - Food Safety and Standards Act 2006
+
+# ── Rule 1 — doctor credential ───────────────────────────────────────────────
+doctor:
+  names: ["Dr. Bimal Chhajer", "Dr Bimal Chhajer", "Bimal Chhajer", "Dr. Bimal", "डॉ. बिमल छाजेर", "डॉ बिमल", "बिमल छाजेर"]
+  allowed_patterns:
+    - "formulated by dr. bimal chhajer mbbs md"
+    - "formulated by dr bimal chhajer (mbbs, md)"
+    - "formulated by dr. bimal chhajer"
+    - "डॉ. बिमल छाजेर mbbs md द्वारा निर्मित"
+    - "डॉ. बिमल छाजेर द्वारा निर्मित"
+  banned_near_name:   # any of these within the same line as the doctor's name -> FAIL
+    - recommend
+    - recommends
+    - recommended
+    - says
+    - suggests
+    - approved
+    - endorse
+    - endorsed
+    - prescribes
+    - सलाह
+    - सुझाव
+    - सिफ़ारिश
+    - सिफारिश
+
+# ── Rule 3/5 — verbs ────────────────────────────────────────────────────────
+verbs:
+  allowed: [supports, helps, aids, "contributes to", "helps maintain", "helps reduce", "in support of", "for healthy"]
+  banned:  [treats, treat, cures, cure, prevents, prevent, reverses, reverse, heals, heal, fights, fight, eliminates, eliminate, controls, control, "clinically proven", "clinically tested", "research backed", "research-backed", "proven to"]
+  banned_hindi: [इलाज, ठीक करता, ठीक करे, रोकथाम, रोके, ख़त्म, खत्म, नियंत्रित करे, दूर करे]
+
+# ── Rule 5 — disease terms -> safe substitutes ──────────────────────────────
+disease_terms:
+  cholesterol: "lipid levels"
+  "high bp": "blood pressure wellness"
+  "high blood pressure": "blood pressure wellness"
+  "heart disease": "heart wellness"
+  "heart attack": "heart wellness"
+  diabetes: "blood glucose regulation"
+  "blood sugar": "blood glucose regulation"
+  bp: "blood pressure wellness"
+disease_terms_hindi:
+  "कोलेस्ट्रॉल": "लिपिड लेवल"
+  "हृदय रोग": "दिल की सेहत"
+  "दिल का दौरा": "दिल की सेहत"
+  "मधुमेह": "ब्लड ग्लूकोज़ संतुलन"
+  "ब्लड शुगर": "ब्लड ग्लूकोज़ संतुलन"
+  "शुगर": "ब्लड ग्लूकोज़ संतुलन"
+
+# ── Rule 5 — outcome-timeline patterns (always FAIL for us) ─────────────────
+timeline_patterns:
+  - "in \\d+\\s*(day|days|week|weeks|month|months)"
+  - "\\d+\\s*(दिन|हफ़्ते|हफ्ते|महीने|माह)\\s*में"
+  - "results in"
+  - "\\d+\\s*(day|week|month)s? results"
+
+# ── Rule 4 — approved ingredient claims (the ONLY ones allowed) ─────────────
+approved_ingredient_claims:
+  Arjuna Chhal:
+    aliases: ["arjuna", "arjun chhal", "arjun bark", "terminalia arjuna", "अर्जुन छाल", "अर्जुन"]
+    claims:
+      - "Arjuna Chhal helps reduce bad cholesterol"
+      - "Arjuna Chhal supports healthy lipid levels"
+      - "Arjuna Chhal supports heart muscle function"
+      - "Arjuna Chhal supports cardiovascular antioxidant activity"
+      - "Arjuna Chhal supports healthy blood vessel function"
+    research: "Gupta et al. 2001, JAPI — PMID 11225136 — RCT, 105 pts, LDL -15.8% (p<0.01)"
+  Green Tea:
+    aliases: ["green tea", "ग्रीन टी"]
+    claims:
+      - "Green Tea supports healthy blood vessel function"
+      - "Green Tea supports cardiovascular antioxidant activity"
+    research: "PMC9231383"
+  Ashwagandha:
+    aliases: ["ashwagandha", "अश्वगंधा", "अश्वगन्धा"]
+    claims:
+      - "Ashwagandha supports healthy stress response"
+    research: "PMC3573577"
+  Tulsi:
+    aliases: ["tulsi", "holy basil", "तुलसी"]
+    claims:
+      - "Tulsi supports daily stress adaptation"
+    research: "PMC4296439"
+  Dry Ginger:
+    aliases: ["dry ginger", "sonth", "saunth", "सोंठ", "ginger"]
+    claims:
+      - "Dry Ginger supports healthy blood circulation"
+    research: "PMC3848205"
+  Cinnamon:
+    aliases: ["cinnamon", "dalchini", "दालचीनी"]
+    claims:
+      - "Cinnamon supports healthy blood glucose regulation"
+    research: "multiple peer-reviewed studies"
+  Clove:
+    aliases: ["clove", "lavang", "laung", "लौंग", "लवंग"]
+    claims:
+      - "Clove supports overall immune function"
+    research: "PMC10888574"
+  Brahmi:
+    aliases: ["brahmi", "ब्राह्मी", "ब्राम्ही"]
+    claims:
+      - "Brahmi supports healthy cognitive function"
+    research: ""
+  Cardamom:
+    aliases: ["cardamom", "elaichi", "इलायची", "इलाइची"]
+    claims:
+      - "Cardamom supports digestive comfort"
+    research: ""
+  Black Tea:
+    aliases: ["black tea", "काली चाय", "ब्लैक टी"]
+    claims:
+      - "Black Tea supports cardiovascular antioxidant activity"
+    research: ""
+
+# ── Rule 6 — headline types ────────────────────────────────────────────────
+headline_types:
+  A: "Broad wellness — no clinical test can measure or disprove it. SAFEST."
+  B: "Consumer-fear question — names the consumer's worry, not a product claim. ALLOWED."
+  C: "Ingredient claim — ingredient is the subject + 'helps' + published research. ALLOWED."
+  D: "BANNED — disease name as the headline problem / product as subject making a claim / doctor making a health statement."
+headline_examples:
+  A: ["Your heart deserves daily care.", "A daily ritual for a healthy heart.", "दिल का ख्याल रखो — हर रोज़", "दिल की देखभाल — जड़ से करें"]
+  B: ["दिल के लिए हर नुस्खा आज़माया?", "हर नुस्खा आज़माया?"]
+  C: ["अर्जुन छाल बुरे कोलेस्ट्रॉल को कम करने में मदद करती है"]
+
+# ── Rule 7 — disclaimer ────────────────────────────────────────────────────
+disclaimer:
+  text_en: "*This product is not intended to diagnose, treat, cure or prevent any disease."
+  text_hi: "*यह उत्पाद किसी बीमारी के निदान, उपचार, इलाज या रोकथाम के लिए नहीं है।"
+  placement: "visible, >=8pt, contrasting colour, bottom of ad"
+  required_unless:
+    - "headline is broad-wellness (Type A) only"
+    - "all claims are ingredient-attributed"
+    - "no disease name appears anywhere"
+
+# ── Rule 8 — price ─────────────────────────────────────────────────────────
+price:
+  allowed_examples: ["₹599 for 50 Tea Bags", "₹12 per day", "50 Sachets"]
+  rule: "strikethrough MRP must be the actual declared MRP on packaging — no fabricated anchor"
+
+# ── Rule 9 — social proof ──────────────────────────────────────────────────
+social_proof:
+  allowed: ["Formulated by Dr. Bimal Chhajer MBBS MD", "genuine verified star ratings", "Trusted by X customers (if verified)", "ingredient research references in small text"]
+  banned: ["fabricated testimonials", "clinically proven without a trial citation", "celebrity/doctor endorsement", "before/after medical images", "fake reviews or ratings"]

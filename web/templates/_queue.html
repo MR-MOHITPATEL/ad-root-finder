@@ -1,0 +1,17 @@
+<div style="display:flex; align-items:baseline; gap:.6rem; margin-bottom:1rem">
+  <span style="font-weight:600">{{ n_unique }} creatives</span>
+  <span class="muted" style="font-size:.85rem">
+    {{ n_pending }} ads total{% if auto %}, {{ auto }} skipped automatically as repeats{% endif %}
+  </span>
+</div>
+
+{% if not cards %}
+  <div class="panel" style="padding:2.5rem; text-align:center">
+    <div style="font-weight:600">Queue's clear.</div>
+    <p class="muted" style="margin:.4rem 0 0">Run a scan for new competitor ads, or work through Approved and Candidates.</p>
+  </div>
+{% endif %}
+
+<div style="display:flex; flex-direction:column; gap:1.25rem">
+{% for c in cards %}{% include "_card.html" %}{% endfor %}
+</div>

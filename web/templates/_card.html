@@ -1,0 +1,41 @@
+{% set m = c.lead %}{% set r = c.root %}
+{% set fitmap = {'yes':'Works for us','conditional':'Might work for us','no':"Won't work for us"} %}
+<article class="panel card" id="card-{{ c.ids[0] }}" style="padding:1rem; display:grid; grid-template-columns:240px 1fr; gap:1.1rem">
+  <div>
+    {% if m.image %}<img class="shot" src="/img?path={{ m.image|urlencode }}" alt="competitor ad">{% endif %}
+    <div class="muted" style="font-size:.8rem; margin-top:.5rem">
+      {{ m.page_name }}, running {{ m._days }} days{% if c.copies > 1 %}, {{ c.copies }} copies{% endif %}
+    </div>
+    <a href="{{ m.snapshot_url }}" target="_blank" rel="noopener" style="font-size:.8rem">Open in Meta Ad Library</a>
+  </div>
+
+  <div>
+    <div style="font-weight:600">{{ m.headline or "No headline text" }}</div>
+    <div style="font-size:.85rem; margin-top:.15rem">
+      {% set fit = r.fits_our_brand %}
+      <span style="color:{{ 'var(--keep)' if fit=='yes' else 'var(--skip)' if fit=='no' else 'var(--muted)' }}; font-weight:500">
+        {{ fitmap.get(fit, 'Unclassified') }}</span>
+      <span class="muted"> — AI suggests root “{{ r.root_id or r.candidate_name or 'new' }}”</span>
+    </div>
+
+    <dl style="margin:.7rem 0 0; font-size:.9rem; display:grid; grid-template-columns:auto 1fr; gap:.15rem .6rem">
+      <dt>Mechanism</dt><dd>{{ r.mechanism }}</dd>
+      <dt>Visual motif</dt><dd>{{ r.visual_motif }}</dd>
+    </dl>
+    <p class="muted" style="font-size:.85rem; margin:.5rem 0 0; max-width:62ch">{{ r.fit_reason }}</p>
+
+    <form hx-post="/decide" hx-target="#card-{{ c.ids[0] }}" hx-swap="outerHTML swap:.15s"
+          style="margin-top:.9rem; display:flex; flex-wrap:wrap; gap:.5rem; align-items:center">
+      <input type="hidden" name="ad_ids" value='{{ c.ids|tojson }}'>
+      <input type="hidden" name="phash" value="{{ c.phash or '' }}">
+      <select name="root_id" title="which root this ad belongs to">
+        <option value="">root: use AI suggestion</option>
+        {% for rid in root_ids %}<option value="{{ rid }}">{{ rid }}</option>{% endfor %}
+      </select>
+      <input name="note" placeholder="note for the team" style="width:12rem">
+      <button class="keep" name="status" value="works" data-status="works">Keep</button>
+      <button name="status" value="maybe" data-status="maybe">Maybe</button>
+      <button class="skip" name="status" value="no" data-status="no">Skip</button>
+    </form>
+  </div>
+</article>

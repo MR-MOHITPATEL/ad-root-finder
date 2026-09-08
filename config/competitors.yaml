@@ -1,0 +1,65 @@
+# Competitors to scan for ad roots.
+# Edit freely — no code changes needed.
+#
+# tier:
+#   every_run   -> scanned on every `run.py --scan` and the daily refresh
+#   broad_only  -> scanned only with `run.py --scan --broad`
+#
+# search: the exact text to type into the Meta Ad Library search box
+#         (keyword search across advertisers — matches the manual workflow)
+
+defaults:
+  country: IN
+  media_type: all              # we filter to image ads ourselves (Meta's image filter is unreliable)
+  active_status: active         # "Active ads" only
+  max_ads: 60                   # stop after this many per competitor
+
+competitors:
+  - name: OZiva
+    search: OZiva
+    tier: every_run
+
+  - name: Kapiva
+    search: Kapiva
+    tier: every_run
+    # TODO team: confirm exact Ad Library page name(s) — "2-3 brands of Kapiva"
+
+  - name: Wellbeing Nutrition
+    search: Wellbeing Nutrition
+    tier: every_run
+
+  - name: Plix
+    search: Plix Life
+    tier: every_run
+
+  - name: "&Me"
+    search: "&Me"
+    tier: every_run
+
+  - name: Man Matters
+    search: Man Matters
+    tier: broad_only
+
+  - name: Be Bodywise
+    search: Bodywise
+    tier: broad_only
+
+  - name: Traya
+    search: Traya
+    tier: broad_only
+
+  - name: Setu
+    search: Setu Nutrition
+    tier: broad_only
+
+  - name: Saffola Life
+    search: Saffola
+    tier: broad_only
+
+# Non-brand keyword searches — run with `run.py --scan --broad`
+keyword_searches:
+  - arjuna tea
+  - cardio tea
+  - cholesterol ayurvedic
+  - heart wellness herbal
+  - ashwagandha tea

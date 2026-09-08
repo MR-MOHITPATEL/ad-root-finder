@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block body %}
+<div style="display:flex; align-items:baseline; gap:.75rem; margin-bottom:.4rem">
+  <h1>Candidates</h1><span class="muted" style="font-size:.85rem">{{ cat.candidates|length }} proposed</span>
+</div>
+<p class="muted" style="font-size:.85rem; margin:0 0 1.25rem; max-width:65ch">
+  New concepts pulled from competitor ads. Merge one into an existing root, or promote it to a named root of its own.
+</p>
+
+<div style="display:flex; flex-direction:column; gap:1.5rem">
+{% for c in cat.candidates %}
+<article style="border-bottom:1px solid var(--line); padding-bottom:1.25rem">
+  <div style="font-weight:600">{{ c.candidate_name }}
+    <span class="muted" style="font-weight:400">— {{ c.examples|length }} ads, {{ c.fits_our_brand }} for our brand</span></div>
+  <div style="font-size:.9rem; margin-top:.35rem"><span class="muted">Mechanism:</span> {{ c.mechanism }}</div>
+  <div style="font-size:.9rem"><span class="muted">Visual motif:</span> {{ c.visual_motif }}</div>
+  {% set imgs = c.examples|selectattr('image_url')|list %}
+  {% if imgs %}
+  <div style="display:grid; grid-template-columns:repeat(8,1fr); gap:.4rem; margin-top:.8rem">
+    {% for e in imgs[:16] %}<img class="shot" src="/img?path={{ e.image_url|urlencode }}" alt="">{% endfor %}
+  </div>
+  {% endif %}
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:1rem">
+    <form method="post" action="/candidates/promote" style="display:flex; flex-direction:column; gap:.35rem">
+      <div style="font-weight:600; font-size:.85rem">Promote to a named root</div>
+      <input type="hidden" name="name" value="{{ c.candidate_name }}">
+      <input name="root_id" value="{{ c.candidate_name|lower|replace(' ','-')|replace('/','-') }}">
+      <input name="why" placeholder="why it works">
+      <input name="notes" placeholder="what to change when we adapt it">
+      <button class="keep" style="font-size:.85rem">Promote</button>
+    </form>
+    <form method="post" action="/candidates/merge" style="display:flex; flex-direction:column; gap:.35rem">
+      <div style="font-weight:600; font-size:.85rem">Merge into an existing root</div>
+      <select name="root_id">{% for rid in root_ids %}<option value="{{ rid }}">{{ rid }}</option>{% endfor %}</select>
+      <input type="hidden" name="name" value="{{ c.candidate_name }}">
+      <button style="font-size:.85rem">Merge</button>
+    </form>
+  </div>
+</article>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block body %}
+<div style="display:flex; align-items:baseline; gap:.75rem; margin-bottom:1.25rem">
+  <h1>Approved</h1>
+  <span class="muted" style="font-size:.85rem">{{ approved|length }} ads, {{ need_brief|length }} still need a brief</span>
+</div>
+
+{% if not approved %}
+<div class="panel" style="padding:2.5rem; text-align:center">
+  <div style="font-weight:600">Nothing approved yet.</div>
+  <p class="muted" style="margin:.4rem 0 0">Keep an ad in the Review queue and it lands here.</p>
+</div>
+{% endif %}
+
+<div style="display:flex; flex-direction:column; gap:1.1rem">
+{% for m in approved %}
+{% set r = m.root or {} %}{% set d = m._decision %}
+<article class="panel" style="padding:1rem; display:grid; grid-template-columns:180px 1fr; gap:1.1rem">
+  <div>
+    {% if m.image %}<img class="shot" src="/img?path={{ m.image|urlencode }}" alt="">{% endif %}
+    <a href="{{ m.snapshot_url }}" target="_blank" rel="noopener" style="font-size:.8rem">Ad Library</a>
+  </div>
+  <div>
+    <div style="font-weight:600">{{ m.headline or m.ad_id }}</div>
+    <div class="muted" style="font-size:.85rem; margin-top:.15rem">
+      {{ m.page_name }}, {{ m._days }} days · root {{ d.root_id or r.root_id or r.candidate_name or 'new' }}
+      {% if d.decided_by %} · kept by {{ d.decided_by }}{% endif %}
+    </div>
+    <div style="font-size:.9rem; margin-top:.35rem">{{ r.visual_motif }}</div>
+    {% if d.note %}<div style="font-size:.9rem; margin-top:.2rem"><span class="muted">Note:</span> {{ d.note }}</div>{% endif %}
+    <div style="margin-top:.9rem; display:flex; gap:.75rem; align-items:center">
+      {% if m._brief %}
+        <span style="color:var(--keep); font-size:.9rem">Brief ready — see Briefs</span>
+      {% else %}
+        <button class="primary" hx-post="/brief/{{ m.ad_id }}" hx-target="#b-{{ m.ad_id }}" hx-swap="innerHTML">
+          Write the adaptation brief
+        </button>
+      {% endif %}
+      <span id="b-{{ m.ad_id }}" style="font-size:.85rem"></span>
+    </div>
+  </div>
+</article>
+{% endfor %}
+</div>
+{% endblock %}

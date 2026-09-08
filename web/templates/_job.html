@@ -1,0 +1,11 @@
+{% if job.label %}
+<div {% if job.running %}hx-get="/scan/status" hx-trigger="every 2s" hx-target="#job" hx-swap="innerHTML"{% endif %}>
+  <div style="font-weight:600; color:{{ 'var(--ink)' if job.running else 'var(--keep)' }}">
+    {{ 'Running: ' if job.running else 'Done: ' }}{{ job.label }}
+    {% if not job.running %} — <a href="/">reload for results</a>{% endif %}
+  </div>
+  <pre style="background:var(--paper); border:1px solid var(--line); border-radius:4px;
+    padding:.4rem; margin-top:.35rem; max-height:9rem; overflow-y:auto;
+    font-size:.7rem; white-space:pre-wrap">{{ job.log[-1400:] }}</pre>
+</div>
+{% endif %}
