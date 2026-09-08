@@ -192,6 +192,8 @@ def add_competitor(name: str = Form(...), tier: str = Form("broad_only")):
 # ── images ──────────────────────────────────────────────────────────────────
 @app.get("/img")
 def img(path: str):
+    if path.startswith("http://") or path.startswith("https://"):
+        return RedirectResponse(path)
     p = Path(path).resolve()
     if IMAGES_DIR.resolve() in p.parents and p.exists():
         return FileResponse(p)

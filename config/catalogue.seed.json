@@ -1,0 +1,66 @@
+{
+  "updated_at": "2026-09-07",
+  "roots": [
+    {
+      "root_id": "ingredient-bubbles",
+      "name": "Ingredient Bubbles Around Product",
+      "status": "named",
+      "mechanism": "ingredient transparency — 'look how much goodness is inside'",
+      "why_it_works": "Each floating sphere is a proof point; the ring of ingredients around a single product makes a multi-herb formula feel generous and premium without a word of claim.",
+      "visual_motif": "Product centered and upright; translucent spheres arranged in a ring around it, one raw ingredient per sphere, each with a small label; soft radial glow; price/CTA badge in a corner.",
+      "fits_our_brand": "yes",
+      "compliance_notes": "Sphere labels must be ingredient names only, never 'X treats/controls Y'. If a benefit is shown per ingredient, use the approved Rule 4 phrasing ('Arjuna Chhal - supports healthy lipid levels'). No disease words on labels. Disclaimer if any benefit text appears.",
+      "competitor_examples": [],
+      "our_executions": [
+        {
+          "product": "Arjuna Cardio Care Tea",
+          "image_url": "",
+          "ad_id": "",
+          "date": "",
+          "note": "Hindi - herbs in glowing circles around the box, Dr. Bimal photo on pack"
+        }
+      ]
+    },
+    {
+      "root_id": "botanical-habitat",
+      "name": "Botanical Habitat / Forest Floor",
+      "status": "named",
+      "mechanism": "naturalness & provenance — the product belongs in nature",
+      "why_it_works": "Placing the product in a lush natural scene with its raw ingredients scattered around it makes 'plant-based / ayurvedic' feel literal and unprocessed; the eye reads 'this came from the earth'.",
+      "visual_motif": "Product resting on a mossy forest floor or among foliage; raw herbs/roots arranged naturally around the base; ingredient names floating with thin callout lines; diffused daylight; earthy green-brown palette.",
+      "fits_our_brand": "yes",
+      "compliance_notes": "Floating labels = ingredient names only. Any headline stays Type A (broad wellness) or Type C (ingredient-led). No 'for PCOS / diabetes / cholesterol' framing like the competitor uses.",
+      "competitor_examples": [],
+      "our_executions": [
+        {
+          "product": "Arjuna Cardio Care Tea",
+          "image_url": "",
+          "ad_id": "",
+          "date": "",
+          "note": "Box in a forest, herbs scattered, Hindi labels around"
+        }
+      ]
+    },
+    {
+      "root_id": "pile-vs-one",
+      "name": "Pile vs One (VS Comparison)",
+      "status": "named",
+      "mechanism": "simplification + loss-aversion — 'stop juggling many, switch to one'",
+      "why_it_works": "A hand overflowing with many pills/bottles next to a hand holding one product dramatizes effort and cost; the contrast does the persuading, no claim needed.",
+      "visual_motif": "Split frame or two hands: left = messy pile of generic pills / many supplement bottles; right = one clean hand holding our single product; short 'why take X when...' headline; per-day price badge.",
+      "fits_our_brand": "yes",
+      "compliance_notes": "Headline stays Type B question ('15 alag-alag cheezein kyun lein...'). Do not claim our one product replaces the medical function of the pile. Comparison is about count/convenience/cost, not efficacy.",
+      "competitor_examples": [],
+      "our_executions": [
+        {
+          "product": "Arjuna Cardio Care Tea",
+          "image_url": "",
+          "ad_id": "",
+          "date": "",
+          "note": "15 supplement bottles in one hand vs the tea box in the other"
+        }
+      ]
+    }
+  ],
+  "candidates": []
+}

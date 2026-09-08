@@ -23,8 +23,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
+from . import store
 from .llm import gemini_json
-from .paths import ADS_DIR, MATCHES_DIR, ROOTS_CATALOGUE, slug
+from .paths import ADS_DIR, slug
 
 try:
     sys.stdout.reconfigure(encoding="utf-8")
@@ -33,12 +34,11 @@ except Exception:  # noqa: BLE001
 
 
 def load_catalogue() -> dict:
-    return json.loads(ROOTS_CATALOGUE.read_text(encoding="utf-8"))
+    return store.catalogue_load()
 
 
 def save_catalogue(cat: dict) -> None:
-    cat["updated_at"] = datetime.now(timezone.utc).date().isoformat()
-    ROOTS_CATALOGUE.write_text(json.dumps(cat, indent=2, ensure_ascii=False), encoding="utf-8")
+    store.catalogue_save(cat)
 
 
 def _pop_candidate(cat: dict, name: str) -> dict | None:
@@ -149,7 +149,7 @@ def analyze_ad(ad: dict, roots: list[dict], candidates: list[dict] | None = None
         "page_name": ad.get("page_name"),
         "headline": ad.get("headline"),
         "snapshot_url": ad.get("snapshot_url"),
-        "image": imgs[0] if imgs else None,
+        "image": ad.get("image_url") or (imgs[0] if imgs else None),
         "image_phash": ad.get("image_phash"),
         "start_time": ad.get("start_time"),
         "is_active": ad.get("is_active"),
@@ -222,15 +222,13 @@ def run(terms: list[str] | None = None, *, force: bool = False, workers: int = 4
         competitor = data.get("term", f.stem)
         ads = data.get("ads", [])
 
-        out_path = MATCHES_DIR / f.name
-        prev = json.loads(out_path.read_text(encoding="utf-8")) if out_path.exists() and not force else {}
-        done = {m["ad_id"]: m for m in prev.get("matches", [])}
-        todo = [a for a in ads if a["ad_id"] not in done]
+        seen_ids = set() if force else store.matches_existing_ids(competitor)
+        todo = [a for a in ads if a["ad_id"] not in seen_ids]
         if limit:
             todo = todo[:limit]
 
         print(f">> {competitor}: {len(todo)} new / {len(ads)} ads")
-        results = list(done.values())
+        results = []
         if todo:
             cands_hint = cat.get("candidates", [])
             with ThreadPoolExecutor(max_workers=workers) as ex:
@@ -245,18 +243,14 @@ def run(terms: list[str] | None = None, *, force: bool = False, workers: int = 4
                         tag = r.get("root_id") or (f"candidate:{r.get('candidate_name')}" if r.get("is_candidate") else "?")
                     print(f"   [{i}/{len(todo)}] {m['ad_id']}  strength={r.get('root_strength')}  {tag}  fits={r.get('fits_our_brand')}")
 
-        _attach_to_catalogue(cat, results, competitor)
-        out_path.write_text(json.dumps({
-            "term": competitor,
-            "analyzed_at": datetime.now(timezone.utc).isoformat(),
-            "count": len(results),
-            "matches": results,
-        }, indent=2, ensure_ascii=False), encoding="utf-8")
+        if results:
+            _attach_to_catalogue(cat, results, competitor)
+            store.matches_save(competitor, results)
 
     save_catalogue(cat)
     n_cand = len(cat.get("candidates", []))
-    print(f"catalogue: {len(cat['roots'])} named roots, {n_cand} candidates -> {ROOTS_CATALOGUE}")
-    print("Review candidates in the dashboard and Promote / Merge them by hand.")
+    print(f"catalogue ({store.mode()}): {len(cat['roots'])} named roots, {n_cand} candidates")
+    print("Review candidates in the UI and Promote / Merge them by hand.")
 
 
 if __name__ == "__main__":

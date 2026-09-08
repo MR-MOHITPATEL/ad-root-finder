@@ -479,15 +479,24 @@ def download_images(ads: list[dict], competitor: str, workers: int = 12) -> None
             ad, i, u = futs[fut]
             path = fut.result()
             local.setdefault(ad["ad_id"], []).append(path or u)
+    from . import store
     from .imagehash import phash_file
 
+    slug_c = slug(competitor)
     ok = 0
     for ad in ads:
         paths = local.get(ad["ad_id"], [])
         ad["local_image_paths"] = [p for p in paths if p and not p.startswith("http")]
         ok += len(ad["local_image_paths"])
-        ad["image_phash"] = phash_file(ad["local_image_paths"][0]) if ad["local_image_paths"] else None
-    print(f"  images: {ok}/{len(jobs)} downloaded")
+        if ad["local_image_paths"]:
+            lp = ad["local_image_paths"][0]
+            ad["image_phash"] = phash_file(lp)
+            key = f"{slug_c}/{Path(lp).name}"
+            ad["image_url"] = store.put_image(lp, key) or lp
+        else:
+            ad["image_phash"] = None
+            ad["image_url"] = None
+    print(f"  images: {ok}/{len(jobs)} downloaded, stored to {store.mode()}")
 
 
 # ── Entry ────────────────────────────────────────────────────────────────────

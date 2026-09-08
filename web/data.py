@@ -7,21 +7,15 @@ from functools import lru_cache
 from pathlib import Path
 
 from rootfinder import decisions as dec
+from rootfinder import store
 from rootfinder.imagehash import hamming, phash_file
-from rootfinder.paths import ADS_DIR, BRIEFS_DIR, MATCHES_DIR, ROOTS_CATALOGUE
+from rootfinder.paths import BRIEFS_DIR
 
 NEAR = 8
 
 
-def _load(p: Path, default):
-    try:
-        return json.loads(p.read_text(encoding="utf-8"))
-    except Exception:  # noqa: BLE001
-        return default
-
-
 def catalogue() -> dict:
-    return _load(ROOTS_CATALOGUE, {"roots": [], "candidates": []})
+    return store.catalogue_load()
 
 
 def days_running(m: dict) -> int:
@@ -42,7 +36,7 @@ def ph(m: dict) -> str | None:
     if m.get("image_phash"):
         return m["image_phash"]
     p = m.get("image")
-    if not p:
+    if not p or str(p).startswith("http"):
         return None
     try:
         mt = Path(p).stat().st_mtime
@@ -52,12 +46,9 @@ def ph(m: dict) -> str | None:
 
 
 def all_matches() -> list[dict]:
-    out: list[dict] = []
-    for f in sorted(MATCHES_DIR.glob("*.json")):
-        for m in _load(f, {}).get("matches", []):
-            m["_competitor_file"] = f.stem
-            m["_days"] = days_running(m)
-            out.append(m)
+    out = store.matches_all()
+    for m in out:
+        m["_days"] = days_running(m)
     return out
 
 
