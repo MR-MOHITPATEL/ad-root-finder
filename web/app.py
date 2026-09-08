@@ -95,7 +95,7 @@ def review(request: Request, rf_user: str = Cookie(default="")):
     try:
         ctx = _cards_ctx()
         ctx.update(request=request, nav="review", fresh=ledger.competitor_stats(), me=rf_user)
-        return templates.TemplateResponse("review.html", ctx)
+        return templates.TemplateResponse(request, "review.html", ctx)
     except Exception as e:  # noqa: BLE001 — surface the real error while stabilising
         import traceback
         return HTMLResponse(f"<pre>{type(e).__name__}: {e}\n\n{traceback.format_exc()}</pre>",
@@ -106,7 +106,7 @@ def review(request: Request, rf_user: str = Cookie(default="")):
 def queue_partial(request: Request):
     ctx = _cards_ctx()
     ctx.update(request=request)
-    return templates.TemplateResponse("_queue.html", ctx)
+    return templates.TemplateResponse(request, "_queue.html", ctx)
 
 
 @app.post("/whoami")
@@ -132,7 +132,7 @@ def approved_page(request: Request):
     for m in approved:
         m["_decision"] = dec_map.get(m["ad_id"], {})
         m["_brief"] = D.brief_exists(m["ad_id"])
-    return templates.TemplateResponse("approved.html", {
+    return templates.TemplateResponse(request, "approved.html", {
         "request": request, "approved": approved, "nav": "approved",
         "need_brief": [m for m in approved if not m["_brief"]],
     })
@@ -140,14 +140,14 @@ def approved_page(request: Request):
 
 @app.get("/catalogue", response_class=HTMLResponse)
 def catalogue_page(request: Request):
-    return templates.TemplateResponse("catalogue.html", {
+    return templates.TemplateResponse(request, "catalogue.html", {
         "request": request, "cat": D.catalogue(), "nav": "catalogue"})
 
 
 @app.get("/candidates", response_class=HTMLResponse)
 def candidates_page(request: Request):
     cat = D.catalogue()
-    return templates.TemplateResponse("candidates.html", {
+    return templates.TemplateResponse(request, "candidates.html", {
         "request": request, "cat": cat, "nav": "candidates",
         "root_ids": [r["root_id"] for r in cat["roots"]]})
 
@@ -169,7 +169,7 @@ def do_merge(name: str = Form(...), root_id: str = Form(...)):
 def briefs_page(request: Request):
     mds = sorted(BRIEFS_DIR.glob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
     briefs = [{"name": p.stem, "md": p.read_text(encoding="utf-8")} for p in mds]
-    return templates.TemplateResponse("briefs.html", {
+    return templates.TemplateResponse(request, "briefs.html", {
         "request": request, "briefs": briefs, "nav": "briefs"})
 
 
@@ -241,7 +241,7 @@ def scan_status(request: Request):
 
 
 def _job_partial(request: Request):
-    return templates.TemplateResponse("_job.html", {"request": request, "job": _job})
+    return templates.TemplateResponse(request, "_job.html", {"request": request, "job": _job})
 
 
 @app.post("/competitors/add")
