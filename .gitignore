@@ -12,6 +12,10 @@ data/
 *.db-wal
 *.db-shm
 
+# scan output
+scan.log
+nohup.out
+
 # Python
 __pycache__/
 *.pyc

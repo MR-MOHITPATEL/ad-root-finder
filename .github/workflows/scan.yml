@@ -1,8 +1,12 @@
 name: scan
 
 on:
-  schedule:
-    - cron: "0 2 * * *"        # daily 02:00 UTC (~07:30 IST) — active-ad refresh
+  # NOTE: Meta blocks datacenter IPs from the Ad Library — scraping from GitHub
+  # Actions returns ~0 usable ads. The scan runs on a residential IP instead
+  # (scan.bat + Windows Task Scheduler on the scraper PC). Re-enable this cron
+  # only if a residential proxy is wired in.
+  # schedule:
+  #   - cron: "0 2 * * *"
   workflow_dispatch:
     inputs:
       terms:
