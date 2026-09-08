@@ -40,15 +40,17 @@ async def _password_gate(request: Request, call_next):
     if not _APP_PASSWORD:
         return await call_next(request)                      # local dev: open
     hdr = request.headers.get("authorization", "")
+    ok = False
     if hdr.startswith("Basic "):
         try:
             _, pw = base64.b64decode(hdr[6:]).decode("utf-8").split(":", 1)
-            if secrets.compare_digest(pw.strip().encode(), _APP_PASSWORD.encode()):
-                return await call_next(request)
+            ok = secrets.compare_digest(pw.strip().encode(), _APP_PASSWORD.encode())
         except Exception:  # noqa: BLE001
-            pass
-    return Response("Sign in", status_code=401,
-                    headers={"WWW-Authenticate": 'Basic realm="Ad Root Finder"'})
+            ok = False
+    if not ok:
+        return Response("Sign in", status_code=401,
+                        headers={"WWW-Authenticate": 'Basic realm="Ad Root Finder"'})
+    return await call_next(request)   # outside try — real errors surface as 500
 
 # ── background job (scan) ────────────────────────────────────────────────────
 _job = {"running": False, "label": "", "log": "", "rc": None}
@@ -254,6 +256,7 @@ def health():
         "app_password_sha8": hashlib.sha256(_APP_PASSWORD.encode()).hexdigest()[:8],
         "build": "auth-bytes-v2",
     }
+    import traceback
     try:
         out["roots"] = len(store.catalogue_load().get("roots", []))
         out["matches"] = len(store.matches_all())
@@ -261,6 +264,12 @@ def health():
     except Exception as e:  # noqa: BLE001
         out["ok"] = False
         out["error"] = f"{type(e).__name__}: {e}"
+    try:
+        _cards_ctx()  # the exact thing the review page does
+        out["review_render"] = "ok"
+    except Exception as e:  # noqa: BLE001
+        out["review_render"] = f"{type(e).__name__}: {e}"
+        out["review_trace"] = traceback.format_exc()[-800:]
     return out
 
 
