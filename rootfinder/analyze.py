@@ -1,18 +1,16 @@
 """
-Root-match + compliance for scraped competitor ads.
+Root-match for scraped competitor ads.
 
 For each ad:
   1. vision model reads the image + copy -> is it a real root? match to a catalogue
      root, or propose a candidate root
   2. judge whether the root can work for our brand (Dr. Bimal's Arjuna tea)
 
-No compliance check here — competitors don't follow our rules and it doesn't matter.
-Compliance only gates what WE generate (rootfinder/brief.py).
+Output goes to Supabase (matches / roots / candidates). Matched ads are appended
+to the root's competitor_examples; candidates are listed for the team to name.
 
-Output: data/rf/matches/{slug}.json
-Side effect: matched ads are appended to the root's competitor_examples in
-             data/roots/catalogue.json (candidates are listed separately for
-             the team to name/approve).
+compliance/ holds the encoded NMC/FSSAI ruleset but is not wired to anything
+right now — kept for reference.
 """
 from __future__ import annotations
 
@@ -163,7 +161,7 @@ def analyze_ad(ad: dict, roots: list[dict], candidates: list[dict] | None = None
         or (r.get("root_strength") or 0) < 0.4
     )
     # NOTE: no compliance check here — competitors don't follow our rules and it
-    # doesn't matter. Compliance only gates what WE generate (see brief.py).
+    # doesn't matter.
     return rec
 
 

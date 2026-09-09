@@ -22,7 +22,7 @@ from rootfinder import competitors as comp
 from rootfinder import decisions as dec
 from rootfinder import ledger
 from rootfinder.analyze import merge_candidate_into_root, promote_candidate
-from rootfinder.paths import IMAGES_DIR, ROOT, BRIEFS_DIR
+from rootfinder.paths import IMAGES_DIR, ROOT
 
 from . import data as D
 
@@ -126,10 +126,8 @@ def approved_page(request: Request):
     approved.sort(key=lambda m: m["_days"], reverse=True)
     for m in approved:
         m["_decision"] = dec_map.get(m["ad_id"], {})
-        m["_brief"] = D.brief_exists(m["ad_id"])
     return templates.TemplateResponse(request, "approved.html", {
         "request": request, "approved": approved, "nav": "approved",
-        "need_brief": [m for m in approved if not m["_brief"]],
     })
 
 
@@ -188,25 +186,6 @@ def root_remove_image(root_id: str, image_url: str = Form(...)):
     from rootfinder import store
     store.root_remove_image(root_id, image_url)
     return RedirectResponse("/catalogue", status_code=303)
-
-
-@app.get("/briefs", response_class=HTMLResponse)
-def briefs_page(request: Request):
-    mds = sorted(BRIEFS_DIR.glob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
-    briefs = [{"name": p.stem, "md": p.read_text(encoding="utf-8")} for p in mds]
-    return templates.TemplateResponse(request, "briefs.html", {
-        "request": request, "briefs": briefs, "nav": "briefs"})
-
-
-@app.post("/brief/{ad_id}", response_class=HTMLResponse)
-def make_brief(ad_id: str):
-    from rootfinder.brief import generate
-    try:
-        out = generate(ad_id)
-        sc = out["_self_check"]["status"]
-        return f'<span class="text-green-600">brief ready — self-check {sc} — see Briefs tab</span>'
-    except Exception as e:  # noqa: BLE001
-        return f'<span class="text-red-600">failed: {e}</span>'
 
 
 # ── scan control ────────────────────────────────────────────────────────────
