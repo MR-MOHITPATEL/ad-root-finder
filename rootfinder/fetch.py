@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import os
+import random
 import re
 import sys
 import time
@@ -374,9 +375,13 @@ def scrape_one(context: BrowserContext, term: str, o: FetchOptions,
     try:
         if page_ids:
             # Pinned advertiser pages — scrape each directly, no keyword guessing.
-            for pid in page_ids:
+            for i, pid in enumerate(page_ids):
                 if time.monotonic() - started >= o.hard_cap_seconds:
                     break
+                if i > 0:
+                    pause = random.uniform(6, 12)
+                    print(f"    (pausing {pause:0.1f}s between pages — avoids Meta rate-limiting mid-session)")
+                    time.sleep(pause)
                 print(f"    -> page {pid}")
                 _collect(page, ads, build_page_url(pid, o), o, started,
                          target=len(ads) + o.max_ads)
@@ -408,14 +413,18 @@ def scrape_one(context: BrowserContext, term: str, o: FetchOptions,
     out = [a for a in out if a.get("image_urls")]  # image ads only
     if o.drop_catalog_ads:
         out = [a for a in out if not _is_catalog(a)]
-    if o.brand_filter:
+    # Skip the brand-name check when we scraped a pinned page_id directly —
+    # view_all_page_id already guarantees every ad is from that exact page,
+    # and name-slug matching ("wellbeingnutrition" vs "Wellbeing Nutrition")
+    # was silently rejecting every single ad for some brands.
+    if o.brand_filter and not page_ids:
         out = [a for a in out if _brand_match(term, a.get("page_name", ""))]
     if o.primary_image_only:
         for a in out:
             a["image_urls"] = a["image_urls"][:1]
             a["cards"] = (a.get("cards") or [])[:1]
     elapsed = time.monotonic() - started
-    print(f"  {term!r}: {len(out)}/{raw} image ads (brand_filter={o.brand_filter}) in {elapsed:0.1f}s")
+    print(f"  {term!r}: {len(out)}/{raw} image ads (brand_filter={o.brand_filter and not page_ids}) in {elapsed:0.1f}s")
     return out[: o.max_ads]
 
 
@@ -544,7 +553,18 @@ def fetch(terms: list[str], o: FetchOptions,
 
         from . import ledger
 
-        for term in terms:
+        for i, term in enumerate(terms):
+            if i > 0:
+                # A fresh context (new cookies/session) + a real gap between brands —
+                # Meta was rate-limiting the tail end of a session that hit many pages
+                # back-to-back (Wellbeing Nutrition / Plix coming back empty after
+                # Kapiva's 5 pages). Reset between brands instead of one long session.
+                pause = random.uniform(10, 20)
+                print(f"  (pausing {pause:0.1f}s before next brand, fresh session)")
+                time.sleep(pause)
+                context.close()
+                context = _make_context(browser, o)
+
             mode = "DEEP (all-time)" if o.active_status == "all" else "active"
             pids = page_ids_map.get(term) or []
             print(f">> {term}  [{mode}]" + (f"  {len(pids)} pinned page(s)" if pids else ""))
