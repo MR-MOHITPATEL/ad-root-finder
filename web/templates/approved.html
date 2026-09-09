@@ -2,7 +2,7 @@
 {% block body %}
 <div style="display:flex; align-items:baseline; gap:.75rem; margin-bottom:1.25rem">
   <h1>Approved</h1>
-  <span class="muted" style="font-size:.85rem">{{ approved|length }} ads, {{ need_brief|length }} still need a brief</span>
+  <span class="muted" style="font-size:.85rem">{{ approved|length }} ads your team kept</span>
 </div>
 
 {% if not approved %}
@@ -27,17 +27,8 @@
       {% if d.decided_by %} · kept by {{ d.decided_by }}{% endif %}
     </div>
     <div style="font-size:.9rem; margin-top:.35rem">{{ r.visual_motif }}</div>
+    {% if r.adaptation_hint %}<div style="font-size:.9rem; margin-top:.2rem"><span class="muted">Adapt for us:</span> {{ r.adaptation_hint }}</div>{% endif %}
     {% if d.note %}<div style="font-size:.9rem; margin-top:.2rem"><span class="muted">Note:</span> {{ d.note }}</div>{% endif %}
-    <div style="margin-top:.9rem; display:flex; gap:.75rem; align-items:center">
-      {% if m._brief %}
-        <span style="color:var(--keep); font-size:.9rem">Brief ready — see Briefs</span>
-      {% else %}
-        <button class="primary" hx-post="/brief/{{ m.ad_id }}" hx-target="#b-{{ m.ad_id }}" hx-swap="innerHTML">
-          Write the adaptation brief
-        </button>
-      {% endif %}
-      <span id="b-{{ m.ad_id }}" style="font-size:.85rem"></span>
-    </div>
   </div>
 </article>
 {% endfor %}

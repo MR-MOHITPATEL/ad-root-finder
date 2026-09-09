@@ -6,7 +6,6 @@ Competitor Ad Root Finder — CLI.
   python run.py scan --deep             # include past (inactive) ads
   python run.py fetch "Kapiva"          # fetch one term only
   python run.py analyze                 # analyze whatever's already fetched
-  python run.py brief 1234567890        # adaptation brief for a matched ad
   python run.py web                     # local review UI at localhost:8000
 
 Storage: Supabase when SUPABASE_URL is set, else local files under data/rf/.
@@ -110,12 +109,6 @@ def main() -> None:
     a.add_argument("--force", action="store_true")
     a.add_argument("--limit", type=int)
 
-    b = sub.add_parser("brief")
-    b.add_argument("ad_id", nargs="?")
-    b.add_argument("--product", default="arjuna-tea")
-    b.add_argument("--all-approved", action="store_true",
-                   help="generate a brief for every 'works' ad that doesn't have one yet")
-
     w = sub.add_parser("web")
     w.add_argument("--port", type=int, default=8000)
 
@@ -126,24 +119,6 @@ def main() -> None:
         cmd_fetch(args.terms, args.headed, args.login, args.deep)
     elif args.cmd == "analyze":
         analyze.run(args.terms or None, force=args.force, limit=args.limit)
-    elif args.cmd == "brief":
-        from rootfinder.brief import generate
-        from rootfinder import decisions
-        from rootfinder.paths import BRIEFS_DIR
-        if args.all_approved:
-            D = decisions.load()
-            approved = [aid for aid, v in D.items() if v.get("status") == "works"]
-            todo = [a for a in approved if not (BRIEFS_DIR / f"{a}__{args.product}.md").exists()]
-            print(f"{len(todo)} approved ads need a brief")
-            for aid in todo:
-                try:
-                    generate(aid, args.product)
-                except Exception as e:  # noqa: BLE001
-                    print(f"  {aid} FAILED: {e}")
-        elif args.ad_id:
-            generate(args.ad_id, args.product)
-        else:
-            print("give an ad_id or --all-approved")
     elif args.cmd == "web":
         cmd_web(args.port)
 

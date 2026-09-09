@@ -12,14 +12,13 @@ DATA = ROOT / "data" / "rf"
 ADS_DIR = DATA / "ads"              # {competitor}.json — raw scraped ads
 IMAGES_DIR = DATA / "images"        # {competitor}/{ad_id}_{i}.jpg
 MATCHES_DIR = DATA / "matches"      # {competitor}.json — root-match + compliance results
-BRIEFS_DIR = DATA / "briefs"        # {ad_id}__{product}.md
 STATE_DIR = DATA / "state"          # browser storage_state, run metadata
 
 ROOTS_CATALOGUE = ROOT / "data" / "roots" / "catalogue.json"
 DECISIONS = DATA / "decisions.json"        # {ad_id: {status, root_id, note, decided_at}}
 SEEN = DATA / "seen.json"                  # {ad_id: {first_seen, last_seen, times_seen, ...}}
 
-for _d in (ADS_DIR, IMAGES_DIR, MATCHES_DIR, BRIEFS_DIR, STATE_DIR, ROOTS_CATALOGUE.parent):
+for _d in (ADS_DIR, IMAGES_DIR, MATCHES_DIR, STATE_DIR, ROOTS_CATALOGUE.parent):
     _d.mkdir(parents=True, exist_ok=True)
 
 STORAGE_STATE = STATE_DIR / "fb_storage_state.json"
