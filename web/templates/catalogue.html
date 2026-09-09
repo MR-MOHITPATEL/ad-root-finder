@@ -3,26 +3,62 @@
 <div style="display:flex; align-items:baseline; gap:.75rem; margin-bottom:1.25rem">
   <h1>Roots</h1><span class="muted" style="font-size:.85rem">{{ cat.roots|length }} named</span>
 </div>
-<div style="display:flex; flex-direction:column; gap:1.5rem">
+
+{% if request.query_params.get('err') %}
+<div style="background:#F3E9E7; border:1px solid var(--skip); color:var(--skip);
+     padding:.6rem .9rem; border-radius:6px; margin-bottom:1rem; font-size:.9rem">
+  {{ request.query_params.get('err') }}
+</div>
+{% endif %}
+
+<div style="display:flex; flex-direction:column; gap:2rem">
 {% for r in cat.roots %}
-<article style="border-bottom:1px solid var(--line); padding-bottom:1.25rem">
-  <div style="font-weight:600">{{ r.name }} <span class="muted" style="font-weight:400">— {{ r.competitor_examples|length }} competitor examples</span></div>
+<article style="border-bottom:1px solid var(--line); padding-bottom:1.5rem">
+  <div style="font-weight:600">{{ r.name }}
+    <span class="muted" style="font-weight:400">
+      — {{ (r.competitor_examples|length) + (r.our_executions|length) }} images
+    </span></div>
   <dl style="margin:.5rem 0 0; font-size:.9rem; display:grid; grid-template-columns:auto 1fr; gap:.15rem .7rem; max-width:70ch">
-    <dt class="muted">Mechanism</dt><dd style="margin:0">{{ r.mechanism }}</dd>
-    <dt class="muted">Why it works</dt><dd style="margin:0">{{ r.why_it_works }}</dd>
-    <dt class="muted">Visual motif</dt><dd style="margin:0">{{ r.visual_motif }}</dd>
-    <dt class="muted">For our brand</dt><dd style="margin:0">{{ r.fits_our_brand }}</dd>
-    <dt class="muted">When we adapt it</dt><dd style="margin:0">{{ r.compliance_notes }}</dd>
+    <dt>Mechanism</dt><dd>{{ r.mechanism }}</dd>
+    <dt>Why it works</dt><dd>{{ r.why_it_works }}</dd>
+    <dt>Visual motif</dt><dd>{{ r.visual_motif }}</dd>
+    <dt>For our brand</dt><dd>{{ r.fits_our_brand }}</dd>
+    <dt>When we adapt it</dt><dd>{{ r.compliance_notes }}</dd>
   </dl>
-  {% set imgs = r.competitor_examples|selectattr('image_url')|list %}
-  {% if imgs %}
-  <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:.5rem; margin-top:.9rem">
-    {% for e in imgs[:12] %}
-    <div><img class="shot" src="/img?path={{ e.image_url|urlencode }}" alt="">
-      <div class="muted" style="font-size:.72rem">{{ e.brand }}</div></div>
+
+  {% set imgs = (r.competitor_examples + r.our_executions)|selectattr('image_url')|list %}
+  <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:.6rem; margin-top:1rem">
+    {% for e in imgs[:24] %}
+    <div style="position:relative">
+      <img class="shot" src="/img?path={{ e.image_url|urlencode }}" alt="">
+      <div class="muted" style="font-size:.72rem; margin-top:.15rem">
+        {{ e.brand or e.note or 'example' }}{% if e.manual %} · added{% endif %}
+      </div>
+      <form method="post" action="/roots/{{ r.root_id }}/image/remove"
+            onsubmit="return confirm('Remove this image from {{ r.name }}?')"
+            style="position:absolute; top:3px; right:3px">
+        <input type="hidden" name="image_url" value="{{ e.image_url }}">
+        <button title="remove"
+          style="width:20px; height:20px; padding:0; line-height:1; border-radius:50%;
+                 background:rgba(0,0,0,.55); color:#fff; border:none; font-size:12px">×</button>
+      </form>
+    </div>
     {% endfor %}
+
+    <form method="post" action="/roots/{{ r.root_id }}/image" enctype="multipart/form-data"
+          style="border:1.5px dashed var(--line); border-radius:3px; padding:.5rem;
+                 display:flex; flex-direction:column; gap:.35rem; justify-content:center; font-size:.75rem">
+      <input type="file" name="file" accept="image/*" required
+             style="font-size:.72rem; border:none; padding:0">
+      <select name="kind" style="font-size:.72rem; padding:.2rem">
+        <option value="ours">our execution</option>
+        <option value="competitor">competitor example</option>
+      </select>
+      <input name="label" placeholder="label (optional)"
+             style="font-size:.72rem; padding:.2rem">
+      <button class="keep" style="font-size:.72rem; padding:.25rem">+ Add image</button>
+    </form>
   </div>
-  {% endif %}
 </article>
 {% endfor %}
 </div>

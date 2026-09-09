@@ -14,7 +14,7 @@ import threading
 import time
 from pathlib import Path
 
-from fastapi import Cookie, FastAPI, Form, Request
+from fastapi import Cookie, FastAPI, File, Form, Request, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse, Response
 from fastapi.templating import Jinja2Templates
 
@@ -141,15 +141,21 @@ def catalogue_page(request: Request):
 
 @app.get("/candidates", response_class=HTMLResponse)
 def candidates_page(request: Request):
-    cat = D.catalogue()
+    cat = D.catalogue_reviewed()
     return templates.TemplateResponse(request, "candidates.html", {
         "request": request, "cat": cat, "nav": "candidates",
-        "root_ids": [r["root_id"] for r in cat["roots"]]})
+        "roots": D.catalogue()["roots"],
+        "root_ids": [r["root_id"] for r in D.catalogue()["roots"]]})
 
 
 @app.post("/candidates/promote")
 def do_promote(name: str = Form(...), root_id: str = Form(...),
                why: str = Form(""), notes: str = Form("")):
+    root_id = root_id.strip().lower().replace(" ", "-")
+    existing = {r["root_id"] for r in D.catalogue()["roots"]}
+    if root_id in existing:
+        return RedirectResponse(f"/candidates?err=Root+id+'{root_id}'+already+exists",
+                                status_code=303)
     promote_candidate(name, root_id=root_id, why_it_works=why, compliance_notes=notes)
     return RedirectResponse("/candidates", status_code=303)
 
@@ -158,6 +164,30 @@ def do_promote(name: str = Form(...), root_id: str = Form(...),
 def do_merge(name: str = Form(...), root_id: str = Form(...)):
     merge_candidate_into_root(name, root_id)
     return RedirectResponse("/candidates", status_code=303)
+
+
+# ── root images (manual add / remove) ───────────────────────────────────────
+@app.post("/roots/{root_id}/image")
+async def root_add_image(root_id: str, kind: str = Form("ours"),
+                         label: str = Form(""), file: UploadFile = File(...)):
+    from rootfinder import store
+    from rootfinder.imagehash import phash_bytes
+    data = await file.read()
+    res = store.root_add_image(root_id, data, filename=file.filename or "upload.jpg",
+                               kind=kind, label=label, phash=phash_bytes(data))
+    if not res.get("ok"):
+        msg = res.get("reason", "failed")
+        if msg == "duplicate":
+            msg = f"That image is already on root '{res.get('dupe_root')}'"
+        return RedirectResponse(f"/catalogue?err={msg}", status_code=303)
+    return RedirectResponse("/catalogue", status_code=303)
+
+
+@app.post("/roots/{root_id}/image/remove")
+def root_remove_image(root_id: str, image_url: str = Form(...)):
+    from rootfinder import store
+    store.root_remove_image(root_id, image_url)
+    return RedirectResponse("/catalogue", status_code=303)
 
 
 @app.get("/briefs", response_class=HTMLResponse)

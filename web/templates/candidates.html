@@ -1,17 +1,35 @@
 {% extends "base.html" %}
 {% block body %}
 <div style="display:flex; align-items:baseline; gap:.75rem; margin-bottom:.4rem">
-  <h1>Candidates</h1><span class="muted" style="font-size:.85rem">{{ cat.candidates|length }} proposed</span>
+  <h1>Candidates</h1><span class="muted" style="font-size:.85rem">{{ cat.candidates|length }} with a Kept ad</span>
 </div>
-<p class="muted" style="font-size:.85rem; margin:0 0 1.25rem; max-width:65ch">
-  New concepts pulled from competitor ads. Merge one into an existing root, or promote it to a named root of its own.
+<p class="muted" style="font-size:.85rem; margin:0 0 1.25rem; max-width:70ch">
+  Only concepts where someone marked an ad <b>Keep</b> in the Review queue.
+  Everything else the AI proposed stays hidden until it's approved.
+  For each: merge into an existing root, or promote it to a new named root.
 </p>
+
+{% if request.query_params.get('err') %}
+<div style="background:#F3E9E7; border:1px solid var(--skip); color:var(--skip);
+     padding:.6rem .9rem; border-radius:6px; margin-bottom:1rem; font-size:.9rem">
+  {{ request.query_params.get('err') }}
+</div>
+{% endif %}
+
+{% if not cat.candidates %}
+<div class="panel" style="padding:2.5rem; text-align:center">
+  <div style="font-weight:600">Nothing to name yet.</div>
+  <p class="muted" style="margin:.4rem 0 0">Keep some ads in the Review queue and the concepts show up here.</p>
+</div>
+{% endif %}
 
 <div style="display:flex; flex-direction:column; gap:1.5rem">
 {% for c in cat.candidates %}
 <article style="border-bottom:1px solid var(--line); padding-bottom:1.25rem">
   <div style="font-weight:600">{{ c.candidate_name }}
-    <span class="muted" style="font-weight:400">— {{ c.examples|length }} ads, {{ c.fits_our_brand }} for our brand</span></div>
+    <span class="muted" style="font-weight:400">— {{ c.examples|length }} kept
+      {%- if c._total_examples and c._total_examples > c.examples|length %} of {{ c._total_examples }} seen{% endif -%}
+      , {{ c.fits_our_brand }} for our brand</span></div>
   <div style="font-size:.9rem; margin-top:.35rem"><span class="muted">Mechanism:</span> {{ c.mechanism }}</div>
   <div style="font-size:.9rem"><span class="muted">Visual motif:</span> {{ c.visual_motif }}</div>
   {% set imgs = c.examples|selectattr('image_url')|list %}

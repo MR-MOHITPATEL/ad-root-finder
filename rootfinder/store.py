@@ -201,6 +201,73 @@ def catalogue_save(cat: dict) -> None:
     ROOTS_CATALOGUE.write_text(json.dumps(cat, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
+# ── ROOT IMAGES (manual add / remove, with dedup) ──────────────────────────
+
+def _root_images(root: dict) -> list[dict]:
+    return (root.get("competitor_examples") or []) + (root.get("our_executions") or [])
+
+
+def all_root_image_phashes() -> dict[str, str]:
+    """{phash: root name} across every image on every named root — for dedup."""
+    out: dict[str, str] = {}
+    for r in catalogue_load().get("roots", []):
+        for e in _root_images(r):
+            if e.get("phash"):
+                out[e["phash"]] = r.get("name") or r.get("root_id")
+    return out
+
+
+def root_add_image(root_id: str, data: bytes, *, filename: str, kind: str,
+                   label: str = "", phash: str | None = None) -> dict:
+    """kind: 'ours' | 'competitor'. Returns {ok, url|reason, dupe_root?}."""
+    from .imagehash import hamming
+
+    if phash:
+        for ph, rname in all_root_image_phashes().items():
+            if hamming(phash, ph) <= 6:
+                return {"ok": False, "reason": "duplicate", "dupe_root": rname}
+
+    ext = "." + filename.rsplit(".", 1)[-1].lower() if "." in filename else ".jpg"
+    key = f"manual/{root_id}/{_now().replace(':', '').replace('.', '')}{ext}"
+    sb = _supabase()
+    url = None
+    if sb:
+        mime = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
+                ".webp": "image/webp"}.get(ext, "image/jpeg")
+        try:
+            sb.storage.from_(BUCKET).upload(key, data, {"upsert": "true", "content-type": mime})
+        except Exception as e:  # noqa: BLE001
+            return {"ok": False, "reason": f"upload failed: {e}"}
+        url = f"{os.getenv('SUPABASE_URL', '').rstrip('/')}/storage/v1/object/public/{BUCKET}/{key}"
+    else:
+        p = IMAGES_DIR / "manual" / root_id
+        p.mkdir(parents=True, exist_ok=True)
+        fp = p / (filename or "img" + ext)
+        fp.write_bytes(data)
+        url = str(fp)
+
+    entry = {"image_url": url, "phash": phash, "manual": True, "added_at": _now(),
+             "note": label, "brand": label or ("Our execution" if kind == "ours" else "Competitor")}
+    cat = catalogue_load()
+    root = next((r for r in cat["roots"] if r["root_id"] == root_id), None)
+    if not root:
+        return {"ok": False, "reason": "root not found"}
+    root.setdefault("our_executions" if kind == "ours" else "competitor_examples", []).append(entry)
+    catalogue_save(cat)
+    return {"ok": True, "url": url}
+
+
+def root_remove_image(root_id: str, image_url: str) -> bool:
+    cat = catalogue_load()
+    root = next((r for r in cat["roots"] if r["root_id"] == root_id), None)
+    if not root:
+        return False
+    for key in ("competitor_examples", "our_executions"):
+        root[key] = [e for e in (root.get(key) or []) if e.get("image_url") != image_url]
+    catalogue_save(cat)
+    return True
+
+
 # ── LEDGER ─────────────────────────────────────────────────────────────────
 
 def ledger_load() -> dict:

@@ -18,6 +18,22 @@ def catalogue() -> dict:
     return store.catalogue_load()
 
 
+def catalogue_reviewed() -> dict:
+    """Same catalogue, but candidates trimmed to only those with a Kept ad,
+    and each candidate's examples narrowed to the kept ones."""
+    cat = store.catalogue_load()
+    D = dec.load()
+    kept = {aid for aid, v in D.items() if v.get("status") == "works"}
+    out = []
+    for c in cat.get("candidates", []):
+        kept_ex = [e for e in (c.get("examples") or []) if e.get("ad_id") in kept]
+        if kept_ex:
+            out.append({**c, "examples": kept_ex, "_total_examples": len(c.get("examples") or [])})
+    cat = dict(cat)
+    cat["candidates"] = sorted(out, key=lambda c: len(c["examples"]), reverse=True)
+    return cat
+
+
 def days_running(m: dict) -> int:
     s = (m.get("start_time") or "")[:10]
     try:
