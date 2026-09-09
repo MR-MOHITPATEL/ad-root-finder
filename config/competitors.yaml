@@ -72,6 +72,61 @@ competitors:
     page_ids: []
     tier: broad_only
 
+  # -- added from team's handwritten competitor list --
+  - name: Jiva Ayurveda
+    search: Jiva Ayurveda
+    page_ids: ["238245198448"]
+    tier: every_run
+
+  - name: Zandu
+    search: Zandu
+    page_ids:
+      - "105826340832462"   # Zandu
+      - "710045298859636"   # Zandu Ayurvedic Cough Syrup
+    tier: every_run
+
+  - name: Girnar
+    search: Girnar
+    page_ids: ["754282108050054"]   # Girnar Ayurvedic Pharmacy Pvt Ltd
+    tier: every_run
+
+  - name: Wagh Bakri
+    search: Wagh Bakri
+    page_ids:
+      - "331679525749"      # WaghBakri
+      - "187823041262074"   # Wagh Bakri Tea Lounge
+    tier: every_run
+
+  - name: Himalaya
+    # TODO: handwriting was unclear ("XIAMHYA") — guessed Himalaya Wellness.
+    # Confirm with the team; correct the page_id below if it's a different brand.
+    search: Himalaya Wellness
+    page_ids: ["937356456323066"]
+    tier: every_run
+
+  - name: Blue Tea
+    search: Blue Tea
+    page_ids:
+      - "112576308366991"   # BLUE TEA INDIA
+      - "859536283918131"   # Blue Tea
+    tier: every_run
+
+  - name: Organic India
+    search: Organic India
+    page_ids: ["194411414144"]
+    tier: every_run
+
+  - name: Vahdam
+    # handwritten "Vadham" — the real brand is spelled VAHDAM (VAHDAM India)
+    search: Vahdam
+    page_ids: ["1491430561130722"]
+    tier: every_run
+
+  - name: Zero Block
+    search: Zero Block
+    page_ids: ["127888574561092"]   # ZERO BLOCK Official — low ad volume, confirm this is right
+    tier: every_run
+
 keyword_searches:
   - arjuna tea
   - cardio tea
