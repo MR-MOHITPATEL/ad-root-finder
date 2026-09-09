@@ -9,6 +9,7 @@ from pathlib import Path
 from rootfinder import decisions as dec
 from rootfinder import store
 from rootfinder.imagehash import hamming, phash_file
+from rootfinder.paths import BRIEFS_DIR
 
 NEAR = 8
 
@@ -108,3 +109,7 @@ def review_state():
     maybe = [m for m in real if D.get(m["ad_id"], {}).get("status") == "maybe"]
     clusters = cluster(pending)
     return clusters, approved, maybe, D, auto
+
+
+def brief_exists(ad_id: str, product: str = "arjuna-tea") -> bool:
+    return (BRIEFS_DIR / f"{ad_id}__{product}.md").exists()
