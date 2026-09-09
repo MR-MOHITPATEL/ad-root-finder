@@ -7,9 +7,13 @@ REM scheduled start is missed" so it catches up whenever the PC is on.
 cd /d "%~dp0"
 set PYTHONUNBUFFERED=1
 
-echo ============================================
-echo  scan started  %date% %time%
-echo ============================================
+echo ============================================ >> "%~dp0scan.log"
+echo  scan started  %date% %time% >> "%~dp0scan.log"
+echo ============================================ >> "%~dp0scan.log"
+
+REM pull latest code (config + fixes) before scanning
+git pull --rebase --autostash >> "%~dp0scan.log" 2>&1
+pip install -q -r requirements.txt >> "%~dp0scan.log" 2>&1
 
 python run.py scan >> "%~dp0scan.log" 2>&1
 
