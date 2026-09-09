@@ -72,12 +72,14 @@ def groq_json(system: str, prompt: str, *, temperature: float = 0.1, max_tokens:
     raise RuntimeError(f"groq_json failed: {last_err}")
 
 
-def _gemini_client():
-    from google import genai
+def _gemini_keys() -> list[str]:
+    keys = [os.getenv("GOOGLE_API_KEY", "").strip()]
+    keys += [os.getenv(f"GOOGLE_API_KEY_{i}", "").strip() for i in range(2, 10)]
+    return [k for k in keys if k]
 
-    key = os.getenv("GOOGLE_API_KEY", "").strip()
-    if not key:
-        raise EnvironmentError("GOOGLE_API_KEY not set")
+
+def _gemini_client(key: str):
+    from google import genai
     return genai.Client(api_key=key)
 
 
@@ -92,7 +94,9 @@ def gemini_json(
     """images: local file paths or http(s) URLs."""
     from google.genai import types as gt
 
-    client = _gemini_client()
+    keys = _gemini_keys()
+    if not keys:
+        raise EnvironmentError("GOOGLE_API_KEY not set")
     parts: list = []
     for img in images or []:
         s = str(img)
@@ -111,29 +115,31 @@ def gemini_json(
             pass
     parts.append(prompt)
 
+    cfg = gt.GenerateContentConfig(
+        system_instruction=system,
+        temperature=temperature,
+        max_output_tokens=max_tokens,
+        thinking_config=gt.ThinkingConfig(thinking_budget=0),
+        response_mime_type="application/json",
+    )
     last_err = None
     for model in (GEMINI_MODEL, GEMINI_FALLBACK):
-        for attempt in range(3):
+        model_down = False
+        for key in keys:
+            client = _gemini_client(key)
             try:
-                r = client.models.generate_content(
-                    model=model,
-                    contents=parts,
-                    config=gt.GenerateContentConfig(
-                        system_instruction=system,
-                        temperature=temperature,
-                        max_output_tokens=max_tokens,
-                        thinking_config=gt.ThinkingConfig(thinking_budget=0),
-                        response_mime_type="application/json",
-                    ),
-                )
+                r = client.models.generate_content(model=model, contents=parts, config=cfg)
                 return _extract_json(r.text)
             except Exception as e:  # noqa: BLE001
                 last_err = e
                 s = str(e).lower()
-                if "rate" in s or "429" in s or "quota" in s:
-                    time.sleep(8 * (attempt + 1))
-                    continue
-                if "503" in s or "unavailable" in s or "overloaded" in s:
-                    break
+                if any(t in s for t in ("503", "unavailable", "overloaded")):
+                    model_down = True
+                    break                       # this model is down — try the fallback model
+                if any(t in s for t in ("quota", "resource_exhausted", "429", "rate")):
+                    continue                    # this key is out of quota — try the next key
                 time.sleep(1)
-    raise RuntimeError(f"gemini_json failed: {last_err}")
+                continue                        # transient — try the next key
+        if not model_down:
+            break                               # keys exhausted, model was fine — stop
+    raise RuntimeError(f"gemini_json failed (tried {len(keys)} key(s)): {last_err}")
