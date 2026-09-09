@@ -100,13 +100,11 @@ def _prompt(ad: dict, roots: list[dict], candidates: list[dict] | None = None) -
         f'  - id="{r["root_id"]}" | {r["name"]} | mechanism: {r["mechanism"]} | motif: {r["visual_motif"]}'
         for r in roots
     )
-    cand_names = "\n".join(
-        f'  - "{c["candidate_name"]}" | {(c.get("visual_motif") or "")[:90]}'
-        for c in (candidates or [])
-    )
+    cand_names = ", ".join(f'"{c["candidate_name"]}"' for c in (candidates or []))
     if cand_names:
-        known += ("\n\nEXISTING CANDIDATE ROOTS (reuse the EXACT name if this ad fits one — "
-                  "do not invent a near-duplicate name):\n" + cand_names)
+        known += ("\n\nRECURRING CANDIDATE ROOTS — if this ad fits one, set is_candidate=true "
+                  "and reuse its EXACT name; only invent a new name when it clearly fits none:\n"
+                  + cand_names)
     copy = "\n".join(x for x in [ad.get("headline"), ad.get("body"), ad.get("link_description")] if x)
     return f"""KNOWN ROOTS (match to one of these ids if the recipe is the same):
 {known}
@@ -230,7 +228,13 @@ def run(terms: list[str] | None = None, *, force: bool = False, workers: int = 4
         print(f">> {competitor}: {len(todo)} new / {len(ads)} ads")
         results = []
         if todo:
-            cands_hint = cat.get("candidates", [])
+            # Only feed the recurring candidates back to the model. A 1-2 example
+            # candidate is noise the reviewer will likely discard — sending all of
+            # them just bloats input tokens (~2-3x) and doesn't improve matching.
+            cands_hint = sorted(
+                (c for c in cat.get("candidates", []) if len(c.get("examples") or []) >= 3),
+                key=lambda c: len(c.get("examples") or []), reverse=True,
+            )[:25]
             with ThreadPoolExecutor(max_workers=workers) as ex:
                 futs = {ex.submit(analyze_ad, a, roots, cands_hint): a for a in todo}
                 for i, fut in enumerate(as_completed(futs), 1):
