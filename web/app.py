@@ -72,7 +72,10 @@ def _run_job(cmds: list[list[str]], label: str) -> None:
 
 
 # ── pages ───────────────────────────────────────────────────────────────────
-def _cards_ctx():
+_FITS = ("yes", "conditional", "no")
+
+
+def _cards_ctx(fit: str = ""):
     clusters, approved, maybe, _, auto = D.review_state()
     cat = D.catalogue()
     clusters.sort(key=lambda c: max(m["_days"] for m in c), reverse=True)
@@ -82,24 +85,33 @@ def _cards_ctx():
         "root": max(c, key=lambda x: x["_days"]).get("root") or {},
         "phash": D.ph(max(c, key=lambda x: x["_days"])),
     } for c in clusters]
+    fit_counts = {k: 0 for k in _FITS}
+    for cd in cards:
+        f = (cd["root"].get("fits_our_brand") or "").lower()
+        if f in fit_counts:
+            fit_counts[f] += 1
+    fit = fit if fit in _FITS else ""
+    shown = [cd for cd in cards
+             if not fit or (cd["root"].get("fits_our_brand") or "").lower() == fit]
     return {
-        "cards": cards, "auto": auto,
+        "cards": shown, "auto": auto, "fit": fit, "fit_counts": fit_counts,
         "n_pending": sum(len(c) for c in clusters), "n_unique": len(clusters),
+        "n_shown": len(shown),
         "n_approved": len(approved), "n_maybe": len(maybe),
         "root_ids": [r["root_id"] for r in cat["roots"]],
     }
 
 
 @app.get("/", response_class=HTMLResponse)
-def review(request: Request, rf_user: str = Cookie(default="")):
-    ctx = _cards_ctx()
+def review(request: Request, fit: str = "", rf_user: str = Cookie(default="")):
+    ctx = _cards_ctx(fit)
     ctx.update(request=request, nav="review", fresh=ledger.competitor_stats(), me=rf_user)
     return templates.TemplateResponse(request, "review.html", ctx)
 
 
 @app.get("/queue", response_class=HTMLResponse)
-def queue_partial(request: Request):
-    ctx = _cards_ctx()
+def queue_partial(request: Request, fit: str = ""):
+    ctx = _cards_ctx(fit)
     ctx.update(request=request)
     return templates.TemplateResponse(request, "_queue.html", ctx)
 
@@ -121,13 +133,22 @@ def decide(status: str = Form(...), ad_ids: str = Form(...),
 
 
 @app.get("/approved", response_class=HTMLResponse)
-def approved_page(request: Request):
+def approved_page(request: Request, fit: str = ""):
     _, approved, _, dec_map, _ = D.review_state()
     approved.sort(key=lambda m: m["_days"], reverse=True)
     for m in approved:
         m["_decision"] = dec_map.get(m["ad_id"], {})
+    fit_counts = {k: 0 for k in _FITS}
+    for m in approved:
+        f = ((m.get("root") or {}).get("fits_our_brand") or "").lower()
+        if f in fit_counts:
+            fit_counts[f] += 1
+    fit = fit if fit in _FITS else ""
+    shown = [m for m in approved
+             if not fit or ((m.get("root") or {}).get("fits_our_brand") or "").lower() == fit]
     return templates.TemplateResponse(request, "approved.html", {
-        "request": request, "approved": approved, "nav": "approved",
+        "request": request, "approved": shown, "nav": "approved",
+        "fit": fit, "fit_counts": fit_counts, "n_total": len(approved),
     })
 
 

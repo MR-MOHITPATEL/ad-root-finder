@@ -1,9 +1,12 @@
 <div style="display:flex; align-items:baseline; gap:.6rem; margin-bottom:1rem">
-  <span style="font-weight:600">{{ n_unique }} creatives</span>
+  <span style="font-weight:600">{{ n_shown if fit else n_unique }} creatives</span>
   <span class="muted" style="font-size:.85rem">
-    {{ n_pending }} ads total{% if auto %}, {{ auto }} skipped automatically as repeats{% endif %}
+    {% if fit %}filtered from {{ n_unique }}{% else %}{{ n_pending }} ads total{% endif %}
+    {%- if auto %}, {{ auto }} skipped automatically as repeats{% endif %}
   </span>
 </div>
+
+{% with fit_all = n_unique, base = '/' %}{% include "_fitbar.html" %}{% endwith %}
 
 {% if not cards %}
   <div class="panel" style="padding:2.5rem; text-align:center">

@@ -2,13 +2,22 @@
 {% block body %}
 <div style="display:flex; align-items:baseline; gap:.75rem; margin-bottom:1.25rem">
   <h1>Approved</h1>
-  <span class="muted" style="font-size:.85rem">{{ approved|length }} ads your team kept</span>
+  <span class="muted" style="font-size:.85rem">
+    {% if fit %}{{ approved|length }} of {{ n_total }} kept{% else %}{{ n_total }} ads your team kept{% endif %}
+  </span>
 </div>
+
+{% with fit_all = n_total, base = '/approved' %}{% include "_fitbar.html" %}{% endwith %}
 
 {% if not approved %}
 <div class="panel" style="padding:2.5rem; text-align:center">
+  {% if fit %}
+  <div style="font-weight:600">No kept ads in this bucket.</div>
+  <p class="muted" style="margin:.4rem 0 0">Nothing the AI marked here. Try another filter.</p>
+  {% else %}
   <div style="font-weight:600">Nothing approved yet.</div>
   <p class="muted" style="margin:.4rem 0 0">Keep an ad in the Review queue and it lands here.</p>
+  {% endif %}
 </div>
 {% endif %}
 

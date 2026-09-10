@@ -21,7 +21,7 @@
     </p>
 
     <div id="queue"
-         hx-get="/queue" hx-trigger="every 60s" hx-swap="innerHTML"
+         hx-get="/queue?fit={{ fit }}" hx-trigger="every 60s" hx-swap="innerHTML"
          hx-sync="this:replace">
       {% include "_queue.html" %}
     </div>

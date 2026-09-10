@@ -1,0 +1,13 @@
+{# AI "fits our brand" filter. expects: fit, fit_counts{yes,conditional,no}, fit_all, base #}
+<div style="display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:1rem; font-size:.82rem">
+  {% set tabs = [
+    ('', 'All', fit_all),
+    ('yes', 'Works for us', fit_counts.yes),
+    ('conditional', 'Might work for us', fit_counts.conditional),
+    ('no', "Won’t work for us", fit_counts.no),
+  ] %}
+  {% for val, lbl, ct in tabs %}
+  <a href="{{ base }}{% if val %}?fit={{ val }}{% endif %}"
+     class="fitpill {{ 'on' if (fit or '') == val }}">{{ lbl }} <span class="ct">{{ ct }}</span></a>
+  {% endfor %}
+</div>
