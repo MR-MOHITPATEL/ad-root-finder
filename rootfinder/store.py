@@ -65,8 +65,17 @@ def _supabase():
     key = os.getenv("SUPABASE_KEY", "").strip()
     if not (url and key):
         return None
-    from supabase import create_client
-    return create_client(url, key)
+    import httpx
+    from supabase import ClientOptions, create_client
+    # Railway's egress network silently kills long-lived HTTP/2 connections
+    # to Supabase without a clean GOAWAY -- httpx then raises
+    # RemoteProtocolError / ConnectionTerminated, and (confirmed in prod logs)
+    # it recurs on the very next fresh connection too, since it's the same
+    # network path being hit again, not just one stale pooled socket. HTTP/1.1
+    # opens one connection per request instead of multiplexing everything
+    # onto one stream, so there's nothing long-lived for that path to kill.
+    httpx_client = httpx.Client(http2=False, timeout=30)
+    return create_client(url, key, options=ClientOptions(httpx_client=httpx_client))
 
 
 def mode() -> str:
