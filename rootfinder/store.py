@@ -12,7 +12,9 @@ from __future__ import annotations
 import json
 import os
 import sqlite3
+import time
 from contextlib import contextmanager
+from copy import deepcopy
 from datetime import datetime, timezone
 from functools import lru_cache
 from pathlib import Path
@@ -29,6 +31,32 @@ _DB = DATA / "rf.db"  # local decisions store
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+# ── in-process read cache ──────────────────────────────────────────────────
+# Every page nav used to re-fetch matches/decisions/catalogue/ledger from
+# Supabase from scratch (4+ network round trips per click). These are read
+# far more often than they change, so cache each whole-table read briefly
+# and drop the cache the moment something writes to that table.
+_CACHE_TTL = 20  # seconds
+_cache: dict[str, tuple[float, object]] = {}
+
+
+def _cache_get(key: str):
+    hit = _cache.get(key)
+    if hit and time.monotonic() - hit[0] < _CACHE_TTL:
+        return deepcopy(hit[1])
+    return None
+
+
+def _cache_put(key: str, value):
+    _cache[key] = (time.monotonic(), value)
+    return deepcopy(value)
+
+
+def _cache_clear(*keys: str) -> None:
+    for k in keys:
+        _cache.pop(k, None)
 
 
 @lru_cache(maxsize=1)
@@ -90,15 +118,19 @@ def _migrate_decisions_json(c) -> None:
 
 
 def decisions_load() -> dict:
+    cached = _cache_get("decisions")
+    if cached is not None:
+        return cached
     sb = _supabase()
     if sb:
         rows = sb.table("decisions").select("*").execute().data
-        return {r["ad_id"]: r for r in rows}
+        return _cache_put("decisions", {r["ad_id"]: r for r in rows})
     with _sqlite() as c:
-        return {r[0]: {"status": r[1], "root_id": r[2], "note": r[3], "phash": r[4],
-                       "decided_by": r[5], "decided_at": r[6]}
-                for r in c.execute("SELECT ad_id,status,root_id,note,phash,decided_by,decided_at "
-                                   "FROM decisions")}
+        return _cache_put("decisions", {
+            r[0]: {"status": r[1], "root_id": r[2], "note": r[3], "phash": r[4],
+                   "decided_by": r[5], "decided_at": r[6]}
+            for r in c.execute("SELECT ad_id,status,root_id,note,phash,decided_by,decided_at "
+                               "FROM decisions")})
 
 
 def decision_set(ad_id: str, status: str, *, root_id=None, note="", phash=None, by="") -> None:
@@ -114,6 +146,7 @@ def decision_set(ad_id: str, status: str, *, root_id=None, note="", phash=None, 
             "decided_by": by or prev.get("decided_by", ""),
             "decided_at": _now(),
         }).execute()
+        _cache_clear("decisions")
         return
     with _sqlite() as c:
         c.execute("""INSERT INTO decisions(ad_id,status,root_id,note,phash,decided_by,decided_at)
@@ -125,15 +158,18 @@ def decision_set(ad_id: str, status: str, *, root_id=None, note="", phash=None, 
               decided_by=CASE WHEN excluded.decided_by!='' THEN excluded.decided_by ELSE decisions.decided_by END,
               decided_at=excluded.decided_at""",
                   (ad_id, status, root_id, note, phash, by, _now()))
+    _cache_clear("decisions")
 
 
 def decision_clear(ad_id: str) -> None:
     sb = _supabase()
     if sb:
         sb.table("decisions").delete().eq("ad_id", ad_id).execute()
+        _cache_clear("decisions")
         return
     with _sqlite() as c:
         c.execute("DELETE FROM decisions WHERE ad_id=?", (ad_id,))
+    _cache_clear("decisions")
 
 
 def decided_phashes() -> dict[str, dict]:
@@ -147,6 +183,9 @@ def decided_phashes() -> dict[str, dict]:
 # ── CATALOGUE (roots + candidates) ─────────────────────────────────────────
 
 def catalogue_load() -> dict:
+    cached = _cache_get("catalogue")
+    if cached is not None:
+        return cached
     sb = _supabase()
     if sb:
         roots = sb.table("roots").select("*").execute().data
@@ -155,15 +194,15 @@ def catalogue_load() -> dict:
             for r in _seed_roots():
                 sb.table("roots").upsert(_root_row(r)).execute()
             roots = sb.table("roots").select("*").execute().data
-        return {
+        return _cache_put("catalogue", {
             "roots": [_root_from_row(r) for r in roots],
             "candidates": [{"candidate_name": c["name"], **{k: c[k] for k in
                             ("mechanism", "visual_motif", "fits_our_brand")},
                             "examples": c.get("examples") or []} for c in cands],
-        }
+        })
     if ROOTS_CATALOGUE.exists():
-        return json.loads(ROOTS_CATALOGUE.read_text(encoding="utf-8"))
-    return {"roots": _seed_roots(), "candidates": []}
+        return _cache_put("catalogue", json.loads(ROOTS_CATALOGUE.read_text(encoding="utf-8")))
+    return _cache_put("catalogue", {"roots": _seed_roots(), "candidates": []})
 
 
 def _root_row(r: dict) -> dict:
@@ -195,10 +234,12 @@ def catalogue_save(cat: dict) -> None:
                 "examples": c.get("examples") or []}).execute()
         for gone in have - want:
             sb.table("candidates").delete().eq("name", gone).execute()
+        _cache_clear("catalogue")
         return
     cat = dict(cat)
     cat["updated_at"] = _now()
     ROOTS_CATALOGUE.write_text(json.dumps(cat, indent=2, ensure_ascii=False), encoding="utf-8")
+    _cache_clear("catalogue")
 
 
 # ── ROOT IMAGES (manual add / remove, with dedup) ──────────────────────────
@@ -271,12 +312,15 @@ def root_remove_image(root_id: str, image_url: str) -> bool:
 # ── LEDGER ─────────────────────────────────────────────────────────────────
 
 def ledger_load() -> dict:
+    cached = _cache_get("ledger")
+    if cached is not None:
+        return cached
     sb = _supabase()
     if sb:
-        return {r["ad_id"]: r for r in sb.table("ledger").select("*").execute().data}
+        return _cache_put("ledger", {r["ad_id"]: r for r in sb.table("ledger").select("*").execute().data})
     if SEEN.exists():
         try:
-            return json.loads(SEEN.read_text(encoding="utf-8"))
+            return _cache_put("ledger", json.loads(SEEN.read_text(encoding="utf-8")))
         except json.JSONDecodeError:
             return {}
     return {}
@@ -290,13 +334,18 @@ def ledger_save(d: dict) -> None:
                 for k, v in d.items()]
         for i in range(0, len(rows), 500):
             sb.table("ledger").upsert(rows[i:i + 500]).execute()
+        _cache_clear("ledger")
         return
     SEEN.write_text(json.dumps(d, indent=2, ensure_ascii=False), encoding="utf-8")
+    _cache_clear("ledger")
 
 
 # ── MATCHES ────────────────────────────────────────────────────────────────
 
 def matches_all() -> list[dict]:
+    cached = _cache_get("matches")
+    if cached is not None:
+        return cached
     sb = _supabase()
     if sb:
         rows, page = [], 0
@@ -306,13 +355,13 @@ def matches_all() -> list[dict]:
             if len(chunk) < 1000:
                 break
             page += 1
-        return [_match_from_row(r) for r in rows]
+        return _cache_put("matches", [_match_from_row(r) for r in rows])
     out = []
     for f in sorted(MATCHES_DIR.glob("*.json")):
         for m in json.loads(f.read_text(encoding="utf-8")).get("matches", []):
             m["_competitor_file"] = f.stem
             out.append(m)
-    return out
+    return _cache_put("matches", out)
 
 
 def _match_from_row(r: dict) -> dict:
@@ -349,11 +398,13 @@ def matches_save(competitor: str, records: list[dict]) -> None:
         } for m in records]
         for i in range(0, len(rows), 200):
             sb.table("matches").upsert(rows[i:i + 200]).execute()
+        _cache_clear("matches")
         return
     f = MATCHES_DIR / f"{slug(competitor)}.json"
     f.write_text(json.dumps({"term": competitor, "analyzed_at": _now(),
                              "count": len(records), "matches": records},
                             indent=2, ensure_ascii=False), encoding="utf-8")
+    _cache_clear("matches")
 
 
 # ── IMAGES ─────────────────────────────────────────────────────────────────
