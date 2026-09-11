@@ -73,6 +73,37 @@ def mode() -> str:
     return "supabase" if _supabase() else "local"
 
 
+# The app process stays up for days on Railway. Supabase's edge silently
+# drops a pooled HTTP/2 connection that's been idle a while; the cached
+# client above then keeps reusing that dead socket and every call fails
+# identically ("RemoteProtocolError: ConnectionTerminated") until the
+# process restarts. Every Supabase call goes through this wrapper so a
+# dead connection is detected and replaced automatically instead of
+# taking the whole site down.
+_TRANSIENT_ERRORS = (
+    "RemoteProtocolError", "ConnectionTerminated", "ConnectError",
+    "ConnectTimeout", "ReadTimeout", "WriteTimeout", "PoolTimeout",
+)
+
+
+def _sb_call(op):
+    """Run op(client) against the cached Supabase client. On a dropped
+    pooled connection, evict the cached client and retry once with a
+    fresh one before giving up."""
+    sb = _supabase()
+    if sb is None:
+        return None
+    try:
+        return op(sb)
+    except Exception as e:  # noqa: BLE001
+        transient = type(e).__name__ in _TRANSIENT_ERRORS or "disconnect" in str(e).lower()
+        if not transient:
+            raise
+        _supabase.cache_clear()
+        sb = _supabase()
+        return op(sb)
+
+
 # ── SEED (first run) ────────────────────────────────────────────────────────
 
 SEED_CATALOGUE = ROOT / "config" / "catalogue.seed.json"
@@ -121,9 +152,8 @@ def decisions_load() -> dict:
     cached = _cache_get("decisions")
     if cached is not None:
         return cached
-    sb = _supabase()
-    if sb:
-        rows = sb.table("decisions").select("*").execute().data
+    if _supabase():
+        rows = _sb_call(lambda sb: sb.table("decisions").select("*").execute()).data
         return _cache_put("decisions", {r["ad_id"]: r for r in rows})
     with _sqlite() as c:
         return _cache_put("decisions", {
@@ -134,18 +164,19 @@ def decisions_load() -> dict:
 
 
 def decision_set(ad_id: str, status: str, *, root_id=None, note="", phash=None, by="") -> None:
-    sb = _supabase()
-    if sb:
-        existing = sb.table("decisions").select("*").eq("ad_id", ad_id).execute().data
-        prev = existing[0] if existing else {}
-        sb.table("decisions").upsert({
-            "ad_id": ad_id, "status": status,
-            "root_id": root_id or prev.get("root_id"),
-            "note": note or prev.get("note", ""),
-            "phash": phash or prev.get("phash"),
-            "decided_by": by or prev.get("decided_by", ""),
-            "decided_at": _now(),
-        }).execute()
+    if _supabase():
+        def op(sb):
+            existing = sb.table("decisions").select("*").eq("ad_id", ad_id).execute().data
+            prev = existing[0] if existing else {}
+            sb.table("decisions").upsert({
+                "ad_id": ad_id, "status": status,
+                "root_id": root_id or prev.get("root_id"),
+                "note": note or prev.get("note", ""),
+                "phash": phash or prev.get("phash"),
+                "decided_by": by or prev.get("decided_by", ""),
+                "decided_at": _now(),
+            }).execute()
+        _sb_call(op)
         _cache_clear("decisions")
         return
     with _sqlite() as c:
@@ -162,9 +193,8 @@ def decision_set(ad_id: str, status: str, *, root_id=None, note="", phash=None, 
 
 
 def decision_clear(ad_id: str) -> None:
-    sb = _supabase()
-    if sb:
-        sb.table("decisions").delete().eq("ad_id", ad_id).execute()
+    if _supabase():
+        _sb_call(lambda sb: sb.table("decisions").delete().eq("ad_id", ad_id).execute())
         _cache_clear("decisions")
         return
     with _sqlite() as c:
@@ -186,14 +216,16 @@ def catalogue_load() -> dict:
     cached = _cache_get("catalogue")
     if cached is not None:
         return cached
-    sb = _supabase()
-    if sb:
-        roots = sb.table("roots").select("*").execute().data
-        cands = sb.table("candidates").select("*").execute().data
-        if not roots:  # first run — seed
-            for r in _seed_roots():
-                sb.table("roots").upsert(_root_row(r)).execute()
+    if _supabase():
+        def op(sb):
             roots = sb.table("roots").select("*").execute().data
+            cands = sb.table("candidates").select("*").execute().data
+            if not roots:  # first run — seed
+                for r in _seed_roots():
+                    sb.table("roots").upsert(_root_row(r)).execute()
+                roots = sb.table("roots").select("*").execute().data
+            return roots, cands
+        roots, cands = _sb_call(op)
         return _cache_put("catalogue", {
             "roots": [_root_from_row(r) for r in roots],
             "candidates": [{"candidate_name": c["name"], **{k: c[k] for k in
@@ -221,19 +253,20 @@ def _root_from_row(r: dict) -> dict:
 
 
 def catalogue_save(cat: dict) -> None:
-    sb = _supabase()
-    if sb:
-        for r in cat.get("roots", []):
-            sb.table("roots").upsert(_root_row(r)).execute()
-        have = {c["name"] for c in sb.table("candidates").select("name").execute().data}
-        want = {c["candidate_name"] for c in cat.get("candidates", [])}
-        for c in cat.get("candidates", []):
-            sb.table("candidates").upsert({
-                "name": c["candidate_name"], "mechanism": c.get("mechanism"),
-                "visual_motif": c.get("visual_motif"), "fits_our_brand": c.get("fits_our_brand"),
-                "examples": c.get("examples") or []}).execute()
-        for gone in have - want:
-            sb.table("candidates").delete().eq("name", gone).execute()
+    if _supabase():
+        def op(sb):
+            for r in cat.get("roots", []):
+                sb.table("roots").upsert(_root_row(r)).execute()
+            have = {c["name"] for c in sb.table("candidates").select("name").execute().data}
+            want = {c["candidate_name"] for c in cat.get("candidates", [])}
+            for c in cat.get("candidates", []):
+                sb.table("candidates").upsert({
+                    "name": c["candidate_name"], "mechanism": c.get("mechanism"),
+                    "visual_motif": c.get("visual_motif"), "fits_our_brand": c.get("fits_our_brand"),
+                    "examples": c.get("examples") or []}).execute()
+            for gone in have - want:
+                sb.table("candidates").delete().eq("name", gone).execute()
+        _sb_call(op)
         _cache_clear("catalogue")
         return
     cat = dict(cat)
@@ -270,13 +303,13 @@ def root_add_image(root_id: str, data: bytes, *, filename: str, kind: str,
 
     ext = "." + filename.rsplit(".", 1)[-1].lower() if "." in filename else ".jpg"
     key = f"manual/{root_id}/{_now().replace(':', '').replace('.', '')}{ext}"
-    sb = _supabase()
     url = None
-    if sb:
+    if _supabase():
         mime = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
                 ".webp": "image/webp"}.get(ext, "image/jpeg")
         try:
-            sb.storage.from_(BUCKET).upload(key, data, {"upsert": "true", "content-type": mime})
+            _sb_call(lambda sb: sb.storage.from_(BUCKET).upload(
+                key, data, {"upsert": "true", "content-type": mime}))
         except Exception as e:  # noqa: BLE001
             return {"ok": False, "reason": f"upload failed: {e}"}
         url = f"{os.getenv('SUPABASE_URL', '').rstrip('/')}/storage/v1/object/public/{BUCKET}/{key}"
@@ -315,9 +348,9 @@ def ledger_load() -> dict:
     cached = _cache_get("ledger")
     if cached is not None:
         return cached
-    sb = _supabase()
-    if sb:
-        return _cache_put("ledger", {r["ad_id"]: r for r in sb.table("ledger").select("*").execute().data})
+    if _supabase():
+        rows = _sb_call(lambda sb: sb.table("ledger").select("*").execute()).data
+        return _cache_put("ledger", {r["ad_id"]: r for r in rows})
     if SEEN.exists():
         try:
             return _cache_put("ledger", json.loads(SEEN.read_text(encoding="utf-8")))
@@ -327,13 +360,15 @@ def ledger_load() -> dict:
 
 
 def ledger_save(d: dict) -> None:
-    sb = _supabase()
-    if sb:
+    if _supabase():
         rows = [{"ad_id": k, **{f: v.get(f) for f in ("competitor", "page_name", "first_seen",
                 "last_seen", "times_seen", "was_active", "went_inactive_at")}}
                 for k, v in d.items()]
-        for i in range(0, len(rows), 500):
-            sb.table("ledger").upsert(rows[i:i + 500]).execute()
+
+        def op(sb):
+            for i in range(0, len(rows), 500):
+                sb.table("ledger").upsert(rows[i:i + 500]).execute()
+        _sb_call(op)
         _cache_clear("ledger")
         return
     SEEN.write_text(json.dumps(d, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -346,15 +381,17 @@ def matches_all() -> list[dict]:
     cached = _cache_get("matches")
     if cached is not None:
         return cached
-    sb = _supabase()
-    if sb:
-        rows, page = [], 0
-        while True:
-            chunk = sb.table("matches").select("*").range(page * 1000, page * 1000 + 999).execute().data
-            rows += chunk
-            if len(chunk) < 1000:
-                break
-            page += 1
+    if _supabase():
+        def op(sb):
+            rows, page = [], 0
+            while True:
+                chunk = sb.table("matches").select("*").range(page * 1000, page * 1000 + 999).execute().data
+                rows += chunk
+                if len(chunk) < 1000:
+                    break
+                page += 1
+            return rows
+        rows = _sb_call(op)
         return _cache_put("matches", [_match_from_row(r) for r in rows])
     out = []
     for f in sorted(MATCHES_DIR.glob("*.json")):
@@ -375,10 +412,9 @@ def _match_from_row(r: dict) -> dict:
 
 
 def matches_existing_ids(competitor: str) -> set[str]:
-    sb = _supabase()
-    if sb:
-        return {r["ad_id"] for r in
-                sb.table("matches").select("ad_id").eq("competitor", competitor).execute().data}
+    if _supabase():
+        rows = _sb_call(lambda sb: sb.table("matches").select("ad_id").eq("competitor", competitor).execute()).data
+        return {r["ad_id"] for r in rows}
     f = MATCHES_DIR / f"{slug(competitor)}.json"
     if f.exists():
         return {m["ad_id"] for m in json.loads(f.read_text(encoding="utf-8")).get("matches", [])}
@@ -386,8 +422,7 @@ def matches_existing_ids(competitor: str) -> set[str]:
 
 
 def matches_save(competitor: str, records: list[dict]) -> None:
-    sb = _supabase()
-    if sb:
+    if _supabase():
         rows = [{
             "ad_id": m["ad_id"], "competitor": competitor, "page_name": m.get("page_name"),
             "headline": m.get("headline"), "snapshot_url": m.get("snapshot_url"),
@@ -396,8 +431,11 @@ def matches_save(competitor: str, records: list[dict]) -> None:
             "is_noise": bool(m.get("is_noise")), "root": m.get("root") or {},
             "analyzed_at": _now(),
         } for m in records]
-        for i in range(0, len(rows), 200):
-            sb.table("matches").upsert(rows[i:i + 200]).execute()
+
+        def op(sb):
+            for i in range(0, len(rows), 200):
+                sb.table("matches").upsert(rows[i:i + 200]).execute()
+        _sb_call(op)
         _cache_clear("matches")
         return
     f = MATCHES_DIR / f"{slug(competitor)}.json"
@@ -414,15 +452,14 @@ def put_image(local_path: str | Path, key: str) -> str | None:
     local_path = Path(local_path)
     if not local_path.exists():
         return None
-    sb = _supabase()
-    if not sb:
+    if not _supabase():
         return str(local_path)
     mime = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
             ".webp": "image/webp"}.get(local_path.suffix.lower(), "image/jpeg")
+    data = local_path.read_bytes()
     try:
-        sb.storage.from_(BUCKET).upload(
-            key, local_path.read_bytes(),
-            {"upsert": "true", "content-type": mime})
+        _sb_call(lambda sb: sb.storage.from_(BUCKET).upload(
+            key, data, {"upsert": "true", "content-type": mime}))
     except Exception:  # noqa: BLE001 — already exists is fine
         pass
     base = os.getenv("SUPABASE_URL", "").rstrip("/")
