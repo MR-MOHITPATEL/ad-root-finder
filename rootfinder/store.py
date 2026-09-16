@@ -260,6 +260,8 @@ def _root_row(r: dict) -> dict:
             "visual_motif", "fits_our_brand", "compliance_notes") + _STORY_FIELDS} | {
         "competitor_examples": r.get("competitor_examples") or [],
         "our_executions": r.get("our_executions") or [],
+        "versions": r.get("versions") or [],
+        "version_capacity": r.get("version_capacity") or {},
         "updated_at": _now()}
 
 
@@ -267,6 +269,8 @@ def _root_from_row(r: dict) -> dict:
     r = dict(r)
     r.setdefault("competitor_examples", r.get("competitor_examples") or [])
     r.setdefault("our_executions", r.get("our_executions") or [])
+    r.setdefault("versions", r.get("versions") or [])
+    r.setdefault("version_capacity", r.get("version_capacity") or {})
     return r
 
 
@@ -423,6 +427,7 @@ def matches_all() -> list[dict]:
 def _match_from_row(r: dict) -> dict:
     return {
         "ad_id": r["ad_id"], "page_name": r.get("page_name"), "headline": r.get("headline"),
+        "body": r.get("body"), "link_description": r.get("link_description"),
         "snapshot_url": r.get("snapshot_url"), "image": r.get("image_url"),
         "image_phash": r.get("image_phash"), "start_time": r.get("start_time"),
         "is_active": r.get("is_active"), "is_noise": r.get("is_noise"),
@@ -444,7 +449,8 @@ def matches_save(competitor: str, records: list[dict]) -> None:
     if _supabase():
         rows = [{
             "ad_id": m["ad_id"], "competitor": competitor, "page_name": m.get("page_name"),
-            "headline": m.get("headline"), "snapshot_url": m.get("snapshot_url"),
+            "headline": m.get("headline"), "body": m.get("body"),
+            "link_description": m.get("link_description"), "snapshot_url": m.get("snapshot_url"),
             "image_url": m.get("image"), "image_phash": m.get("image_phash"),
             "start_time": m.get("start_time"), "is_active": m.get("is_active"),
             "is_noise": bool(m.get("is_noise")), "root": m.get("root") or {},

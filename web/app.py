@@ -75,7 +75,7 @@ def _run_job(cmds: list[list[str]], label: str) -> None:
 _FITS = ("yes", "conditional", "no")
 
 
-def _cards_ctx(fit: str = ""):
+def _cards_ctx(fit: str = "", brand: str = ""):
     clusters, approved, maybe, _, auto = D.review_state()
     cat = D.catalogue()
     clusters.sort(key=lambda c: max(m["_days"] for m in c), reverse=True)
@@ -85,6 +85,11 @@ def _cards_ctx(fit: str = ""):
         "root": max(c, key=lambda x: x["_days"]).get("root") or {},
         "phash": D.ph(max(c, key=lambda x: x["_days"])),
     } for c in clusters]
+    if brand:
+        b = brand.lower()
+        cards = [cd for cd in cards
+                 if b in (cd["lead"].get("_competitor_file") or "").lower()
+                 or b in (cd["lead"].get("page_name") or "").lower()]
     fit_counts = {k: 0 for k in _FITS}
     for cd in cards:
         f = (cd["root"].get("fits_our_brand") or "").lower()
@@ -94,8 +99,8 @@ def _cards_ctx(fit: str = ""):
     shown = [cd for cd in cards
              if not fit or (cd["root"].get("fits_our_brand") or "").lower() == fit]
     return {
-        "cards": shown, "auto": auto, "fit": fit, "fit_counts": fit_counts,
-        "n_pending": sum(len(c) for c in clusters), "n_unique": len(clusters),
+        "cards": shown, "auto": auto, "fit": fit, "fit_counts": fit_counts, "brand": brand,
+        "n_pending": sum(len(c) for c in clusters), "n_unique": len(cards),
         "n_shown": len(shown),
         "n_approved": len(approved), "n_maybe": len(maybe),
         "root_ids": [r["root_id"] for r in cat["roots"]],
@@ -103,15 +108,15 @@ def _cards_ctx(fit: str = ""):
 
 
 @app.get("/", response_class=HTMLResponse)
-def review(request: Request, fit: str = "", rf_user: str = Cookie(default="")):
-    ctx = _cards_ctx(fit)
+def review(request: Request, fit: str = "", brand: str = "", rf_user: str = Cookie(default="")):
+    ctx = _cards_ctx(fit, brand)
     ctx.update(request=request, nav="review", fresh=ledger.competitor_stats(), me=rf_user)
     return templates.TemplateResponse(request, "review.html", ctx)
 
 
 @app.get("/queue", response_class=HTMLResponse)
-def queue_partial(request: Request, fit: str = ""):
-    ctx = _cards_ctx(fit)
+def queue_partial(request: Request, fit: str = "", brand: str = ""):
+    ctx = _cards_ctx(fit, brand)
     ctx.update(request=request)
     return templates.TemplateResponse(request, "_queue.html", ctx)
 
@@ -207,6 +212,19 @@ def root_remove_image(root_id: str, image_url: str = Form(...)):
     from rootfinder import store
     store.root_remove_image(root_id, image_url)
     return RedirectResponse("/catalogue", status_code=303)
+
+
+# ── versions (10+ image/audio/video executions per root) ──────────────────
+@app.post("/roots/{root_id}/versions/generate")
+def generate_versions(root_id: str):
+    from rootfinder.versions import generate
+    try:
+        vs = generate(root_id)
+        return RedirectResponse(f"/catalogue?err=Generated+{len(vs)}+versions+for+{root_id}"
+                                 f"#root-{root_id}", status_code=303)
+    except Exception as e:  # noqa: BLE001
+        return RedirectResponse(f"/catalogue?err=Version+generation+failed:+{e}"
+                                 f"#root-{root_id}", status_code=303)
 
 
 # ── scan control ────────────────────────────────────────────────────────────

@@ -1,0 +1,53 @@
+>> Kapiva: 50 new / 66 ads
+   [1/50] 1777350893690547  strength=0.8  candidate:Hero Product with Precious Ingredient Visualization  fits=conditional
+   [2/50] 1067141359399452  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [3/50] 2174897743309961  strength=0.8  candidate:Internal Healing Timeline  fits=conditional
+   [4/50] 1528673289296167  strength=0.9  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [5/50] 807398878815347  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [6/50] 1945532669436490  strength=0.9  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [7/50] 972006268918337  strength=0.8  candidate:Problem-Solution: Vicious Cycle Visualization  fits=yes
+   [8/50] 2684372025281616  strength=0.7  candidate:Problem-Solution: Indulgent Lifestyle  fits=conditional
+   [9/50] 960641683516156  strength=0.7  candidate:Problem-Solution: Sleeplessness from Chronic Condition  fits=conditional
+   [10/50] 1515373939961480  strength=0.8  candidate:Hero Product with Floating Minerals & Raw Ingredient  fits=conditional
+   [11/50] 27063142253374873  strength=0.8  candidate:Hero Product with Floating Minerals & Raw Ingredient  fits=conditional
+   [12/50] 1535550454850554  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [13/50] 1078212861269885  strength=0.8  candidate:Internal Problem-Solution Timeline  fits=conditional
+   [14/50] 2480534222413193  strength=0.8  candidate:Internal Organ Damage Visualization  fits=conditional
+   [15/50] 2580771995761011  strength=0.8  candidate:Hero Product with Raw Ingredient Heart  fits=yes
+   [16/50] 1787010105628276  strength=0.6  candidate:Confident User with Product & Brand Authority  fits=yes
+   [17/50] 1842135373444408  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [18/50] 3247047092157543  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [19/50] 4380639415533659  strength=0.6  candidate:Confident User with Product & Brand Authority  fits=yes
+   [20/50] 2119267978688770  strength=0.9  layered-ingredient-transparency-bottle  fits=yes
+   [21/50] 1090215443351217  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=yes
+   [22/50] 1718887672563531  strength=0.7  candidate:Problem-Symptom-Solution with Timeline  fits=conditional
+   [23/50] 1103144198891001  strength=0.6  candidate:Product Pair with Promotional Offer  fits=yes
+   [24/50] 37911585115152498  strength=0.7  candidate:Problem-Symptom-Solution with Timeframe  fits=conditional
+   [25/50] 1463010142510578  strength=0.8  candidate:Hero Product with Floating Minerals & Raw Ingredient  fits=conditional
+   [26/50] 1264814852113465  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [27/50] 1029411036645387  strength=0.8  candidate:Progressive Internal Organ Transformation  fits=conditional
+   [28/50] 4760636954167143  strength=0.8  candidate:Hero Product with Ingredient Spill & Key Attributes  fits=conditional
+   [29/50] 1037684469161173  strength=0.8  candidate:Problem Symptoms with Central Solution  fits=conditional
+   [30/50] 1293483369402467  strength=0.8  candidate:Progressive Internal Organ Improvement  fits=conditional
+   [31/50] 1591222635795386  strength=0.9  pile-vs-one  fits=conditional
+   [32/50] 1325743636082356  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [33/50] 2075089450554226  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [34/50] 1330286892636100  strength=0.8  candidate:Product with Serene Ingredient Display  fits=yes
+   [35/50] 1604350107738962  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [36/50] 1772260690469790  strength=0.9  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [37/50] 1389921879984861  strength=0.8  candidate:Product with Certificate of Analysis  fits=conditional
+   [38/50] 1072459412000575  strength=0.8  candidate:Authenticity vs. Fake Product  fits=conditional
+   [39/50] 3613633575444377  strength=0.6  candidate:Product Pair with Promotional Offer  fits=yes
+   [40/50] 902893209208274  strength=0.8  candidate:Hero Product with Cooling Ingredient Display  fits=conditional
+   [41/50] 1512560797223560  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [42/50] 909044168484995  strength=0.8  candidate:Hero Product with Raw Ingredient Flow  fits=conditional
+   [43/50] 1612255063574608  strength=0.8  candidate:Hero Product with Raw Source Material  fits=yes
+   [44/50] 1826847468687422  strength=0.8  candidate:Internal Transformation Timeline  fits=no
+   [45/50] 1780741652944585  strength=0.7  candidate:Active Lifestyle with Product & Benefit  fits=yes
+   [46/50] 1445786644108072  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [47/50] 1375065220753320  strength=0.8  candidate:Hero Product with Cooling Ingredient Display  fits=conditional
+   [48/50] 2306312373439244  strength=0.8  candidate:Internal Transformation Timeline  fits=no
+   [49/50] 1072535441820665  strength=0.8  candidate:Product in Active Lifestyle Context  fits=conditional
+   [50/50] 932799189324411  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+catalogue (supabase): 5 named roots, 325 candidates
+Review candidates in the UI and Promote / Merge them by hand.

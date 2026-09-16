@@ -13,7 +13,7 @@
 
 <div style="display:flex; flex-direction:column; gap:2rem">
 {% for r in cat.roots %}
-<article style="border-bottom:1px solid var(--line); padding-bottom:1.5rem">
+<article id="root-{{ r.root_id }}" style="border-bottom:1px solid var(--line); padding-bottom:1.5rem">
   <div style="font-weight:600">{{ r.name }}
     <span class="muted" style="font-weight:400">
       — {{ (r.competitor_examples|length) + (r.our_executions|length) }} images
@@ -75,6 +75,75 @@
              style="font-size:.72rem; padding:.2rem">
       <button class="keep" style="font-size:.72rem; padding:.25rem">+ Add image</button>
     </form>
+  </div>
+
+  <div style="margin-top:1.25rem">
+    <div style="display:flex; align-items:baseline; gap:.6rem">
+      <span style="font-weight:600; font-size:.9rem">Versions</span>
+      <span class="muted" style="font-size:.8rem">{{ r.versions|length }} generated</span>
+      <form method="post" action="/roots/{{ r.root_id }}/versions/generate" style="margin-left:auto">
+        <button style="font-size:.78rem" onclick="this.disabled=true; this.innerText='Generating… (~15s)'">
+          {{ 'Regenerate example' if r.versions else 'Generate 1 example (image + audio + video)' }}
+        </button>
+      </form>
+    </div>
+
+    {% if r.version_capacity %}
+    <div style="display:flex; gap:1.2rem; margin-top:.5rem; font-size:.82rem" title="How many genuinely different versions this root can support before repeating itself">
+      {% for medium, label in [('image','Visual'), ('audio','Audio'), ('video','Video')] %}
+      {% set vc = r.version_capacity.get(medium) %}
+      {% if vc %}
+      <span><b>{{ label }}:</b> ~{{ vc.count }} possible
+        <span class="muted" title="{{ vc.why }}">ⓘ</span></span>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if r.versions %}
+    {% set statuscolor = {'PASS': 'var(--keep)', 'NEEDS_EDIT': '#B8860B', 'FAIL': 'var(--skip)'} %}
+    {% for medium, label in [('image','Image'), ('audio','Audio'), ('video','Video')] %}
+    {% set vs = r.versions|selectattr('medium','equalto',medium)|list %}
+    {% if vs %}
+    <div style="margin-top:.8rem">
+      <div class="muted" style="font-size:.78rem; text-transform:uppercase; letter-spacing:.03em">{{ label }} ({{ vs|length }})</div>
+      <div style="display:flex; flex-direction:column; gap:.6rem; margin-top:.4rem">
+        {% for v in vs %}
+        {% set comp = v.compliance or {} %}
+        <div class="panel" style="padding:.6rem .8rem; font-size:.85rem">
+          <div style="display:flex; gap:.5rem; align-items:baseline">
+            <span style="font-weight:600">{{ v.version_name or v.headline }}</span>
+            <span style="color:{{ statuscolor.get(comp.status, 'var(--muted)') }}; font-size:.75rem; font-weight:500">
+              {{ comp.status or 'unchecked' }}</span>
+          </div>
+          <div style="margin-top:.25rem">{{ v.headline }}</div>
+          <div class="muted" style="margin-top:.1rem">{{ v.hook }}</div>
+          {% if v.image_prompt %}<div style="margin-top:.3rem"><span class="muted">Image prompt:</span> {{ v.image_prompt }}</div>{% endif %}
+          {% if v.script %}<div style="margin-top:.3rem; white-space:pre-wrap"><span class="muted">Script:</span> {{ v.script }}</div>{% endif %}
+          {% if v.scenes %}
+          <ol style="margin:.3rem 0 0; padding-left:1.1rem">
+            {% for sc in v.scenes %}
+            <li style="margin-bottom:.2rem"><b>{{ sc.visual }}</b> — {{ sc.vo_line }}
+              {% if sc.on_screen_text %}<span class="muted">[{{ sc.on_screen_text }}]</span>{% endif %}</li>
+            {% endfor %}
+          </ol>
+          {% endif %}
+          {% if v.disclaimer %}<div class="muted" style="margin-top:.3rem; font-size:.78rem">Disclaimer: {{ v.disclaimer }}</div>{% endif %}
+          {% if comp.findings %}
+          <details style="margin-top:.3rem; font-size:.78rem">
+            <summary class="muted" style="cursor:pointer">{{ comp.findings|length }} compliance note(s)</summary>
+            <ul style="margin:.3rem 0 0; padding-left:1.1rem">
+              {% for f in comp.findings %}<li>{{ f.message }}{% if f.evidence %} — “{{ f.evidence }}”{% endif %}</li>{% endfor %}
+            </ul>
+          </details>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
   </div>
 </article>
 {% endfor %}

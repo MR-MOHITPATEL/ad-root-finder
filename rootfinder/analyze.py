@@ -181,6 +181,8 @@ def analyze_ad(ad: dict, roots: list[dict], candidates: list[dict] | None = None
         "ad_id": ad["ad_id"],
         "page_name": ad.get("page_name"),
         "headline": ad.get("headline"),
+        "body": ad.get("body"),
+        "link_description": ad.get("link_description"),
         "snapshot_url": ad.get("snapshot_url"),
         "image": ad.get("image_url") or (imgs[0] if imgs else None),
         "image_phash": ad.get("image_phash"),

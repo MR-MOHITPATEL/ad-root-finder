@@ -20,8 +20,15 @@
       One decision covers every copy of a creative.
     </p>
 
+    <form method="get" action="/" style="display:flex; gap:.5rem; margin-bottom:1rem">
+      {% if fit %}<input type="hidden" name="fit" value="{{ fit }}">{% endif %}
+      <input name="brand" value="{{ brand }}" placeholder="filter by brand (e.g. Kapiva)" style="flex:1; max-width:16rem">
+      <button style="font-size:.85rem">Filter</button>
+      {% if brand %}<a href="/{% if fit %}?fit={{ fit }}{% endif %}" class="muted" style="align-self:center; font-size:.85rem">clear</a>{% endif %}
+    </form>
+
     <div id="queue"
-         hx-get="/queue?fit={{ fit }}" hx-trigger="every 60s" hx-swap="innerHTML"
+         hx-get="/queue?fit={{ fit }}&brand={{ brand }}" hx-trigger="every 60s" hx-swap="innerHTML"
          hx-sync="this:replace">
       {% include "_queue.html" %}
     </div>

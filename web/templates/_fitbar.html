@@ -7,7 +7,7 @@
     ('no', "Won’t work for us", fit_counts.no),
   ] %}
   {% for val, lbl, ct in tabs %}
-  <a href="{{ base }}{% if val %}?fit={{ val }}{% endif %}"
+  <a href="{{ base }}{% if val %}{{ '&' if '?' in base else '?' }}fit={{ val }}{% endif %}"
      class="fitpill {{ 'on' if (fit or '') == val }}">{{ lbl }} <span class="ct">{{ ct }}</span></a>
   {% endfor %}
 </div>

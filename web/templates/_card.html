@@ -11,7 +11,9 @@
 
   <div>
     <div style="font-weight:600">{{ m.headline or "No headline text" }}</div>
-    <div style="font-size:.85rem; margin-top:.15rem">
+    {% if m.body %}<p class="muted" style="font-size:.85rem; margin:.2rem 0 0; max-width:62ch; white-space:pre-wrap">{{ m.body }}</p>{% endif %}
+    {% if m.link_description %}<p class="muted" style="font-size:.8rem; margin:.15rem 0 0; max-width:62ch">{{ m.link_description }}</p>{% endif %}
+    <div style="font-size:.85rem; margin-top:.4rem">
       {% set fit = r.fits_our_brand %}
       <span style="color:{{ 'var(--keep)' if fit=='yes' else 'var(--skip)' if fit=='no' else 'var(--muted)' }}; font-weight:500">
         {{ fitmap.get(fit, 'Unclassified') }}</span>
