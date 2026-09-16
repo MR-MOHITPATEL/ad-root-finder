@@ -1,0 +1,14 @@
+>> Blue Tea: 19 new / 19 ads
+   [1/19] 886576117505225  strength=0.9  pile-vs-one  fits=yes
+   [2/19] 1765194641330472  strength=0.8  candidate:Product as News Headline  fits=yes
+   [3/19] 1066451636089921  strength=0.8  candidate:Traditional Ingredient Modernized with New Ingredient  fits=yes
+   [4/19] 1034013236169068  strength=0.8  candidate:Hero Product with Floating Ingredients & Benefits  fits=conditional
+   [5/19] 1274877784676679  strength=0.8  candidate:User Measuring Progress with Product & Ingredients  fits=conditional
+   [6/19] 1053422730610583  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [7/19] 1882790509365149  strength=0.8  candidate:Frustrated User with Thought Bubbles & Solution  fits=conditional
+   [8/19] 1048192118008491  strength=0.8  candidate:Before-After User Transformation with Product  fits=no
+   [9/19] 1599923635045220  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [10/19] 926409573859798  strength=0.8  candidate:Before-After User Transformation with Product  fits=no
+   [11/19] 1085302817406858  strength=0.7  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [12/19] 1445338354123865  strength=0.8  candidate:Confident User with Product & Transformation Visual  fits=conditional
+   [13/19] 959343493094849  strength=0.8  candidate:User with Product & Benefit Callouts  fits=conditional

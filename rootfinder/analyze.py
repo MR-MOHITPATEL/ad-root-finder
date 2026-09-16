@@ -256,6 +256,13 @@ def run(terms: list[str] | None = None, *, force: bool = False, workers: int = 4
         [ADS_DIR / f"{slug(t)}.json" for t in terms]
         if terms else sorted(ADS_DIR.glob("*.json"))
     )
+    # analyze_ad() rebuilds each match record from scratch, with no "versions"/
+    # "version_capacity" keys at all -- re-analyzing (--force) would otherwise
+    # silently wipe out anything rootfinder.versions generated for that ad, since
+    # matches_save() upserts the whole row. Carry those two fields forward from
+    # whatever's already on Supabase.
+    prior_versions = {m["ad_id"]: (m.get("versions"), m.get("version_capacity"))
+                      for m in store.matches_all() if m.get("versions")}
     for f in files:
         if not f.exists():
             print(f"skip (no scrape): {f.name}")
@@ -290,6 +297,10 @@ def run(terms: list[str] | None = None, *, force: bool = False, workers: int = 4
                     else:
                         tag = r.get("root_id") or (f"candidate:{r.get('candidate_name')}" if r.get("is_candidate") else "?")
                     print(f"   [{i}/{len(todo)}] {m['ad_id']}  strength={r.get('root_strength')}  {tag}  fits={r.get('fits_our_brand')}")
+
+        for m in results:
+            if m["ad_id"] in prior_versions:
+                m["versions"], m["version_capacity"] = prior_versions[m["ad_id"]]
 
         if results:
             _attach_to_catalogue(cat, results, competitor)
