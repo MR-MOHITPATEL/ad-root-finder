@@ -162,13 +162,12 @@ def _pseudo_root(m: dict) -> dict:
         "reason_to_believe", "attributes_verbal", "attributes_visual")}}
 
 
-def generate_for_ad(m: dict, *, n_image: int = 1, n_audio: int = 1, n_video: int = 1) -> list[dict]:
+def generate_for_ad(m: dict, *, n_image: int = 1, n_audio: int = 1, n_video: int = 1) -> tuple[list[dict], dict]:
     """Generate a version slate straight from one ad's own analysis (no catalogued
     root needed) -- always written as our own pitch for our tea, never a reskin of
-    that ad's actual competitor copy."""
+    that ad's actual competitor copy. Returns (versions, version_capacity)."""
     counts = {"image": n_image, "audio": n_audio, "video": n_video}
-    versions, _capacity = _build_versions(_pseudo_root(m), counts)
-    return versions
+    return _build_versions(_pseudo_root(m), counts)
 
 
 def run_for_all_ads(*, force: bool = False, workers: int = 4, limit: int | None = None) -> None:
@@ -183,7 +182,7 @@ def run_for_all_ads(*, force: bool = False, workers: int = 4, limit: int | None 
 
     def _do(m: dict):
         try:
-            m["versions"] = generate_for_ad(m)
+            m["versions"], m["version_capacity"] = generate_for_ad(m)
             return m, None
         except Exception as e:  # noqa: BLE001
             return m, str(e)

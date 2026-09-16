@@ -88,19 +88,7 @@
       </form>
     </div>
 
-    {% if r.version_capacity %}
-    <div style="display:flex; gap:1.2rem; margin-top:.5rem; font-size:.82rem" title="How many genuinely different versions this root can support before repeating itself">
-      {% for medium, label in [('image','Visual'), ('audio','Audio'), ('video','Video')] %}
-      {% set vc = r.version_capacity.get(medium) %}
-      {% if vc %}
-      <span><b>{{ label }}:</b> ~{{ vc.count }} possible
-        <span class="muted" title="{{ vc.why }}">ⓘ</span></span>
-      {% endif %}
-      {% endfor %}
-    </div>
-    {% endif %}
-
-    {% with versions = r.versions %}{% include "_versions.html" %}{% endwith %}
+    {% with versions = r.versions, capacity = r.version_capacity %}{% include "_versions.html" %}{% endwith %}
   </div>
 </article>
 {% endfor %}

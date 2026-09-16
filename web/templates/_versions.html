@@ -1,7 +1,21 @@
-{# Shared "generated versions" display. Expects: versions (list of version dicts). #}
+{# Shared "generated versions" display.
+   Expects: versions (list of version dicts). Optional: capacity (dict from Gemini's
+   version_capacity estimate: how many genuinely different versions per medium). #}
+{% if capacity %}
+<div style="display:flex; gap:1.1rem; margin-top:.5rem; font-size:.8rem"
+     title="How many genuinely different versions this ad/root can support before repeating itself">
+  {% for medium, label in [('image','Visual'), ('audio','Audio'), ('video','Video')] %}
+  {% set vc = capacity.get(medium) %}
+  {% if vc %}
+  <span><b>{{ label }}:</b> ~{{ vc.count }} possible
+    <span class="muted" title="{{ vc.why }}">ⓘ</span></span>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
 {% if versions %}
 {% set statuscolor = {'PASS': 'var(--keep)', 'NEEDS_EDIT': '#B8860B', 'FAIL': 'var(--skip)'} %}
-<details style="margin-top:.6rem; font-size:.85rem">
+<details style="margin-top:.4rem; font-size:.85rem">
   <summary class="muted" style="cursor:pointer">{{ versions|length }} version(s) generated</summary>
   {% for medium, label in [('image','Image'), ('audio','Audio'), ('video','Video')] %}
   {% set vs = versions|selectattr('medium','equalto',medium)|list %}

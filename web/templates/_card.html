@@ -44,7 +44,7 @@
     </details>
     {% endif %}
 
-    {% with versions = m.versions %}{% include "_versions.html" %}{% endwith %}
+    {% with versions = m.versions, capacity = m.version_capacity %}{% include "_versions.html" %}{% endwith %}
 
     <form hx-post="/decide" hx-target="#card-{{ c.ids[0] }}" hx-swap="outerHTML swap:.15s"
           style="margin-top:.9rem; display:flex; flex-wrap:wrap; gap:.5rem; align-items:center">

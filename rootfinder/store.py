@@ -432,6 +432,7 @@ def _match_from_row(r: dict) -> dict:
         "image_phash": r.get("image_phash"), "start_time": r.get("start_time"),
         "is_active": r.get("is_active"), "is_noise": r.get("is_noise"),
         "root": r.get("root") or {}, "versions": r.get("versions") or [],
+        "version_capacity": r.get("version_capacity") or {},
         "_competitor_file": r.get("competitor"),
     }
 
@@ -455,7 +456,7 @@ def matches_save(competitor: str, records: list[dict]) -> None:
             "image_url": m.get("image"), "image_phash": m.get("image_phash"),
             "start_time": m.get("start_time"), "is_active": m.get("is_active"),
             "is_noise": bool(m.get("is_noise")), "root": m.get("root") or {},
-            "versions": m.get("versions") or [],
+            "versions": m.get("versions") or [], "version_capacity": m.get("version_capacity") or {},
             "analyzed_at": _now(),
         } for m in records]
 
