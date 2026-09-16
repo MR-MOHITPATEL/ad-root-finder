@@ -25,15 +25,46 @@ _SYSTEM = (
     "(a 14-herb Ayurvedic tea, Rs 599 for 50 bags, formulated by Dr. Bimal Chhajer MBBS MD). "
     "Given one ad ROOT (a persuasion mechanism + story), you write a slate of DIFFERENT "
     "executable versions of that root for OUR product -- varying the angle, hook, and "
-    "medium, never repeating one idea with a synonym swap. Every version must follow "
-    "NMC/FSSAI rules: ingredient-led claims only, no disease/cure claims, no outcome "
-    "timelines, the doctor referenced only as 'Formulated by'. Return ONLY JSON."
+    "medium, never repeating one idea with a synonym swap. "
+    "NMC/FSSAI rule that trips people up most: a health-benefit claim's GRAMMATICAL SUBJECT "
+    "must be the ingredient, never the product/tea/blend. WRONG: 'Our tea, with Brahmi, "
+    "supports focus' (product is the subject). RIGHT: 'Brahmi is traditionally used to "
+    "support cognitive function' (ingredient is the subject), said separately from any "
+    "product claim. When in doubt, prefer a Type A headline (broad wellness/ritual language "
+    "no claim at all, e.g. 'A moment of calm in every cup') or Type B (names the consumer's "
+    "worry as a question, makes no product claim) over a Type C ingredient claim -- only use "
+    "a Type C claim by lifting one of the APPROVED CLAIMS below verbatim or near-verbatim, "
+    "with the ingredient as the subject. Never invent a new health claim. No disease/cure "
+    "words, no outcome timelines ('in 7 days'). "
+    "TWO MORE THINGS THAT FAIL EVERY TIME: (1) The doctor's name is baked into the product's "
+    "own name ('Dr. Bimal's Arjuna Cardio Care Tea') -- so refer to the product ONLY as "
+    "'Arjuna Cardio Care Tea' or 'the tea' everywhere in the headline/hook/script/scenes; "
+    "the full name with 'Dr. Bimal's' and any doctor mention belongs ONLY in the disclaimer "
+    "line, in the exact form 'Formulated by Dr. Bimal Chhajer MBBS MD' -- never mid-copy, "
+    "never next to a benefit statement. (2) NEVER write in a customer-testimonial voice "
+    "('I discovered...', 'my secret is...', 'now I feel...', 'it changed my life') -- that's "
+    "unverified social proof and is banned. Write either as a neutral narrator/brand voice "
+    "speaking TO the consumer (second person 'you'), or the product itself speaking -- never "
+    "as a customer recounting their own personal results. Return ONLY JSON."
 )
+
+
+def _approved_claims_block() -> str:
+    from compliance.validate import load_ruleset
+    r = load_ruleset()
+    lines = []
+    for herb, info in (r.get("approved_ingredient_claims") or {}).items():
+        for claim in info.get("claims") or []:
+            lines.append(f'  - "{claim}"')
+    return "\n".join(lines) or "  (none on file)"
 
 
 def _prompt(root: dict, counts: dict[str, int]) -> str:
     total = sum(counts.values())
-    return f"""ROOT
+    return f"""APPROVED INGREDIENT CLAIMS (the ONLY health-benefit sentences allowed, ingredient as subject):
+{_approved_claims_block()}
+
+ROOT
   name: {root.get('name')}
   mechanism: {root.get('mechanism')}
   visual motif: {root.get('visual_motif')}
@@ -157,8 +188,12 @@ def run_for_all_ads(*, force: bool = False, workers: int = 4, limit: int | None 
         except Exception as e:  # noqa: BLE001
             return m, str(e)
 
-    by_competitor: dict[str, list[dict]] = {}
-    ok = fail = 0
+    # Flush to Supabase every FLUSH_EVERY completed ads (grouped by competitor) instead
+    # of only at the very end -- a crash/kill mid-run then loses at most one batch, not
+    # the whole run, and progress is inspectable while it's still going.
+    FLUSH_EVERY = 20
+    pending: dict[str, list[dict]] = {}
+    ok = fail = since_flush = 0
     with ThreadPoolExecutor(max_workers=workers) as ex:
         futs = {ex.submit(_do, m): m for m in todo}
         for i, fut in enumerate(as_completed(futs), 1):
@@ -166,13 +201,20 @@ def run_for_all_ads(*, force: bool = False, workers: int = 4, limit: int | None 
             if err:
                 fail += 1
                 print(f"  [{i}/{len(todo)}] {m['ad_id']} FAILED: {err}")
-            else:
-                ok += 1
-                by_competitor.setdefault(m["_competitor_file"], []).append(m)
-                statuses = [v["compliance"]["status"] for v in m["versions"]]
-                print(f"  [{i}/{len(todo)}] {m['ad_id']} ({m.get('_competitor_file')}) -> {statuses}")
+                continue
+            ok += 1
+            since_flush += 1
+            pending.setdefault(m["_competitor_file"], []).append(m)
+            statuses = [v["compliance"]["status"] for v in m["versions"]]
+            print(f"  [{i}/{len(todo)}] {m['ad_id']} ({m.get('_competitor_file')}) -> {statuses}")
+            if since_flush >= FLUSH_EVERY:
+                for competitor, ms in pending.items():
+                    store.matches_save(competitor, ms)
+                print(f"    -- flushed {since_flush} to Supabase --")
+                pending = {}
+                since_flush = 0
 
-    for competitor, ms in by_competitor.items():
+    for competitor, ms in pending.items():
         store.matches_save(competitor, ms)
     print(f"done: {ok} ok, {fail} failed")
 
