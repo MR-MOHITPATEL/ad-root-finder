@@ -88,17 +88,13 @@ def _version_text(v: dict) -> str:
     return "\n".join(p for p in parts if p)
 
 
-def generate(root_id: str, *, n_image: int = 1, n_audio: int = 1, n_video: int = 1) -> list[dict]:
-    """Generate the version slate for one named root and persist it on that root."""
+def _build_versions(root_like: dict, counts: dict[str, int]) -> tuple[list[dict], dict]:
+    """Shared generation core: root_like just needs mechanism/visual_motif/story/etc
+    fields -- works the same whether it's a catalogued root or one ad's own analysis
+    (rootfinder.analyze's Gemini output uses the identical field names)."""
     from compliance.validate import validate_copy  # local import: optional dep, keep analyze.py light
 
-    cat = store.catalogue_load()
-    root = next((r for r in cat["roots"] if r["root_id"] == root_id), None)
-    if not root:
-        raise ValueError(f"root not found: {root_id}")
-
-    counts = {"image": n_image, "audio": n_audio, "video": n_video}
-    out = gemini_json(_SYSTEM, _prompt(root, counts), max_tokens=6000)
+    out = gemini_json(_SYSTEM, _prompt(root_like, counts), max_tokens=6000)
     versions = out.get("versions") or []
     if not versions and out.get("error"):
         raise RuntimeError(out["error"])
@@ -108,11 +104,77 @@ def generate(root_id: str, *, n_image: int = 1, n_audio: int = 1, n_video: int =
         verdict = validate_copy(_version_text(v), is_ours=True, use_llm=True)
         v["compliance"] = verdict.to_dict()
         v["generated_at"] = now
+    return versions, (out.get("version_capacity") or {})
 
+
+def generate(root_id: str, *, n_image: int = 1, n_audio: int = 1, n_video: int = 1) -> list[dict]:
+    """Generate the version slate for one named root and persist it on that root."""
+    cat = store.catalogue_load()
+    root = next((r for r in cat["roots"] if r["root_id"] == root_id), None)
+    if not root:
+        raise ValueError(f"root not found: {root_id}")
+
+    counts = {"image": n_image, "audio": n_audio, "video": n_video}
+    versions, capacity = _build_versions(root, counts)
     root["versions"] = versions
-    root["version_capacity"] = out.get("version_capacity") or {}
+    root["version_capacity"] = capacity
     store.catalogue_save(cat)
     return versions
+
+
+def _pseudo_root(m: dict) -> dict:
+    """Build a root_like dict from one analyzed ad's own storyboard fields."""
+    r = m.get("root") or {}
+    name = m.get("headline") or r.get("root_id") or r.get("candidate_name") or m.get("ad_id")
+    return {"name": name, **{k: r.get(k) for k in (
+        "mechanism", "visual_motif", "story", "line_of_attack_type", "line_of_attack",
+        "reason_to_believe", "attributes_verbal", "attributes_visual")}}
+
+
+def generate_for_ad(m: dict, *, n_image: int = 1, n_audio: int = 1, n_video: int = 1) -> list[dict]:
+    """Generate a version slate straight from one ad's own analysis (no catalogued
+    root needed) -- always written as our own pitch for our tea, never a reskin of
+    that ad's actual competitor copy."""
+    counts = {"image": n_image, "audio": n_audio, "video": n_video}
+    versions, _capacity = _build_versions(_pseudo_root(m), counts)
+    return versions
+
+
+def run_for_all_ads(*, force: bool = False, workers: int = 4, limit: int | None = None) -> None:
+    """Generate versions for every analyzed, non-noise ad in the matches table."""
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    matches = store.matches_all()
+    todo = [m for m in matches if not m.get("is_noise") and (force or not m.get("versions"))]
+    if limit:
+        todo = todo[:limit]
+    print(f"{len(todo)} ads to version (of {len(matches)} total, {len(matches) - len(todo)} skipped)")
+
+    def _do(m: dict):
+        try:
+            m["versions"] = generate_for_ad(m)
+            return m, None
+        except Exception as e:  # noqa: BLE001
+            return m, str(e)
+
+    by_competitor: dict[str, list[dict]] = {}
+    ok = fail = 0
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        futs = {ex.submit(_do, m): m for m in todo}
+        for i, fut in enumerate(as_completed(futs), 1):
+            m, err = fut.result()
+            if err:
+                fail += 1
+                print(f"  [{i}/{len(todo)}] {m['ad_id']} FAILED: {err}")
+            else:
+                ok += 1
+                by_competitor.setdefault(m["_competitor_file"], []).append(m)
+                statuses = [v["compliance"]["status"] for v in m["versions"]]
+                print(f"  [{i}/{len(todo)}] {m['ad_id']} ({m.get('_competitor_file')}) -> {statuses}")
+
+    for competitor, ms in by_competitor.items():
+        store.matches_save(competitor, ms)
+    print(f"done: {ok} ok, {fail} failed")
 
 
 if __name__ == "__main__":
@@ -120,11 +182,20 @@ if __name__ == "__main__":
     import json
 
     ap = argparse.ArgumentParser()
-    ap.add_argument("root_id")
+    ap.add_argument("root_id", nargs="?")
     ap.add_argument("--image", type=int, default=1)
     ap.add_argument("--audio", type=int, default=1)
     ap.add_argument("--video", type=int, default=1)
+    ap.add_argument("--all-ads", action="store_true", help="generate per-ad, for every analyzed ad")
+    ap.add_argument("--force", action="store_true", help="with --all-ads: redo ads that already have versions")
+    ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--workers", type=int, default=4)
     a = ap.parse_args()
-    vs = generate(a.root_id, n_image=a.image, n_audio=a.audio, n_video=a.video)
-    print(json.dumps(vs, indent=2, ensure_ascii=False))
-    print(f"\n{len(vs)} versions generated for root '{a.root_id}'")
+    if a.all_ads:
+        run_for_all_ads(force=a.force, workers=a.workers, limit=a.limit)
+    elif a.root_id:
+        vs = generate(a.root_id, n_image=a.image, n_audio=a.audio, n_video=a.video)
+        print(json.dumps(vs, indent=2, ensure_ascii=False))
+        print(f"\n{len(vs)} versions generated for root '{a.root_id}'")
+    else:
+        ap.error("give a root_id or --all-ads")

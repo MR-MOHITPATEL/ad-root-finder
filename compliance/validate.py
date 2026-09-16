@@ -151,8 +151,8 @@ def _layer2(text: str, v: Verdict, *, use_llm: bool) -> None:
         return
     r = load_ruleset()
     try:
-        from rootfinder.llm import groq_json
-        ans = groq_json(_L2_SYSTEM, _l2_prompt(text, r))
+        from rootfinder.llm import gemini_json
+        ans = gemini_json(_L2_SYSTEM, _l2_prompt(text, r))
     except Exception as e:  # noqa: BLE001
         v.notes += f" [layer2 skipped: {e}]"
         return

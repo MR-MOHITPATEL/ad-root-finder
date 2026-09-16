@@ -1,0 +1,104 @@
+INFO:     Started server process [169096]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:51043 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57075 - "GET /?brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57075 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/2684372025281616_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63722 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1325743636082356_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63722 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/2174897743309961_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57075 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1389921879984861_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49648 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1375065220753320_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1330286892636100_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1604350107738962_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/4760636954167143_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1612255063574608_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1293483369402467_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/909044168484995_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/37911585115152498_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1343001081343694_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1072459412000575_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/3247047092157543_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1067141359399452_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1842135373444408_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1090215443351217_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1787010105628276_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1591222635795386_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1777350893690547_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1078212861269885_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1780741652944585_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1512560797223560_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/2306312373439244_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1072535441820665_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1795413528135621_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/3613633575444377_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57733 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/932799189324411_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49648 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/892356217071338_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49648 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1266713423202595_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49648 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1393425795570799_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49648 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1048507827894556_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49648 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1590553525777646_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49648 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54176 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58129 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58129 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/2684372025281616_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:58117 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1375065220753320_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63043 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1325743636082356_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:52296 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/2174897743309961_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:59421 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1389921879984861_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57312 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1330286892636100_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56220 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1604350107738962_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56220 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/4760636954167143_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56220 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1612255063574608_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1293483369402467_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/909044168484995_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/37911585115152498_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1343001081343694_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1072459412000575_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/3247047092157543_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1067141359399452_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1842135373444408_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1090215443351217_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1787010105628276_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1591222635795386_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1777350893690547_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1078212861269885_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1780741652944585_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1512560797223560_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/2306312373439244_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1072535441820665_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1795413528135621_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/3613633575444377_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/932799189324411_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/892356217071338_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1266713423202595_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1393425795570799_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1048507827894556_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:63399 - "GET /img?path=https%3A//qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1590553525777646_0.jpg HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:62485 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51441 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49169 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53352 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59667 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62236 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54400 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55650 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53683 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51834 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60406 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62712 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64566 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64349 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64863 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53759 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51478 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57252 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50790 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60846 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64690 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62288 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60565 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50499 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54126 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57431 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50062 - "GET /queue?fit=&brand=Kapiva HTTP/1.1" 200 OK

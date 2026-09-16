@@ -431,7 +431,8 @@ def _match_from_row(r: dict) -> dict:
         "snapshot_url": r.get("snapshot_url"), "image": r.get("image_url"),
         "image_phash": r.get("image_phash"), "start_time": r.get("start_time"),
         "is_active": r.get("is_active"), "is_noise": r.get("is_noise"),
-        "root": r.get("root") or {}, "_competitor_file": r.get("competitor"),
+        "root": r.get("root") or {}, "versions": r.get("versions") or [],
+        "_competitor_file": r.get("competitor"),
     }
 
 
@@ -454,6 +455,7 @@ def matches_save(competitor: str, records: list[dict]) -> None:
             "image_url": m.get("image"), "image_phash": m.get("image_phash"),
             "start_time": m.get("start_time"), "is_active": m.get("is_active"),
             "is_noise": bool(m.get("is_noise")), "root": m.get("root") or {},
+            "versions": m.get("versions") or [],
             "analyzed_at": _now(),
         } for m in records]
 
