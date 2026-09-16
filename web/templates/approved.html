@@ -36,6 +36,7 @@
       {% if d.decided_by %} · kept by {{ d.decided_by }}{% endif %}
     </div>
     <div style="font-size:.9rem; margin-top:.35rem">{{ r.visual_motif }}</div>
+    {% if r.story %}<p style="font-size:.9rem; font-style:italic; margin:.4rem 0 0">“{{ r.story }}”</p>{% endif %}
     {% if r.adaptation_hint %}<div style="font-size:.9rem; margin-top:.2rem"><span class="muted">Adapt for us:</span> {{ r.adaptation_hint }}</div>{% endif %}
     {% if d.note %}<div style="font-size:.9rem; margin-top:.2rem"><span class="muted">Note:</span> {{ d.note }}</div>{% endif %}
   </div>

@@ -221,6 +221,15 @@ def decided_phashes() -> dict[str, dict]:
 
 # ── CATALOGUE (roots + candidates) ─────────────────────────────────────────
 
+# The storyboard fields (line of attack / RTB / attributes / story / root_kind) live on
+# both a root and a candidate, carried straight through from the Gemini output. Requires
+# the matching columns on the Supabase roots + candidates tables — see rootfinder/README
+# migration note; catalogue_load()/catalogue_save() use .get() so this degrades gracefully
+# (blank fields) if the columns aren't there yet.
+_STORY_FIELDS = ("line_of_attack_type", "line_of_attack", "reason_to_believe",
+                 "attributes_verbal", "attributes_visual", "story", "root_kind")
+
+
 def catalogue_load() -> dict:
     cached = _cache_get("catalogue")
     if cached is not None:
@@ -237,8 +246,8 @@ def catalogue_load() -> dict:
         roots, cands = _sb_call(op)
         return _cache_put("catalogue", {
             "roots": [_root_from_row(r) for r in roots],
-            "candidates": [{"candidate_name": c["name"], **{k: c[k] for k in
-                            ("mechanism", "visual_motif", "fits_our_brand")},
+            "candidates": [{"candidate_name": c["name"], **{k: c.get(k) for k in
+                            ("mechanism", "visual_motif", "fits_our_brand") + _STORY_FIELDS},
                             "examples": c.get("examples") or []} for c in cands],
         })
     if ROOTS_CATALOGUE.exists():
@@ -248,7 +257,7 @@ def catalogue_load() -> dict:
 
 def _root_row(r: dict) -> dict:
     return {k: r.get(k) for k in ("root_id", "name", "status", "mechanism", "why_it_works",
-            "visual_motif", "fits_our_brand", "compliance_notes")} | {
+            "visual_motif", "fits_our_brand", "compliance_notes") + _STORY_FIELDS} | {
         "competitor_examples": r.get("competitor_examples") or [],
         "our_executions": r.get("our_executions") or [],
         "updated_at": _now()}
@@ -272,6 +281,7 @@ def catalogue_save(cat: dict) -> None:
                 sb.table("candidates").upsert({
                     "name": c["candidate_name"], "mechanism": c.get("mechanism"),
                     "visual_motif": c.get("visual_motif"), "fits_our_brand": c.get("fits_our_brand"),
+                    **{k: c.get(k) for k in _STORY_FIELDS},
                     "examples": c.get("examples") or []}).execute()
             for gone in have - want:
                 sb.table("candidates").delete().eq("name", gone).execute()

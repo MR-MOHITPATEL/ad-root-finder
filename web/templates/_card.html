@@ -24,6 +24,24 @@
     </dl>
     <p class="muted" style="font-size:.85rem; margin:.5rem 0 0; max-width:62ch">{{ r.fit_reason }}</p>
 
+    {% if r.story %}
+    <p style="font-size:.9rem; font-style:italic; margin:.6rem 0 0; padding:.5rem .7rem;
+              background:var(--keep-soft); border-radius:4px; max-width:62ch">
+      “{{ r.story }}”
+    </p>
+    {% endif %}
+    {% if r.line_of_attack or r.reason_to_believe %}
+    <details style="margin-top:.5rem; font-size:.85rem">
+      <summary class="muted" style="cursor:pointer">Storyboard{% if r.root_kind %} · {{ r.root_kind }}{% endif %}</summary>
+      <dl style="margin:.5rem 0 0; display:grid; grid-template-columns:auto 1fr; gap:.15rem .6rem">
+        <dt>Line of attack</dt><dd>{{ r.line_of_attack_type }} — {{ r.line_of_attack }}</dd>
+        <dt>Reason to believe</dt><dd>{{ r.reason_to_believe }}</dd>
+        <dt>Attributes (verbal)</dt><dd>{{ r.attributes_verbal }}</dd>
+        <dt>Attributes (visual)</dt><dd>{{ r.attributes_visual }}</dd>
+      </dl>
+    </details>
+    {% endif %}
+
     <form hx-post="/decide" hx-target="#card-{{ c.ids[0] }}" hx-swap="outerHTML swap:.15s"
           style="margin-top:.9rem; display:flex; flex-wrap:wrap; gap:.5rem; align-items:center">
       <input type="hidden" name="ad_ids" value='{{ c.ids|tojson }}'>

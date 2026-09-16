@@ -32,6 +32,22 @@
       , {{ c.fits_our_brand }} for our brand</span></div>
   <div style="font-size:.9rem; margin-top:.35rem"><span class="muted">Mechanism:</span> {{ c.mechanism }}</div>
   <div style="font-size:.9rem"><span class="muted">Visual motif:</span> {{ c.visual_motif }}</div>
+  {% if c.root_kind %}<div style="font-size:.9rem"><span class="muted">Reusable as:</span> {{ c.root_kind }}</div>{% endif %}
+  {% if c.story %}
+  <p style="font-size:.9rem; font-style:italic; margin:.5rem 0 0; padding:.5rem .7rem;
+            background:var(--keep-soft); border-radius:4px; max-width:70ch">“{{ c.story }}”</p>
+  {% endif %}
+  {% if c.line_of_attack or c.reason_to_believe %}
+  <details style="margin-top:.4rem; font-size:.85rem">
+    <summary class="muted" style="cursor:pointer">Storyboard</summary>
+    <dl style="margin:.5rem 0 0; display:grid; grid-template-columns:auto 1fr; gap:.15rem .7rem; max-width:70ch">
+      <dt>Line of attack</dt><dd>{{ c.line_of_attack_type }} — {{ c.line_of_attack }}</dd>
+      <dt>Reason to believe</dt><dd>{{ c.reason_to_believe }}</dd>
+      <dt>Attributes (verbal)</dt><dd>{{ c.attributes_verbal }}</dd>
+      <dt>Attributes (visual)</dt><dd>{{ c.attributes_visual }}</dd>
+    </dl>
+  </details>
+  {% endif %}
   {% set imgs = c.examples|selectattr('image_url')|list %}
   {% if imgs %}
   <div style="display:grid; grid-template-columns:repeat(8,1fr); gap:.4rem; margin-top:.8rem">

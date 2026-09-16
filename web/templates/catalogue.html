@@ -22,9 +22,26 @@
     <dt>Mechanism</dt><dd>{{ r.mechanism }}</dd>
     <dt>Why it works</dt><dd>{{ r.why_it_works }}</dd>
     <dt>Visual motif</dt><dd>{{ r.visual_motif }}</dd>
+    {% if r.root_kind %}<dt>Reusable as</dt><dd>{{ r.root_kind }}</dd>{% endif %}
     <dt>For our brand</dt><dd>{{ r.fits_our_brand }}</dd>
     <dt>When we adapt it</dt><dd>{{ r.compliance_notes }}</dd>
   </dl>
+
+  {% if r.story %}
+  <p style="font-size:.9rem; font-style:italic; margin:.6rem 0 0; padding:.5rem .7rem;
+            background:var(--keep-soft); border-radius:4px; max-width:70ch">“{{ r.story }}”</p>
+  {% endif %}
+  {% if r.line_of_attack or r.reason_to_believe %}
+  <details style="margin-top:.5rem; font-size:.85rem">
+    <summary class="muted" style="cursor:pointer">Storyboard</summary>
+    <dl style="margin:.5rem 0 0; display:grid; grid-template-columns:auto 1fr; gap:.15rem .7rem; max-width:70ch">
+      <dt>Line of attack</dt><dd>{{ r.line_of_attack_type }} — {{ r.line_of_attack }}</dd>
+      <dt>Reason to believe</dt><dd>{{ r.reason_to_believe }}</dd>
+      <dt>Attributes (verbal)</dt><dd>{{ r.attributes_verbal }}</dd>
+      <dt>Attributes (visual)</dt><dd>{{ r.attributes_visual }}</dd>
+    </dl>
+  </details>
+  {% endif %}
 
   {% set imgs = (r.competitor_examples + r.our_executions)|selectattr('image_url')|list %}
   <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:.6rem; margin-top:1rem">

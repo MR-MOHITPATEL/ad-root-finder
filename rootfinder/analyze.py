@@ -60,6 +60,13 @@ def promote_candidate(name: str, *, root_id: str, why_it_works: str = "",
         "mechanism": c.get("mechanism", ""),
         "why_it_works": why_it_works,
         "visual_motif": c.get("visual_motif", ""),
+        "line_of_attack_type": c.get("line_of_attack_type"),
+        "line_of_attack": c.get("line_of_attack"),
+        "reason_to_believe": c.get("reason_to_believe"),
+        "attributes_verbal": c.get("attributes_verbal"),
+        "attributes_visual": c.get("attributes_visual"),
+        "story": c.get("story"),
+        "root_kind": c.get("root_kind"),
         "fits_our_brand": fits_our_brand or c.get("fits_our_brand") or "conditional",
         "compliance_notes": compliance_notes,
         "competitor_examples": c.get("examples", []),
@@ -89,7 +96,11 @@ _SYSTEM = (
     "You reverse-engineer the AD ROOT of a competitor ad: the reusable creative concept = "
     "persuasion mechanism + visual motif (NOT the product, condition or copy wording). "
     "Two ads share a root if a strategist would rebuild them from the same recipe. "
-    "Return ONLY JSON."
+    "You also storyboard the ad the way a strategist would in a creative review: what line "
+    "of attack it opens with (problem / situation / feature / functionality / benefit), "
+    "the reason to believe backing its claim, the attributes it pushes in words and in the "
+    "visual, and the underlying story written as the product itself speaking to the "
+    "consumer. Return ONLY JSON."
 )
 
 
@@ -120,6 +131,25 @@ First decide if this is even a ROOT worth cataloguing:
   - NOT a root = plain product-on-white pack shot, flavour/variant showcase, bare catalog
     image, price-only banner, logo card. Mark these designed_creative=false.
 
+Also storyboard it, the way a strategist breaks down a creative in review:
+  - line_of_attack_type: what angle does it OPEN with — is it leading with a problem,
+    a situation, a feature, a functionality, or a straight benefit?
+  - line_of_attack: one line naming the specific problem/situation/feature/functionality/
+    benefit it leads with.
+  - reason_to_believe: one line — why should the consumer believe the claim? Usually the
+    ingredient/mechanism/credential doing the proving (e.g. "has Moringa -> metabolic support"
+    is the RTB behind a 'not your regular drink' claim).
+  - attributes_verbal: one line — the product attributes/claims pushed in the WORDS (copy,
+    headline, labels on the image).
+  - attributes_visual: one line — the product attributes/cues pushed in the VISUAL itself
+    (e.g. two products shown together = an "inside+outside" attribute, not stated in words).
+  - story: 2-3 sentences, written as the PRODUCT ITSELF SPEAKING to the consumer, e.g.
+    "Wait — I'm not your regular tea. I've got Arjuna in me, so your heart is safe with me."
+    This is the ad's actual pitch in first person, not a description of the ad.
+  - root_kind: is the reusable asset here the LAYOUT (has to look basically like this to
+    work), the STORY (this pitch could be told through a completely different visual —
+    single image, carousel, video), or BOTH equally load-bearing? -> "visual"|"narrative"|"both"
+
 Return JSON:
 {{
   "designed_creative": true|false,
@@ -132,6 +162,13 @@ Return JSON:
   "candidate_name": "<short name for the new root, or null>",
   "mechanism": "<one line: how this ad persuades>",
   "visual_motif": "<one line: the reusable visual recipe>",
+  "line_of_attack_type": "problem"|"situation"|"feature"|"functionality"|"benefit",
+  "line_of_attack": "<one line>",
+  "reason_to_believe": "<one line>",
+  "attributes_verbal": "<one line>",
+  "attributes_visual": "<one line>",
+  "story": "<2-3 sentences, product speaking to the consumer>",
+  "root_kind": "visual"|"narrative"|"both",
   "fits_our_brand": "yes"|"no"|"conditional",
   "fit_reason": "<why it does / doesn't work for Dr. Bimal's Arjuna Cardio Care Tea (a 14-herb ayurvedic tea, NOT research-backed at product level, must follow NMC/FSSAI: ingredient-led claims only, no disease promises, no outcome timelines, doctor only as 'Formulated by')>",
   "adaptation_hint": "<one line: what to change to run this root compliantly for our tea>"
@@ -195,6 +232,13 @@ def _attach_to_catalogue(cat: dict, matches: list[dict], competitor: str) -> Non
                     "mechanism": r.get("mechanism"),
                     "visual_motif": r.get("visual_motif"),
                     "fits_our_brand": r.get("fits_our_brand"),
+                    "line_of_attack_type": r.get("line_of_attack_type"),
+                    "line_of_attack": r.get("line_of_attack"),
+                    "reason_to_believe": r.get("reason_to_believe"),
+                    "attributes_verbal": r.get("attributes_verbal"),
+                    "attributes_visual": r.get("attributes_visual"),
+                    "story": r.get("story"),
+                    "root_kind": r.get("root_kind"),
                     "examples": [],
                 }
                 candidates.append(cand)
