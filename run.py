@@ -20,6 +20,7 @@ import yaml
 
 from rootfinder.fetch import FetchOptions, fetch
 from rootfinder import analyze
+from rootfinder import versions as versions_mod
 from rootfinder.paths import CONFIG_DIR, ROOT
 
 COMPETITORS_YAML = CONFIG_DIR / "competitors.yaml"
@@ -55,7 +56,8 @@ def _page_ids_map(cfg: dict) -> dict[str, list[str]]:
     return m
 
 
-def cmd_scan(broad: bool, headed: bool, login: bool, skip_analyze: bool, deep: bool = False) -> None:
+def cmd_scan(broad: bool, headed: bool, login: bool, skip_analyze: bool, deep: bool = False,
+            skip_versions: bool = False) -> None:
     cfg = _load_config()
     comps = [c for c in cfg["competitors"] if broad or c.get("tier") == "every_run"]
     brand_terms = [c["search"] for c in comps]
@@ -72,6 +74,13 @@ def cmd_scan(broad: bool, headed: bool, login: bool, skip_analyze: bool, deep: b
     if not skip_analyze:
         print("=== ANALYZE ===")
         analyze.run(brand_terms + kw_terms)
+
+        # Every ad that just got analyzed is brand-new to the matches table, so it
+        # has no versions yet -- run_for_all_ads() only processes ads without one
+        # (force=False), so this only ever costs Gemini calls for what's actually new.
+        if not skip_versions:
+            print("=== VERSIONS (new ads only) ===")
+            versions_mod.run_for_all_ads()
 
 
 def cmd_fetch(terms: list[str], headed: bool, login: bool, deep: bool = False) -> None:
@@ -97,6 +106,8 @@ def main() -> None:
     s.add_argument("--headed", action="store_true")
     s.add_argument("--login", action="store_true")
     s.add_argument("--no-analyze", action="store_true")
+    s.add_argument("--no-versions", action="store_true",
+                   help="skip generating the 3-version slate for newly analyzed ads")
 
     f = sub.add_parser("fetch")
     f.add_argument("terms", nargs="+")
@@ -108,17 +119,24 @@ def main() -> None:
     a.add_argument("terms", nargs="*")
     a.add_argument("--force", action="store_true")
     a.add_argument("--limit", type=int)
+    a.add_argument("--no-versions", action="store_true",
+                   help="skip generating the 3-version slate for newly analyzed ads")
 
     w = sub.add_parser("web")
     w.add_argument("--port", type=int, default=8000)
 
     args = ap.parse_args()
     if args.cmd == "scan":
-        cmd_scan(args.broad, args.headed, args.login, args.no_analyze, args.deep)
+        cmd_scan(args.broad, args.headed, args.login, args.no_analyze, args.deep, args.no_versions)
     elif args.cmd == "fetch":
         cmd_fetch(args.terms, args.headed, args.login, args.deep)
     elif args.cmd == "analyze":
         analyze.run(args.terms or None, force=args.force, limit=args.limit)
+        if not args.no_versions:
+            # Independent of --force above: that's about re-analyzing, this only
+            # ever generates versions for ads that don't have one yet.
+            print("=== VERSIONS (new ads only) ===")
+            versions_mod.run_for_all_ads(limit=args.limit)
     elif args.cmd == "web":
         cmd_web(args.port)
 

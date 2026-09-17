@@ -1,0 +1,325 @@
+=== FETCH brands (19) ===
+>> OZiva  [active]  1 pinned page(s)
+    -> page 603903383105760
+  'OZiva': 11/80 image ads (brand_filter=False) in 48.6s
+  images: 11/11 downloaded, stored to supabase
+  ledger: 1 new · 10 returning
+  (pausing 10.7s before next brand, fresh session)
+>> Kapiva  [active]  5 pinned page(s)
+    -> page 1721818904736494
+    (pausing 6.7s between pages — avoids Meta rate-limiting mid-session)
+    -> page 116128397752155
+    (pausing 12.0s between pages — avoids Meta rate-limiting mid-session)
+    -> page 116568587707681
+    (pausing 11.6s between pages — avoids Meta rate-limiting mid-session)
+    -> page 104968639165111
+  'Kapiva': 15/275 image ads (brand_filter=False) in 214.5s
+  images: 15/15 downloaded, stored to supabase
+  ledger: 0 new · 15 returning
+  (pausing 13.0s before next brand, fresh session)
+>> wellbeingnutrition  [active]  1 pinned page(s)
+    -> page 107959920549143
+  'wellbeingnutrition': 24/80 image ads (brand_filter=False) in 45.0s
+  images: 24/24 downloaded, stored to supabase
+  ledger: 0 new · 24 returning · 2 went inactive
+  (pausing 14.1s before next brand, fresh session)
+>> Plix Life  [active]  1 pinned page(s)
+    -> page 444025482768886
+  'Plix Life': 0/80 image ads (brand_filter=False) in 48.0s
+  ledger: 0 new · 0 returning
+  (pausing 15.0s before next brand, fresh session)
+>> andme  [active]
+    -> page-scoped: view_all_page_id=118495994469834
+    -> page-scoped: view_all_page_id=1297364640126432
+  'andme': 2/12 image ads (brand_filter=True) in 152.2s
+  images: 2/2 downloaded, stored to supabase
+  ledger: 2 new · 0 returning · 1 went inactive
+  (pausing 15.9s before next brand, fresh session)
+>> Man Matters  [active]
+    -> page-scoped: view_all_page_id=102044248366838
+    -> page-scoped: view_all_page_id=106697601326595
+  'Man Matters': 29/213 image ads (brand_filter=True) in 135.0s
+  images: 29/29 downloaded, stored to supabase
+  ledger: 25 new · 4 returning · 1 went inactive
+  (pausing 14.1s before next brand, fresh session)
+>> Bodywise  [active]
+    -> page-scoped: view_all_page_id=103328924814201
+    -> page-scoped: view_all_page_id=109395744616835
+  'Bodywise': 7/121 image ads (brand_filter=True) in 137.3s
+  images: 7/7 downloaded, stored to supabase
+  ledger: 7 new · 0 returning
+  (pausing 12.7s before next brand, fresh session)
+>> Traya  [active]
+    -> page-scoped: view_all_page_id=1067448693440461
+    -> page-scoped: view_all_page_id=116484878116712
+  'Traya': 5/211 image ads (brand_filter=True) in 139.6s
+  images: 5/5 downloaded, stored to supabase
+  ledger: 4 new · 1 returning
+  (pausing 19.0s before next brand, fresh session)
+>> Setu Nutrition  [active]
+    -> page-scoped: view_all_page_id=514291295626566
+    -> page-scoped: view_all_page_id=655991524254741
+    -> page-scoped: view_all_page_id=1229427706922188
+  'Setu Nutrition': 3/34 image ads (brand_filter=True) in 200.1s
+  images: 3/3 downloaded, stored to supabase
+  ledger: 3 new · 0 returning
+  (pausing 10.9s before next brand, fresh session)
+>> Saffola  [active]
+    -> page-scoped: view_all_page_id=119834398070433
+    -> page-scoped: view_all_page_id=520998388005654
+  'Saffola': 14/197 image ads (brand_filter=True) in 145.0s
+  images: 14/14 downloaded, stored to supabase
+  ledger: 14 new · 0 returning · 9 went inactive
+  (pausing 10.9s before next brand, fresh session)
+>> Jiva Ayurveda  [active]  1 pinned page(s)
+    -> page 238245198448
+  'Jiva Ayurveda': 12/80 image ads (brand_filter=False) in 41.1s
+  images: 12/12 downloaded, stored to supabase
+  ledger: 1 new · 11 returning
+  (pausing 11.7s before next brand, fresh session)
+>> Zandu  [active]  2 pinned page(s)
+    -> page 105826340832462
+    (pausing 7.0s between pages — avoids Meta rate-limiting mid-session)
+    -> page 710045298859636
+  'Zandu': 27/86 image ads (brand_filter=False) in 124.5s
+  images: 27/27 downloaded, stored to supabase
+  ledger: 2 new · 25 returning
+  (pausing 13.7s before next brand, fresh session)
+>> Girnar  [active]  1 pinned page(s)
+    -> page 754282108050054
+  'Girnar': 11/17 image ads (brand_filter=False) in 50.4s
+  images: 11/11 downloaded, stored to supabase
+  ledger: 4 new · 7 returning
+  (pausing 16.5s before next brand, fresh session)
+>> Wagh Bakri  [active]  2 pinned page(s)
+    -> page 331679525749
+    (pausing 11.8s between pages — avoids Meta rate-limiting mid-session)
+    -> page 187823041262074
+  'Wagh Bakri': 3/29 image ads (brand_filter=False) in 121.7s
+  images: 3/3 downloaded, stored to supabase
+  ledger: 0 new · 3 returning
+  (pausing 19.9s before next brand, fresh session)
+>> Himalaya Wellness  [active]  1 pinned page(s)
+    -> page 937356456323066
+  'Himalaya Wellness': 33/80 image ads (brand_filter=False) in 47.6s
+  images: 33/33 downloaded, stored to supabase
+  ledger: 0 new · 33 returning
+  (pausing 18.8s before next brand, fresh session)
+>> Blue Tea  [active]  2 pinned page(s)
+    -> page 112576308366991
+    (pausing 6.6s between pages — avoids Meta rate-limiting mid-session)
+    -> page 859536283918131
+  'Blue Tea': 8/160 image ads (brand_filter=False) in 92.8s
+  images: 8/8 downloaded, stored to supabase
+  ledger: 0 new · 8 returning
+  (pausing 11.4s before next brand, fresh session)
+>> Organic India  [active]  1 pinned page(s)
+    -> page 194411414144
+  'Organic India': 2/80 image ads (brand_filter=False) in 46.1s
+  images: 2/2 downloaded, stored to supabase
+  ledger: 2 new · 0 returning · 2 went inactive
+  (pausing 13.5s before next brand, fresh session)
+>> Vahdam  [active]  1 pinned page(s)
+    -> page 1491430561130722
+  'Vahdam': 11/80 image ads (brand_filter=False) in 53.9s
+  images: 11/11 downloaded, stored to supabase
+  ledger: 6 new · 5 returning · 14 went inactive
+  (pausing 15.5s before next brand, fresh session)
+>> Zero Block  [active]  1 pinned page(s)
+    -> page 127888574561092
+  'Zero Block': 0/3 image ads (brand_filter=False) in 50.4s
+  ledger: 0 new · 0 returning
+=== FETCH keyword searches (5) ===
+>> arjuna tea  [active]
+  'arjuna tea': 17/47 image ads (brand_filter=False) in 35.4s
+  images: 17/17 downloaded, stored to supabase
+  ledger: 17 new · 0 returning
+  (pausing 11.3s before next brand, fresh session)
+>> cardio tea  [active]
+  'cardio tea': 24/47 image ads (brand_filter=False) in 35.8s
+  images: 24/24 downloaded, stored to supabase
+  ledger: 12 new · 12 returning
+  (pausing 14.4s before next brand, fresh session)
+>> cholesterol ayurvedic  [active]
+  'cholesterol ayurvedic': 6/40 image ads (brand_filter=False) in 35.5s
+  images: 6/6 downloaded, stored to supabase
+  ledger: 6 new · 0 returning
+  (pausing 12.7s before next brand, fresh session)
+>> heart wellness herbal  [active]
+  'heart wellness herbal': 3/45 image ads (brand_filter=False) in 35.3s
+  images: 3/3 downloaded, stored to supabase
+  ledger: 2 new · 1 returning
+  (pausing 17.3s before next brand, fresh session)
+>> ashwagandha tea  [active]
+  'ashwagandha tea': 17/48 image ads (brand_filter=False) in 45.7s
+  images: 17/17 downloaded, stored to supabase
+  ledger: 16 new · 1 returning
+=== ANALYZE ===
+>> OZiva: 1 new / 41 ads
+   [1/1] 2496499697482829  strength=0.7  candidate:Confident User with Product & Brand Authority  fits=conditional
+>> Kapiva: 0 new / 66 ads
+>> wellbeingnutrition: 0 new / 127 ads
+>> Plix Life: 0 new / 0 ads
+>> andme: 2 new / 2 ads
+   [1/2] 1404702068428209  strength=0.7  candidate:Confident User in Aspirational Home Setting  fits=conditional
+   [2/2] 1831502031524995  strength=0.7  candidate:Artistry Showcase with Service Details  fits=no
+>> Man Matters: 29 new / 29 ads
+   [1/29] 2001134447258529  strength=0.7  candidate:Comprehensive System Showcase  fits=conditional
+   [2/29] 2878073689213757  strength=0.8  candidate:Product Pair with Scientific Callouts  fits=conditional
+   [3/29] 1573250074297088  strength=0.8  candidate:Problem Progression with Tailored Solution Zones  fits=conditional
+   [4/29] 1667622441179507  strength=0.8  candidate:Myth vs Fact with Product & Ingredients  fits=conditional
+   [5/29] 1920040455339984  strength=0.8  candidate:Myth vs Fact with Product & Ingredients  fits=conditional
+   [6/29] 1231229696653834  strength=0.8  candidate:Multi-Product Regimen Showcase  fits=conditional
+   [7/29] 2216280465610497  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [8/29] 1394803159424686  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [9/29] 1760243825170008  strength=0.7  candidate:Product Trio for Comprehensive Routine  fits=conditional
+   [10/29] 1255075266425432  strength=0.6  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [11/29] 1835232953830402  strength=0.8  candidate:Traditional vs Modern Format Comparison  fits=conditional
+   [12/29] 1340461118266105  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [13/29] 830973852953171  strength=0.7  candidate:User Testimonial with Product & Benefit Callouts  fits=conditional
+   [14/29] 1722737449136277  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [15/29] 1535518944571852  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [16/29] 3099499187105716  strength=0.8  candidate:User Hand with Product & Testimonial  fits=conditional
+   [17/29] 2091583931406828  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [18/29] 993182116457464  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [19/29] 1499906985079250  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [20/29] 4401592380081699  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [21/29] 1301646525389849  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [22/29] 1523134309459122  strength=0.7  candidate:User Hand with Product & Testimonial  fits=conditional
+   [23/29] 1706299087487121  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [24/29] 1116321487353672  strength=0.8  candidate:Confident User Testimonial with Product & Brand Authority  fits=yes
+   [25/29] 938214885919689  strength=0.8  candidate:User Testimonial with Product & Benefit Callouts  fits=conditional
+   [26/29] 2025108731410910  strength=0.7  candidate:User Problem-Solution with Product in Hand  fits=conditional
+   [27/29] 2274632919730762  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [28/29] 1975396623170247  strength=0.8  candidate:Progressive Benefit Timeline with Product  fits=no
+   [29/29] 1555915739501939  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+>> Bodywise: 7 new / 7 ads
+   [1/7] 1066275389666718  strength=0.8  candidate:Product Application with Visible Texture & Benefit Callouts  fits=conditional
+   [2/7] 2245606899572435  strength=0.7  candidate:Product Pair with Confident User & Promotional Offer  fits=conditional
+   [3/7] 1077114051536244  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [4/7] 1682095739553002  strength=0.9  candidate:Progressive Benefit Timeline with Product  fits=conditional
+   [5/7] 1053328154074705  strength=0.8  candidate:Multi-Spot Solution with Product  fits=conditional
+   [6/7] 1061638622944122  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [7/7] 1844839763148657  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+>> Traya: 4 new / 5 ads
+   [1/4] 1801709384608984  strength=0.8  candidate:Before-After User Transformation with Product  fits=conditional
+   [2/4] 27856853300612089  strength=0.8  candidate:Internal Problem Progression Visualization  fits=conditional
+   [3/4] 1677077343591922  strength=0.8  candidate:Before-After User Transformation with Product  fits=conditional
+   [4/4] 1095587302901222  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+>> Setu Nutrition: 3 new / 3 ads
+   [1/3] 1341500311182371  strength=0.8  candidate:Product with Exploded Ingredient Callouts  fits=conditional
+   [2/3] 1315551436596759  strength=0.9  candidate:Before-After User Transformation with Testimonial  fits=conditional
+   [3/3] 2152007382195458  strength=0.7  candidate:Sponsorship Opportunity with Aspirational Event  fits=conditional
+>> Saffola: 14 new / 14 ads
+   [1/14] 1088039710841542  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [2/14] 1570389757401098  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [3/14] 2152464012350622  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [4/14] 1775329836801171  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [5/14] 1839985033688954  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [6/14] 1080153894609459  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [7/14] 1104335378943961  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [8/14] 1684105009801915  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [9/14] 1081317421170641  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [10/14] 1073067818609288  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [11/14] 1955324452090449  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [12/14] 1604082587882729  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [13/14] 1769803284170649  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [14/14] 2058521561431532  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+>> Jiva Ayurveda: 1 new / 25 ads
+   [1/1] 2968803163455956  strength=0.8  candidate:Intrigue with Hero Ingredient Reveal  fits=yes
+>> Zandu: 2 new / 43 ads
+   [1/2] 1759743851618007  strength=0.7  candidate:Lifestyle with Value-Add Offer  fits=yes
+   [2/2] 1588200179723498  strength=0.7  candidate:Lifestyle with Value-Add Offer  fits=yes
+>> Girnar: 4 new / 11 ads
+   [1/4] 1386449076933475  strength=0.7  candidate:Confident User with Product & Brand Authority  fits=yes
+   [2/4] 1602233648037710  strength=0.7  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [3/4] 1619780503239970  strength=0.6  candidate:Confident User with Product & Brand Authority  fits=yes
+   [4/4] 27468970192778090  strength=0.7  candidate:Confident User with Product & Brand Authority  fits=conditional
+>> Wagh Bakri: 0 new / 3 ads
+>> Himalaya Wellness: 0 new / 53 ads
+>> Blue Tea: 0 new / 19 ads
+>> Organic India: 2 new / 13 ads
+   [1/2] 1814536366224216  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=conditional
+   [2/2] 1462264429191553  strength=0.7  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+>> Vahdam: 6 new / 69 ads
+   [1/6] 1389943166593562  strength=0.9  candidate:Progressive Benefit Timeline with Product  fits=conditional
+   [2/6] 1769632727493804  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [3/6] 1062548940105568  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [4/6] 1496387145871563  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [5/6] 1802378387873397  strength=0.8  candidate:Product with Benefit Checklist & Raw Ingredients  fits=conditional
+   [6/6] 1792227548584430  strength=0.8  candidate:Absorption Comparison: Raw vs. Refined  fits=yes
+>> Zero Block: 0 new / 0 ads
+>> arjuna tea: 17 new / 17 ads
+   [1/17] 1748730349728507  strength=0.8  candidate:Heart-Shaped Botanical Anatomy  fits=yes
+   [2/17] 2177615709825821  strength=0.8  candidate:Heart-Shaped Botanical Anatomy with Ingredients  fits=yes
+   [3/17] 930000646360534  strength=0.8  candidate:Internal Organ Visualization with Ingredient Callouts  fits=yes
+   [4/17] 985457757895946  strength=0.8  candidate:Email Testimonial with Product & Results  fits=conditional
+   [5/17] 1070064662063242  strength=0.8  candidate:Expert-Backed Ingredient Showcase  fits=yes
+   [6/17] 1801956464292707  strength=0.8  candidate:Better Than Green Tea Comparison  fits=yes
+   [7/17] 2962250294107604  strength=0.8  candidate:Basic vs Enhanced Product Comparison  fits=yes
+   [8/17] 1059054823678659  strength=0.9  ingredient-bubbles  fits=yes
+   [9/17] 1395553991931882  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [10/17] 1074808365188608  strength=0.8  candidate:Enhanced Product vs Basic Comparison  fits=yes
+   [11/17] 1621892832706522  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [12/17] 4552854605000588  strength=0.8  candidate:Expert-Backed Ingredient Showcase  fits=yes
+   [13/17] 1666217421687128  strength=0.8  candidate:Enhanced Product vs. Basic Product Comparison  fits=yes
+   [14/17] 1386490470323944  strength=0.8  candidate:Internal Organ Visualization with Floating Ingredients  fits=yes
+   [15/17] 1596956758483778  strength=0.8  candidate:Expert Endorsement with Ingredient Transparency  fits=yes
+   [16/17] 857223304047400  strength=0.8  candidate:Expert Endorsement with Ingredient Transparency  fits=yes
+   [17/17] 1064517032880199  strength=0.9  candidate:Hero Product with Floating Ingredients & Benefits  fits=yes
+>> cardio tea: 24 new / 24 ads
+   [1/24] 940120315726950  strength=0.8  candidate:Problem Visualization: Time Running Out  fits=conditional
+   [2/24] 27621226750852880  strength=0.9  candidate:Progressive Benefit Timeline with Internal Organ Visualization  fits=conditional
+   [3/24] 1522683549507337  strength=0.8  candidate:Internal Organ Cleansing Visualization  fits=conditional
+   [4/24] 1764904544497154  strength=0.7  candidate:Emotional Transition with Symbolic Object  fits=conditional
+   [5/24] 930000646360534  strength=0.8  candidate:Internal Organ Visualization with Ingredient Callouts  fits=yes
+   [6/24] 2126355604950678  strength=0.8  candidate:Internal Data Visualization in Eye  fits=conditional
+   [7/24] 1801956464292707  strength=0.8  candidate:Better Than X Comparison  fits=yes
+   [8/24] 1070064662063242  strength=0.8  candidate:Heart-Shaped Ingredient Showcase with Expert  fits=yes
+   [9/24] 2962250294107604  strength=0.8  candidate:Enhanced Product vs. Basic Alternative  fits=yes
+   [10/24] 1059054823678659  strength=0.9  ingredient-bubbles  fits=yes
+   [11/24] 1074808365188608  strength=0.8  pile-vs-one  fits=yes
+   [12/24] 4552854605000588  strength=0.8  candidate:Expert-Backed Ingredient Showcase  fits=yes
+   [13/24] 1666217421687128  strength=0.8  candidate:Enhanced Product vs. Basic Product Comparison  fits=yes
+   [14/24] 1596956758483778  strength=0.8  candidate:Expert Endorsement with Product & Ingredient Transparency  fits=yes
+   [15/24] 857223304047400  strength=0.8  candidate:Expert Endorsement with Ingredient Showcase  fits=yes
+   [16/24] 1064517032880199  strength=0.8  candidate:Hero Product with Floating Ingredient Benefits  fits=yes
+   [17/24] 1386490470323944  strength=0.8  candidate:Internal Organ Visualization with Floating Ingredients  fits=yes
+   [18/24] 1616944143458498  strength=0.8  candidate:Traditional vs. Enhanced Daily Drink Comparison  fits=yes
+   [19/24] 2536946230160365  strength=0.8  ingredient-bubbles  fits=yes
+   [20/24] 1069585182359566  strength=0.8  candidate:Expert-Backed Ingredient Showcase  fits=yes
+   [21/24] 1347006767234046  strength=0.8  candidate:Expert-Endorsed Ingredient-Rich Beverage  fits=yes
+   [22/24] 2217395009044184  strength=0.8  candidate:Expert-Formulated Product with Key Ingredients & Prepared Form  fits=yes
+   [23/24] 937834718910403  strength=0.8  candidate:Everyday Item vs. Enhanced Alternative  fits=yes
+   [24/24] 1800758834257328  strength=0.8  candidate:Single vs Multi-Ingredient Comparison  fits=yes
+>> cholesterol ayurvedic: 6 new / 6 ads
+   [1/6] 740982985647422  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [2/6] 1596947214691391  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [3/6] 1620421039636826  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=conditional
+   [4/6] 729110633577054  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [5/6] 2803929729982536  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [6/6] 1767446687547624  strength=0.8  candidate:Product with Authority & Benefit Callouts  fits=conditional
+>> heart wellness herbal: 3 new / 3 ads
+   [1/3] 1596947214691391  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [2/3] 1728629241476131  strength=0.6  candidate:Hero Product with Natural Leafy Backdrop  fits=yes
+   [3/3] 1389226609344474  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+>> ashwagandha tea: 17 new / 17 ads
+   [1/17] 1374375181298246  strength=0.7  candidate:Morning Routine Combo  fits=yes
+   [2/17] 25130100096687560  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [3/17] 1057230597163574  strength=0.7  candidate:Product Stack Showcase  fits=conditional
+   [4/17] 1059548146821660  strength=0.8  candidate:Problem-Solution: Digital Distraction to Calming Ritual  fits=yes
+   [5/17] 1049554687834216  strength=0.7  candidate:Product Stack Showcase  fits=conditional
+   [6/17] 3574832506014385  strength=0.8  candidate:Product Grid with Raw Ingredient Display  fits=yes
+   [7/17] 2002075230512580  strength=0.7  candidate:Product Stack Showcase  fits=conditional
+   [8/17] 2326169504904499  strength=0.8  candidate:Customizable Experience Bar  fits=conditional
+   [9/17] 1484674046750126  strength=0.9  candidate:Internal Organ Before-After Transformation  fits=conditional
+   [10/17] 1086384800533739  strength=0.7  candidate:Product for Unspoken Nighttime Struggle  fits=conditional
+   [11/17] 930000646360534  strength=0.8  candidate:Internal Organ Visualization with Ingredient Callouts  fits=yes
+   [12/17] 1057323090596972  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=yes
+   [13/17] 1528829902018464  strength=0.8  candidate:Hero Product with Floating Ingredients & Brain Visualization  fits=yes
+   [14/17] 1062648909577412  strength=0.8  candidate:Hero Product with Detailed Ingredient & Feature Callouts  fits=yes
+   [15/17] 1904766720294528  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [16/17] 2562124970879619  strength=0.8  candidate:Morning Ritual with Natural Backdrop  fits=yes
+   [17/17] 746639358544592  strength=0.7  candidate:Product Stack Showcase  fits=conditional
+catalogue (supabase): 5 named roots, 555 candidates
+Review candidates in the UI and Promote / Merge them by hand.

@@ -1,14 +1,536 @@
 >> Blue Tea: 19 new / 19 ads
    [1/19] 886576117505225  strength=0.9  pile-vs-one  fits=yes
-   [2/19] 1765194641330472  strength=0.8  candidate:Product as News Headline  fits=yes
-   [3/19] 1066451636089921  strength=0.8  candidate:Traditional Ingredient Modernized with New Ingredient  fits=yes
-   [4/19] 1034013236169068  strength=0.8  candidate:Hero Product with Floating Ingredients & Benefits  fits=conditional
-   [5/19] 1274877784676679  strength=0.8  candidate:User Measuring Progress with Product & Ingredients  fits=conditional
-   [6/19] 1053422730610583  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
-   [7/19] 1882790509365149  strength=0.8  candidate:Frustrated User with Thought Bubbles & Solution  fits=conditional
-   [8/19] 1048192118008491  strength=0.8  candidate:Before-After User Transformation with Product  fits=no
-   [9/19] 1599923635045220  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
-   [10/19] 926409573859798  strength=0.8  candidate:Before-After User Transformation with Product  fits=no
-   [11/19] 1085302817406858  strength=0.7  candidate:Confident User with Product & Floating Ingredients  fits=conditional
-   [12/19] 1445338354123865  strength=0.8  candidate:Confident User with Product & Transformation Visual  fits=conditional
-   [13/19] 959343493094849  strength=0.8  candidate:User with Product & Benefit Callouts  fits=conditional
+   [2/19] 1066451636089921  strength=0.8  candidate:Traditional Ingredient Modernized with New Ingredient  fits=yes
+   [3/19] 1765194641330472  strength=0.7  candidate:Product as News Headline with Ingredient Callout  fits=yes
+   [4/19] 1034013236169068  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [5/19] 1274877784676679  strength=0.8  candidate:User with Measurement & Product Benefits  fits=conditional
+   [6/19] 1053422730610583  strength=0.8  candidate:Confident User with Product & Social Proof  fits=conditional
+   [7/19] 926409573859798  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [8/19] 1882790509365149  strength=0.8  candidate:Frustrated User with Thought Bubbles & Solution  fits=conditional
+   [9/19] 1048192118008491  strength=0.8  candidate:Before-After User Transformation with Product  fits=conditional
+   [10/19] 1599923635045220  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [11/19] 1445338354123865  strength=0.8  candidate:Confident User with Product & Transformation Visual  fits=conditional
+   [12/19] 1085312103871233  strength=0.7  candidate:Comforting Ritual with Functional Twist  fits=yes
+   [13/19] 3111395685865652  strength=0.8  candidate:Problem-Solution: Conversational Recommendation  fits=yes
+   [14/19] 959343493094849  strength=0.7  candidate:Fasting Companion with Benefit Callouts  fits=conditional
+   [15/19] 1085302817406858  strength=0.7  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [16/19] 1470957031751458  strength=0.8  candidate:Hero Product with Raw Ingredient & Benefit Callouts  fits=yes
+   [17/19] 1077512001334237  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [18/19] 1753553865685130  strength=None  noise (?)  fits=None
+   [19/19] 1065019766511185  strength=None  noise (?)  fits=None
+>> Girnar: 7 new / 7 ads
+   [1/7] 2324923208316979  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=yes
+   [2/7] 1628999612442597  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [3/7] 2004245303579380  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [4/7] 2136161780645831  strength=0.7  candidate:Confident User with Product & Brand Authority  fits=yes
+   [5/7] 1595414018850930  strength=0.7  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [6/7] 1015860777602571  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=yes
+   [7/7] 2018183742163252  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=yes
+>> Himalaya Wellness: 53 new / 53 ads
+   [1/53] 1291965002905432  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [2/53] 1073881355569193  strength=0.8  candidate:Problem-Solution: Work Interruption  fits=conditional
+   [3/53] 1426223936021516  strength=0.8  candidate:Problem-Solution: Work Interruption  fits=conditional
+   [4/53] 1567563724843478  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=no
+   [5/53] 1447695884085194  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [6/53] 2324708778306011  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [7/53] 1787776528920389  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [8/53] 1022732207464379  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [9/53] 1260582436193493  strength=0.8  candidate:Problem-Solution: Work Interruption  fits=conditional
+   [10/53] 1156384090845645  strength=0.8  candidate:Problem-Solution: On-the-Go Discomfort  fits=conditional
+   [11/53] 1105655505359326  strength=0.8  candidate:Problem-Solution: On-the-Go Discomfort  fits=conditional
+   [12/53] 1402344785335222  strength=0.8  candidate:Problem-Solution: On-the-Go Discomfort  fits=conditional
+   [13/53] 2657942874639376  strength=None  noise (?)  fits=None
+   [14/53] 2859100387804396  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=no
+   [15/53] 1111606855157085  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [16/53] 1903822887259503  strength=None  noise (?)  fits=None
+   [17/53] 2458487061638489  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [18/53] 1688494305575621  strength=0.8  candidate:Problem-Solution: Work Interruption  fits=conditional
+   [19/53] 1106733081872063  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [20/53] 931940546078386  strength=0.8  candidate:Problem-Solution: Work Interruption  fits=conditional
+   [21/53] 1734353737650117  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [22/53] 1077821298167164  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [23/53] 4452119195002584  strength=0.8  candidate:Problem-Solution: On-the-Go Discomfort  fits=conditional
+   [24/53] 1066662522951051  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [25/53] 1384212797188639  strength=0.8  candidate:Problem-Solution: On-the-Go Discomfort  fits=conditional
+   [26/53] 2271451973698178  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=no
+   [27/53] 1764163884630717  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=no
+   [28/53] 1678443497240285  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [29/53] 1809753486702603  strength=0.8  candidate:Internal Soothing Visualization  fits=conditional
+   [30/53] 28285996421068676  strength=0.8  candidate:Internal Soothing Visualization  fits=conditional
+   [31/53] 1352438993319273  strength=0.8  candidate:Internal Soothing Visualization  fits=conditional
+   [32/53] 2393084568101118  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=no
+   [33/53] 1806014664156450  strength=0.8  candidate:Internal Soothing Visualization  fits=conditional
+   [34/53] 2274795430002192  strength=0.8  candidate:Problem-Solution: On-the-Go Discomfort  fits=conditional
+   [35/53] 2066206463989676  strength=0.8  candidate:Problem-Solution: Work Interruption  fits=conditional
+   [36/53] 1569922581281046  strength=0.8  candidate:Internal Soothing Visualization  fits=conditional
+   [37/53] 1434185972178609  strength=0.8  candidate:Problem-Solution: Work Interruption  fits=conditional
+   [38/53] 2211140776123407  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=no
+   [39/53] 3625564614258155  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [40/53] 1481305689964357  strength=0.8  candidate:Calm Amidst Chaos  fits=yes
+   [41/53] 1360067339673074  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=no
+   [42/53] 1070038582070329  strength=0.8  candidate:Product with Benefit & Application Callouts  fits=conditional
+   [43/53] 2587371308360598  strength=0.8  candidate:Calm User in Natural Setting with Product  fits=conditional
+   [44/53] 28484607014497542  strength=0.8  candidate:Product with Benefit & Application Callouts  fits=conditional
+   [45/53] 1726213541943064  strength=0.8  candidate:Product with Benefit & Application Callouts  fits=conditional
+   [46/53] 1043732554963474  strength=0.8  candidate:Problem-Solution: Work Interruption  fits=conditional
+   [47/53] 2922020868134725  strength=0.8  candidate:Problem-Solution: Work Interruption  fits=conditional
+   [48/53] 1036731829387490  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [49/53] 1083297420839959  strength=0.8  candidate:Problem-Solution: On-the-Go Discomfort  fits=conditional
+   [50/53] 1605936247638624  strength=0.8  candidate:Problem-Solution: Modern Lifestyle Discomfort  fits=conditional
+   [51/53] 1097822292802621  strength=0.8  candidate:Internal Soothing Visualization  fits=conditional
+   [52/53] 1257920503106484  strength=0.8  candidate:Problem-Solution: Modern Lifestyle Discomfort  fits=conditional
+   [53/53] 1753959059086110  strength=0.8  candidate:Problem-Solution: Modern Lifestyle Discomfort  fits=conditional
+>> Jiva Ayurveda: 24 new / 24 ads
+   [1/24] 1066494789708307  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [2/24] 1035260739503553  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [3/24] 1760036241783382  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [4/24] 29056349297301365  strength=0.8  candidate:Internal Pain Visualization with Solution  fits=conditional
+   [5/24] 1405175151533701  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [6/24] 1766956560978188  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [7/24] 1589128492619890  strength=0.8  candidate:Distressed Couple with Problem List  fits=conditional
+   [8/24] 1990263628215523  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [9/24] 1373665448223117  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [10/24] 3134519580080601  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [11/24] 2048370705802861  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [12/24] 2583876885362330  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [13/24] 1252351660301399  strength=0.7  candidate:Problematic Couple with Solution Callouts  fits=conditional
+   [14/24] 1373226298304755  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [15/24] 1625686055838670  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [16/24] 1043649115231134  strength=0.8  candidate:Problem-Focused User with Expert Solution  fits=conditional
+   [17/24] 1775575936818172  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [18/24] 1788981209185889  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [19/24] 1403461755044859  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [20/24] 1933055187652304  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [21/24] 1052047367854456  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [22/24] 1735290267593973  strength=0.7  candidate:Product Pair with Seasonal Context & Offer  fits=yes
+   [23/24] 1487240336752621  strength=0.8  candidate:Expert Panel with Credibility Badges  fits=conditional
+   [24/24] 1538838940726316  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+>> Kapiva: 66 new / 66 ads
+   [1/66] 1067141359399452  strength=0.7  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [2/66] 1777350893690547  strength=0.8  candidate:Hero Product with Precious Ingredient Flow  fits=conditional
+   [3/66] 1528673289296167  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [4/66] 2174897743309961  strength=0.9  candidate:Internal Problem Visualization with Solution Timeline  fits=conditional
+   [5/66] 1945532669436490  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [6/66] 972006268918337  strength=0.8  candidate:Problem Loop Visualization  fits=conditional
+   [7/66] 807398878815347  strength=0.8  candidate:Internal Pain Visualization with Solution  fits=conditional
+   [8/66] 2684372025281616  strength=0.7  candidate:Problematic Situation with Visual Cues  fits=yes
+   [9/66] 1515373939961480  strength=0.8  candidate:Hero Product with Floating Minerals & Raw Ingredient  fits=conditional
+   [10/66] 960641683516156  strength=0.7  candidate:Problem Visualization: Sleeplessness  fits=conditional
+   [11/66] 27063142253374873  strength=0.8  candidate:Hero Product with Floating Minerals & Raw Ingredient  fits=conditional
+   [12/66] 2480534222413193  strength=0.8  candidate:Internal Organ Damage Visualization  fits=conditional
+   [13/66] 2580771995761011  strength=0.8  candidate:Heart-Shaped Ingredient Collage  fits=yes
+   [14/66] 1078212861269885  strength=0.9  candidate:Internal Before-After Timeline  fits=conditional
+   [15/66] 1535550454850554  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [16/66] 1787010105628276  strength=0.7  candidate:Confident User with Product & Brand Authority  fits=yes
+   [17/66] 3247047092157543  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [18/66] 1842135373444408  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [19/66] 2119267978688770  strength=0.9  layered-ingredient-transparency-bottle  fits=yes
+   [20/66] 4380639415533659  strength=0.7  candidate:Confident User with Product & Brand Authority  fits=yes
+   [21/66] 1103144198891001  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [22/66] 1718887672563531  strength=0.8  candidate:Problem-Symptom-Solution with Timeline  fits=conditional
+   [23/66] 1090215443351217  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [24/66] 37911585115152498  strength=0.8  candidate:Problem-Symptom-Solution with Timeline  fits=conditional
+   [25/66] 1463010142510578  strength=0.8  candidate:Hero Product with Floating Minerals & Raw Ingredient  fits=conditional
+   [26/66] 4760636954167143  strength=0.8  candidate:Hero Product with Ingredient & Feature Callouts  fits=conditional
+   [27/66] 1264814852113465  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [28/66] 1037684469161173  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [29/66] 1029411036645387  strength=0.8  candidate:Internal Organ Transformation Timeline  fits=conditional
+   [30/66] 2075089450554226  strength=0.9  candidate:Internal Organ Health Comparison  fits=conditional
+   [31/66] 1293483369402467  strength=0.8  candidate:Internal Organ Transformation Timeline  fits=conditional
+   [32/66] 1591222635795386  strength=0.9  pile-vs-one  fits=yes
+   [33/66] 1325743636082356  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [34/66] 1330286892636100  strength=0.8  candidate:Product with Natural Sleep Setting & Benefit  fits=yes
+   [35/66] 1772260690469790  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=conditional
+   [36/66] 1604350107738962  strength=0.9  candidate:Hero Product with Raw Ingredient Piles  fits=conditional
+   [37/66] 1389921879984861  strength=0.8  candidate:Product with Certification & Data Overlay  fits=conditional
+   [38/66] 1072459412000575  strength=0.8  candidate:Authenticity vs. Fake Product  fits=conditional
+   [39/66] 3613633575444377  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [40/66] 1512560797223560  strength=0.8  candidate:Aspirational User with Product & Natural Setting  fits=yes
+   [41/66] 902893209208274  strength=0.8  candidate:Hero Product with Cooling Ingredient Context  fits=conditional
+   [42/66] 909044168484995  strength=0.8  candidate:Hero Product with Raw Mineral & Resin  fits=conditional
+   [43/66] 1612255063574608  strength=0.8  candidate:Product from Raw Earth Source  fits=conditional
+   [44/66] 1780741652944585  strength=0.7  candidate:Aspirational Lifestyle with Product & Benefit  fits=conditional
+   [45/66] 1826847468687422  strength=0.8  candidate:Internal Transformation Timeline  fits=conditional
+   [46/66] 1445786644108072  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [47/66] 1375065220753320  strength=0.8  candidate:Hero Product with Cooling Ingredient Display  fits=conditional
+   [48/66] 2306312373439244  strength=0.9  candidate:Internal Transformation Timeline  fits=no
+   [49/66] 1072535441820665  strength=0.8  candidate:Product as a Daily Essential for Active Lifestyle  fits=conditional
+   [50/66] 932799189324411  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [51/66] 990753374033079  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [52/66] 1013854621695644  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [53/66] 892356217071338  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [54/66] 1393425795570799  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [55/66] 1795413528135621  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [56/66] 1006064975780697  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [57/66] 2418973101969414  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [58/66] 1433359112033703  strength=0.6  candidate:Product Pair with Promotional Offer  fits=yes
+   [59/66] 1048507827894556  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [60/66] 1266713423202595  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [61/66] 1367123458939713  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=yes
+   [62/66] 1076699362001562  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [63/66] 28438604599110245  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [64/66] 1343001081343694  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [65/66] 1590553525777646  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [66/66] 1254405593489767  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=yes
+>> Organic India: 11 new / 11 ads
+   [1/11] 1523753826222570  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [2/11] 4585072075154062  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=yes
+   [3/11] 1628431242313349  strength=0.8  candidate:Product with Benefit & Ingredient Callouts  fits=yes
+   [4/11] 2113662226695777  strength=0.8  ingredient-bubbles  fits=yes
+   [5/11] 1718379266102929  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [6/11] 1376673317771369  strength=0.8  candidate:Product with User Testimonial & Social Proof  fits=conditional
+   [7/11] 2805906303125371  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=yes
+   [8/11] 2141754463363447  strength=0.8  candidate:Aspirational Lifestyle with Product & Benefit  fits=yes
+   [9/11] 2378096519661479  strength=0.8  candidate:Aspirational Lifestyle with Product & Benefit  fits=yes
+   [10/11] 1612923433712255  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=yes
+   [11/11] 1382964147342532  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=yes
+>> OZiva: 40 new / 40 ads
+   [1/40] 1060195093287396  strength=0.6  candidate:Product Stack Showcase with Promotional Offer  fits=yes
+   [2/40] 1643590133853606  strength=0.8  candidate:Dual-Action Product System with Problem-Solution Visuals  fits=conditional
+   [3/40] 2066827220868179  strength=0.8  candidate:Confident Celebrity Testimonial with Product  fits=conditional
+   [4/40] 1091036666651913  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [5/40] 1432771518906472  strength=0.7  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [6/40] 885689467745820  strength=0.8  candidate:Dual-Action Product System with Problem-Solution Visuals  fits=conditional
+   [7/40] 1946134790124613  strength=0.8  candidate:Problem-Solution: Lifestyle Disruption  fits=conditional
+   [8/40] 2160958984478508  strength=0.8  candidate:Celebrity Endorsement with Scientific Backing  fits=conditional
+   [9/40] 1786102629098016  strength=0.8  candidate:Hero Product with Floating Ingredients & Benefit  fits=yes
+   [10/40] 1135544759149424  strength=0.7  candidate:Product Pair with Complementary Action  fits=conditional
+   [11/40] 1591907199332112  strength=0.8  candidate:Hero Product with Dynamic Ingredient Splash  fits=yes
+   [12/40] 1770549207403185  strength=0.7  candidate:Two-Product Targeted Approach  fits=conditional
+   [13/40] 960635970415443  strength=0.8  candidate:Before-After User Transformation with Product  fits=no
+   [14/40] 1575895397223751  strength=0.8  candidate:Product as Solution to Indulgence  fits=conditional
+   [15/40] 1936189430673424  strength=0.8  candidate:Confident User with Product & Scientific Proof  fits=conditional
+   [16/40] 38005096659136409  strength=0.8  candidate:Hero Product with Enhanced Benefit Callouts  fits=conditional
+   [17/40] 1663338018686337  strength=0.8  candidate:Hero Product with Enhanced Benefit Callouts  fits=conditional
+   [18/40] 1086850364095459  strength=0.8  candidate:Internal Benefit with Quantified Results  fits=conditional
+   [19/40] 1589437622649822  strength=0.8  candidate:Celebrity Endorsement with Scientific Backing  fits=conditional
+   [20/40] 1260676889446407  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [21/40] 1063750449951545  strength=0.8  candidate:Internal Benefit with Quantified Results  fits=conditional
+   [22/40] 4520681284743450  strength=0.8  candidate:Problem-Solution: Physical Manifestation  fits=no
+   [23/40] 2481736422347424  strength=0.8  candidate:Dual-Action Product System with Problem-Solution Visuals  fits=conditional
+   [24/40] 964456136680954  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [25/40] 2183374362226872  strength=0.8  candidate:Hero Product with Enhanced Benefit Callouts  fits=conditional
+   [26/40] 1547934619950961  strength=0.8  candidate:Celebrity Endorsement with Quantified Benefit  fits=conditional
+   [27/40] 1383151869945974  strength=0.7  candidate:Targeted Product Pair for Holistic Care  fits=conditional
+   [28/40] 1107330211732109  strength=0.8  candidate:Hero Product with Floating Ingredients & Water Splash  fits=yes
+   [29/40] 1629939642099902  strength=0.8  candidate:Expectation vs. Reality (Product to Benefit)  fits=conditional
+   [30/40] 1821940232305451  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [31/40] 1634224648327028  strength=0.8  candidate:Product with Benefit Checklist & Floating Ingredients  fits=conditional
+   [32/40] 1019141807850796  strength=0.8  candidate:Before-After with Superiority Claim  fits=no
+   [33/40] 1941388120568119  strength=0.8  candidate:Confident User with Problem-Solution Product  fits=conditional
+   [34/40] 1991799234833403  strength=0.8  candidate:Problem Stages with Single Solution  fits=conditional
+   [35/40] 1107077271895557  strength=0.8  candidate:Hero Product with Enhanced Ingredient Callouts  fits=conditional
+   [36/40] 2262047727877912  strength=0.8  ingredient-bubbles  fits=yes
+   [37/40] 1609855140773767  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [38/40] 1079799381408030  strength=0.8  ingredient-bubbles  fits=yes
+   [39/40] 916454584343558  strength=0.8  candidate:Before-After User Transformation with Product  fits=no
+   [40/40] 1043700841630425  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+>> Plix Life: 0 new / 0 ads
+>> Vahdam: 63 new / 63 ads
+   [1/63] 3017701808418521  strength=0.9  candidate:Hero Product with Floating Ingredients & Benefits  fits=yes
+   [2/63] 1044639275101983  strength=0.8  candidate:Progressive Benefit Timeline with Product  fits=conditional
+   [3/63] 1670522198406550  strength=0.8  candidate:Internal Problem Progression Visualization  fits=conditional
+   [4/63] 1127658492942696  strength=0.8  candidate:Progressive Benefit Timeline  fits=conditional
+   [5/63] 2639845139777780  strength=0.8  candidate:Before-After User Transformation with Product  fits=no
+   [6/63] 2193063641426883  strength=0.9  candidate:Product vs Generic Comparison with Feature Checklist  fits=conditional
+   [7/63] 1149680930746324  strength=0.9  candidate:Cost-Benefit Comparison: Product vs. Traditional Solution  fits=conditional
+   [8/63] 1061040696826321  strength=0.7  candidate:Product with Hidden Gem Discovery  fits=yes
+   [9/63] 1222559400037226  strength=0.8  candidate:Internal Problem Progression Visualization with Solution  fits=conditional
+   [10/63] 912382158123292  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [11/63] 1619038033280901  strength=0.8  candidate:Progressive User Experience Timeline  fits=conditional
+   [12/63] 1051787987610871  strength=0.7  candidate:Intrigue with Problem-Solution Tease  fits=conditional
+   [13/63] 1050645700902093  strength=0.8  pile-vs-one  fits=conditional
+   [14/63] 2516307262170449  strength=0.8  candidate:Internal Pain Visualization with Solution  fits=conditional
+   [15/63] 1037340519122392  strength=0.9  candidate:Cost Comparison: Many Solutions vs. One Product  fits=yes
+   [16/63] 1919394792061755  strength=0.8  candidate:Product with Efficacy Differentiators  fits=conditional
+   [17/63] 1740632933908305  strength=0.8  candidate:Internal Pain Visualization with Solution  fits=conditional
+   [18/63] 2848245242235250  strength=0.8  candidate:Internal Problem Progression Visualization  fits=conditional
+   [19/63] 1439680554652645  strength=0.8  candidate:Before-After User Transformation with Product  fits=conditional
+   [20/63] 1088146627296923  strength=0.8  candidate:Before-After Internal Visualization (UGC)  fits=no
+   [21/63] 1043883965156786  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [22/63] 1582162079981812  strength=0.8  candidate:Absorption Comparison: Raw vs. Refined  fits=conditional
+   [23/63] 1095827973098324  strength=0.8  candidate:Internal Problem Progression Visualization  fits=conditional
+   [24/63] 2104410746779174  strength=0.8  candidate:Product with Benefit & Application Callouts  fits=conditional
+   [25/63] 3994613430840494  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [26/63] 908708965227586  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [27/63] 4477870119154858  strength=0.8  candidate:Problem-Solution: Tradeoff Elimination  fits=conditional
+   [28/63] 2221694615352590  strength=0.8  candidate:Internal Pain Visualization with Solution  fits=conditional
+   [29/63] 866171363246797  strength=0.8  candidate:Internal Pain Visualization with Solution  fits=conditional
+   [30/63] 1684415423684868  strength=0.6  candidate:Intrigue with Problem & Solution Tease  fits=yes
+   [31/63] 1711779966565651  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [32/63] 2994456694249761  strength=0.6  candidate:Intrigue with Problem & Solution Tease  fits=conditional
+   [33/63] 1882266839405147  strength=0.8  candidate:Internal Pain Visualization with Solution  fits=conditional
+   [34/63] 851955644578984  strength=0.8  candidate:Internal Problem Visualization with Solution & Credibility  fits=conditional
+   [35/63] 1749066732996250  strength=0.8  candidate:Internal Problem Visualization with Solution & Credibility  fits=conditional
+   [36/63] 1599121321869754  strength=0.7  candidate:Product with Hidden Gem Discovery  fits=conditional
+   [37/63] 1098603219259585  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [38/63] 1098019779544690  strength=0.8  candidate:Progressive Benefit Timeline with Product  fits=conditional
+   [39/63] 1742843630259732  strength=0.7  candidate:Intrigue with Problem-Solution Tease  fits=yes
+   [40/63] 1592726488926590  strength=0.8  candidate:Progressive Benefit Timeline with Product  fits=conditional
+   [41/63] 1656286092726398  strength=0.8  candidate:Internal Problem Progression Visualization with Solution  fits=conditional
+   [42/63] 1091786286766442  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [43/63] 1400364295526297  strength=0.9  layered-ingredient-transparency-bottle  fits=yes
+   [44/63] 4490819971186521  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [45/63] 1083836347939871  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [46/63] 1114083824377881  strength=0.8  candidate:Absorption Comparison: Raw vs. Refined  fits=conditional
+   [47/63] 1834260291073240  strength=0.8  candidate:Internal Problem Progression Visualization  fits=conditional
+   [48/63] 900380866143111  strength=0.8  candidate:Product with Efficacy Differentiators  fits=conditional
+   [49/63] 4732997173597382  strength=0.9  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [50/63] 1004281836000983  strength=0.8  candidate:Progressive User Transformation Timeline  fits=conditional
+   [51/63] 954783986917812  strength=0.9  candidate:Traditional vs. Modern Efficacy Comparison  fits=conditional
+   [52/63] 1058173000531375  strength=0.8  candidate:Progressive Benefit Timeline  fits=no
+   [53/63] 1569107797432653  strength=0.8  candidate:Progressive Benefit Timeline  fits=conditional
+   [54/63] 1565608022032183  strength=0.8  candidate:Internal Problem-Solution Visualization with Timeline  fits=conditional
+   [55/63] 1854088468911277  strength=0.8  candidate:User Testimonial with Product & Benefit Callouts  fits=conditional
+   [56/63] 2002198180495932  strength=0.8  candidate:Internal Pain Visualization with Solution  fits=conditional
+   [57/63] 1062952519707085  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [58/63] 2021204831910261  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [59/63] 1790571065463573  strength=0.8  candidate:Floating Capsules with Ingredient Callouts  fits=conditional
+   [60/63] 1691531478603935  strength=0.7  candidate:Intrigue with Hidden Content & Social Proof  fits=conditional
+   [61/63] 1355028113045013  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [62/63] 1592456955675235  strength=0.7  candidate:Intrigue with Problem-Solution Tease  fits=conditional
+   [63/63] 4473317982812533  strength=0.8  candidate:Product with Clinical Efficacy Timeline  fits=no
+>> Wagh Bakri: 3 new / 3 ads
+   [1/3] 1607450547528469  strength=0.7  candidate:Lifestyle with Value-Add Offer  fits=yes
+   [2/3] 1726730665271568  strength=0.7  candidate:Regional Celebrity with Lifestyle Challenge  fits=conditional
+   [3/3] 4913549928885088  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+>> Wellbeing Nutrition: 66 new / 66 ads
+   [1/66] 1389765254212310  strength=0.8  candidate:Calorie-Efficiency Comparison  fits=conditional
+   [2/66] 1086417507097517  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [3/66] 2586804331771144  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [4/66] 1162711976532908  strength=0.8  candidate:Product with Benefit Callouts & Lifestyle Integration  fits=yes
+   [5/66] 1760547274988675  strength=0.8  candidate:Product with Highlighted Internal Benefits  fits=conditional
+   [6/66] 1436225388401160  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [7/66] 1660336849000422  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [8/66] 3145012162368642  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [9/66] 1621840282847423  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [10/66] 2090225218245406  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [11/66] 1388192569959933  strength=0.8  candidate:Internal Soothing Visualization  fits=conditional
+   [12/66] 1049133567898543  strength=0.8  candidate:Problem-Solution: Statistic & Product Benefits  fits=conditional
+   [13/66] 2070579353827207  strength=0.4  candidate:Product Stack with Promotional Offer  fits=yes
+   [14/66] 1739717237359060  strength=0.8  candidate:Product in Natural Aquatic Environment with Feature Callouts  fits=conditional
+   [15/66] 1076378888138895  strength=0.8  candidate:Ingredient Power & Product Simplicity  fits=conditional
+   [16/66] 1382444744001268  strength=0.8  candidate:Ingredient Power & Benefit Callouts  fits=conditional
+   [17/66] 1078563351485515  strength=0.8  candidate:Problem-Solution: Internal Health Metric  fits=conditional
+   [18/66] 1942684669736536  strength=0.8  candidate:Internal Benefit Visualization with Product Callouts  fits=conditional
+   [19/66] 1406240281603705  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=yes
+   [20/66] 2353992435338263  strength=0.8  candidate:Problem-Solution: Age-Related Skin Concerns  fits=conditional
+   [21/66] 1055811827262208  strength=0.8  candidate:Ingredient Purity Showcase with Benefits  fits=conditional
+   [22/66] 1802073677489010  strength=0.8  candidate:Problem-Solution: Age-Related Skin Concerns  fits=conditional
+   [23/66] 1395312572808163  strength=0.8  candidate:Product in Restful Night Setting  fits=conditional
+   [24/66] 1639180654505686  strength=0.8  candidate:Product with Performance Statistics  fits=conditional
+   [25/66] 2159680461570583  strength=0.8  candidate:Product with Benefit Callouts & Underlying Mechanism  fits=conditional
+   [26/66] 3339242889594687  strength=0.8  candidate:Problem-Solution: Internal Deficiency  fits=yes
+   [27/66] 1109798028398723  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [28/66] 3203602446505438  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [29/66] 1068956658845958  strength=0.8  candidate:Product with Performance Statistics  fits=no
+   [30/66] 1758569978688815  strength=0.8  candidate:Hero Product with Ingredient Benefits Callouts  fits=yes
+   [31/66] 953286037109611  strength=0.8  candidate:Risk-Reduction Infographic with Product  fits=no
+   [32/66] 1381427204159309  strength=0.8  candidate:Internal Organ Visualization with Scientific Callouts  fits=conditional
+   [33/66] 1116680967364258  strength=0.8  candidate:Problem Symptoms with Solution Product  fits=conditional
+   [34/66] 1396111882492873  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [35/66] 2002715640447746  strength=0.8  candidate:Progressive Benefit Timeline with Product  fits=no
+   [36/66] 1799602354790569  strength=0.8  candidate:Problem-Solution: Statistic & Product Benefits  fits=conditional
+   [37/66] 1062279666661549  strength=0.8  candidate:Dedicated User with Product & Performance Metrics  fits=conditional
+   [38/66] 1364647938716155  strength=0.8  candidate:Problematic Indulgence with Scientific Solution  fits=conditional
+   [39/66] 1383807546711724  strength=0.8  candidate:Multi-Ingredient Superiority  fits=conditional
+   [40/66] 1350057940446360  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [41/66] 1389963079283865  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [42/66] 4064415283694355  strength=0.8  candidate:Problem-Solution with Hero Product & Benefit Callouts  fits=conditional
+   [43/66] 1400778148856481  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [44/66] 1076903881985886  strength=0.8  candidate:Hero Product with Natural Habitat & Benefit Callouts  fits=yes
+   [45/66] 2613007405798996  strength=0.8  candidate:Product as Everyday Food Enhancer  fits=yes
+   [46/66] 1797234174612679  strength=0.8  candidate:Performance Review with Problem Visualization  fits=conditional
+   [47/66] 1378042711192691  strength=0.8  candidate:Problem-Symptom Checklist with Solution  fits=conditional
+   [48/66] 4165724873717447  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [49/66] 3350082495163707  strength=0.8  candidate:Internal Benefit Visualization with Product Callouts  fits=conditional
+   [50/66] 1078126617931400  strength=0.8  candidate:Product with Water & Ingredient Callouts  fits=conditional
+   [51/66] 1052782854289404  strength=0.8  candidate:Hero Capsule with Benefit Callouts  fits=conditional
+   [52/66] 1318184786911560  strength=0.8  candidate:Internal Soothing Visualization  fits=conditional
+   [53/66] 2640943946365370  strength=0.8  candidate:Hero Product with Benefit Statistics & Ingredient Callouts  fits=conditional
+   [54/66] 1399731918799719  strength=0.8  candidate:Multi-Ingredient Superiority  fits=conditional
+   [55/66] 4637535066572275  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=yes
+   [56/66] 3633561970153326  strength=0.8  candidate:Product Trio with Feature Callouts  fits=conditional
+   [57/66] 1114904741182820  strength=0.8  candidate:Hero Product with Benefit Callouts & Ingredient Highlight  fits=conditional
+   [58/66] 2118944859022007  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [59/66] 862261326970309  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [60/66] 2116075968979741  strength=0.8  candidate:Confident User with Product & Data Points  fits=conditional
+   [61/66] 850754688031661  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [62/66] 1743482863593621  strength=0.8  candidate:Sensory Experience with Product & Benefit  fits=conditional
+   [63/66] 2289205838483090  strength=0.8  candidate:Internal Organ Visualization with Scientific Proof  fits=conditional
+   [64/66] 1029904789860082  strength=0.8  candidate:Problem-Solution: Unfinished Lunchbox  fits=conditional
+   [65/66] 1109437365081211  strength=0.8  candidate:Internal Organ Visualization with Scientific Proof  fits=conditional
+   [66/66] 1786416109165606  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=yes
+>> wellbeingnutrition: 127 new / 127 ads
+   [1/127] 1389765254212310  strength=0.8  candidate:Calorie-Efficient Nutrient Comparison  fits=conditional
+   [2/127] 1786416109165606  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=yes
+   [3/127] 1528051655756943  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [4/127] 2586804331771144  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [5/127] 1049133567898543  strength=0.8  candidate:Problem-Solution: Statistic & Product Benefits  fits=conditional
+   [6/127] 1799602354790569  strength=0.8  candidate:Problem-Solution: Statistic & Product Benefits  fits=conditional
+   [7/127] 1739717237359060  strength=0.8  candidate:Product in Natural Aquatic Environment with Feature Callouts  fits=conditional
+   [8/127] 1760547274988675  strength=0.8  candidate:Product with Integrated Benefit Callouts  fits=conditional
+   [9/127] 1395312572808163  strength=0.8  candidate:Nightstand Serenity with Product  fits=conditional
+   [10/127] 1436225388401160  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [11/127] 1109798028398723  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [12/127] 1942684669736536  strength=0.8  candidate:Internal Benefit Visualization with Product & Callouts  fits=conditional
+   [13/127] 1068956658845958  strength=0.8  candidate:Product with Performance Statistics  fits=no
+   [14/127] 1396111882492873  strength=0.7  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [15/127] 1758569978688815  strength=0.8  candidate:Hero Product with Ingredient Benefits Callouts  fits=conditional
+   [16/127] 1406240281603705  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=yes
+   [17/127] 3203602446505438  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [18/127] 1116680967364258  strength=0.8  candidate:Problem Symptoms with Solution  fits=conditional
+   [19/127] 1389963079283865  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [20/127] 2002715640447746  strength=0.8  candidate:Progressive Benefit Timeline with Product  fits=no
+   [21/127] 1076903881985886  strength=0.8  candidate:Hero Product with Natural Habitat & Benefit Callouts  fits=yes
+   [22/127] 4165724873717447  strength=0.8  candidate:Product with Night Sky & Benefit Callouts  fits=conditional
+   [23/127] 4064415283694355  strength=0.8  candidate:Problem-Solution with Hero Product & Benefit Callouts  fits=conditional
+   [24/127] 1383807546711724  strength=0.8  candidate:Multi-Form Ingredient Breakdown  fits=conditional
+   [25/127] 1406336184985911  strength=0.8  candidate:Risk Alert with Solution & Proof Points  fits=conditional
+   [26/127] 1399731918799719  strength=0.8  candidate:Multi-Form Ingredient Breakdown  fits=conditional
+   [27/127] 1078126617931400  strength=0.8  candidate:Product with Dosage & Key Features  fits=conditional
+   [28/127] 1350057940446360  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [29/127] 2289205838483090  strength=0.8  candidate:Internal Organ Visualization with Scientific Proof  fits=conditional
+   [30/127] 2855786578131301  strength=0.8  candidate:Internal Problem Performance Review  fits=conditional
+   [31/127] 4160390234104537  strength=0.8  candidate:Hero Product with Ingredient Benefits & Splash  fits=yes
+   [32/127] 2085439429032354  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=conditional
+   [33/127] 1400778148856481  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [34/127] 1702261704189679  strength=0.8  candidate:Product with Multi-Benefit Ingredient Callouts  fits=conditional
+   [35/127] 3633561970153326  strength=0.8  candidate:Product Trio with Feature Callouts  fits=conditional
+   [36/127] 3350082495163707  strength=0.8  candidate:Internal Benefit Visualization with Product & Callouts  fits=conditional
+   [37/127] 1318184786911560  strength=0.8  candidate:Internal Soothing Visualization  fits=conditional
+   [38/127] 850754688031661  strength=0.8  candidate:Confident User with Product & Raw Ingredient Display  fits=yes
+   [39/127] 4637535066572275  strength=0.8  candidate:Confident User with Product & Raw Ingredients  fits=yes
+   [40/127] 1331476112171356  strength=0.8  candidate:Problem-Solution: Modern Lifestyle Discomfort  fits=conditional
+   [41/127] 1114904741182820  strength=0.8  candidate:Hero Product with Multi-Benefit Callouts  fits=conditional
+   [42/127] 2640943946365370  strength=0.8  candidate:Product with Quantified Benefit Callouts  fits=conditional
+   [43/127] 1061517066583127  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [44/127] 862261326970309  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [45/127] 1048044071380604  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [46/127] 2116075968979741  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [47/127] 2239199270393290  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [48/127] 1572914081199246  strength=0.8  candidate:Product with Floating Benefit Bubbles  fits=conditional
+   [49/127] 1345530767362582  strength=0.8  candidate:Problem-Solution: Modern Water Deficiency  fits=conditional
+   [50/127] 2172509916956713  strength=0.8  candidate:Problem-Solution: Internal Deficiency  fits=conditional
+   [51/127] 1765879507888793  strength=0.8  candidate:Social Proof with Product Showcase  fits=yes
+   [52/127] 1104797502073729  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [53/127] 1964140890926448  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [54/127] 1743482863593621  strength=0.8  candidate:Sensory Delight with Product & Benefit  fits=conditional
+   [55/127] 1517533643467286  strength=0.8  candidate:Product as Enhanced Daily Ritual  fits=conditional
+   [56/127] 1029904789860082  strength=0.8  candidate:Problem-Solution: Unfinished Meals  fits=conditional
+   [57/127] 2336447240426328  strength=0.8  candidate:Product with Benefit Callouts & Icons  fits=conditional
+   [58/127] 1384903057188549  strength=0.7  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [59/127] 1088528783673883  strength=0.8  candidate:Problem-Specific Product Selector  fits=yes
+   [60/127] 1059612646674156  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [61/127] 955519110900820  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=yes
+   [62/127] 2463420710735638  strength=0.8  candidate:Problem-Solution: It's Not You, It's Your Product  fits=conditional
+   [63/127] 1109832148081982  strength=0.7  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [64/127] 1621599192737988  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [65/127] 1582709350189747  strength=0.7  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [66/127] 1069758292367463  strength=0.8  candidate:Problem-Solution: It's Not You, It's Your Product  fits=conditional
+   [67/127] 1072565522170827  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [68/127] 2141634066440039  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=yes
+   [69/127] 1579452923848148  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [70/127] 1620185886478715  strength=0.7  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [71/127] 1622405029493814  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=yes
+   [72/127] 1055207210686030  strength=0.8  candidate:Product with Natural Source & Benefit Callouts  fits=conditional
+   [73/127] 1081474761522116  strength=0.8  candidate:Progressive Benefit Timeline with Product  fits=conditional
+   [74/127] 1764325008047282  strength=0.8  candidate:Internal Organ Visualization with Scientific Fact  fits=conditional
+   [75/127] 2147817689475678  strength=0.8  candidate:Product with Versatile Application & Ingredient Display  fits=yes
+   [76/127] 1098402756475017  strength=0.8  candidate:Problem-Solution: Internal Rhythm with Calendar  fits=conditional
+   [77/127] 1908799943432931  strength=0.8  candidate:Problem-Solution: Internal Absorption  fits=conditional
+   [78/127] 3465085796984280  strength=0.8  candidate:Hero Product with Benefit & Feature Callouts  fits=conditional
+   [79/127] 1366350712322595  strength=0.8  candidate:Hero Product with Key Ingredient Callouts  fits=conditional
+   [80/127] 1418942830146713  strength=0.8  candidate:Hero Product with Deep Dive Ingredient Details  fits=conditional
+   [81/127] 1120801943948157  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [82/127] 1993546231349100  strength=0.8  candidate:Hero Product with Flavor Experience Visualization  fits=conditional
+   [83/127] 4630968290467104  strength=0.8  candidate:Problem-Solution: It's Not You, It's Your Product  fits=conditional
+   [84/127] 1699761707753588  strength=0.8  candidate:Problem-Solution: Energetic Kids with Benefit Callouts  fits=conditional
+   [85/127] 1597330731799482  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [86/127] 937918882086582  strength=0.7  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [87/127] 1112449471301029  strength=0.8  candidate:Risk Alert with Solution & Proof Points  fits=conditional
+   [88/127] 1086621620439048  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [89/127] 1386970443597645  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [90/127] 4541210302816051  strength=0.8  candidate:Product with Ingredient Source & Usage  fits=yes
+   [91/127] 1086049927404873  strength=0.7  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [92/127] 1622782232562837  strength=0.8  candidate:Hero Product with Natural Habitat & Benefit Callouts  fits=yes
+   [93/127] 1084907640690832  strength=0.8  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [94/127] 1465286718763152  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [95/127] 1128440422941431  strength=0.8  candidate:Problem-Specific Product Selector  fits=yes
+   [96/127] 1078729958232125  strength=0.8  candidate:Ingredient Breakdown Transparency  fits=yes
+   [97/127] 1058437836991953  strength=0.8  candidate:Problem-Solution: Post-Workout Discomfort  fits=conditional
+   [98/127] 1802174624478940  strength=0.8  candidate:Product with Quantified Benefit Callouts & Natural Elements  fits=conditional
+   [99/127] 1831872418224753  strength=0.8  candidate:Product with Integrated Benefit Callouts  fits=conditional
+   [100/127] 1383401476670667  strength=0.8  candidate:Hero Product with Prepared Beverage & Ingredient  fits=conditional
+   [101/127] 1062533566384365  strength=0.7  candidate:Confident User with Product & Floating Ingredients  fits=conditional
+   [102/127] 1078563351485515  strength=0.8  candidate:Problem-Solution with Internal Mechanism Visualization  fits=conditional
+   [103/127] 1621840282847423  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [104/127] 3145012162368642  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [105/127] 1702700877495008  strength=0.8  candidate:Product in Natural Aquatic Environment with Feature Callouts  fits=conditional
+   [106/127] 2118944859022007  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [107/127] 3538016806360992  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=conditional
+   [108/127] 953286037109611  strength=0.8  candidate:Risk Visualization with Solution & Proof  fits=conditional
+   [109/127] 1162711976532908  strength=0.8  candidate:Product as Enhanced Daily Ritual  fits=conditional
+   [110/127] 1382444744001268  strength=0.8  candidate:Hero Ingredient with Benefit Callouts & Product  fits=conditional
+   [111/127] 1076378888138895  strength=0.8  candidate:Hero Ingredient with Benefit Callouts & Product  fits=conditional
+   [112/127] 2121243088468373  strength=0.8  candidate:Problem Symptoms with Product Solution  fits=yes
+   [113/127] 2353992435338263  strength=0.8  candidate:Problem-Solution: Age-Related Deficiency  fits=conditional
+   [114/127] 1054890360655225  strength=0.8  candidate:Floating Ingredients with Labels  fits=yes
+   [115/127] 1660336849000422  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [116/127] 1802073677489010  strength=0.8  candidate:Problem-Solution: Age-Related Deficiency  fits=conditional
+   [117/127] 1086417507097517  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [118/127] 1388192569959933  strength=0.8  candidate:Internal Soothing Visualization  fits=conditional
+   [119/127] 1414499720640982  strength=0.8  candidate:Bedside Table Sleep Solution  fits=conditional
+   [120/127] 2051997692075967  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [121/127] 2159680461570583  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [122/127] 1375514800878180  strength=0.8  candidate:Problem-Solution with Product & Internal Visualization  fits=conditional
+   [123/127] 1419317526958863  strength=0.9  candidate:Ingredient Equivalence & Convenience  fits=yes
+   [124/127] 1038637428986467  strength=0.8  candidate:Problem-Solution with Internal Mechanism Visualization  fits=conditional
+   [125/127] 1055811827262208  strength=0.8  candidate:Hero Ingredient with Benefit Callouts  fits=conditional
+   [126/127] 929806580187005  strength=0.8  candidate:Visual Metaphor for Opposing Concepts  fits=conditional
+   [127/127] 967222806408038  strength=0.8  candidate:Problem-Solution with Internal Benefit Visualization  fits=conditional
+>> Zandu: 41 new / 41 ads
+   [1/41] 1072418172384984  strength=0.4  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [2/41] 946008901856865  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [3/41] 1546556303333089  strength=0.8  candidate:Problem-Solution: Lifestyle Risk  fits=conditional
+   [4/41] 1381293000051692  strength=0.8  candidate:Relaxed User with Product & Clinical Proof  fits=conditional
+   [5/41] 2136405794426522  strength=0.8  candidate:Problem-Solution: Relationship Strain  fits=no
+   [6/41] 953799801084382  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [7/41] 1383385397193712  strength=0.8  candidate:Problem-Solution: Lifestyle-Induced Internal Strain  fits=conditional
+   [8/41] 2105728930357882  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [9/41] 1557382579472149  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [10/41] 1868174874154442  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [11/41] 1032616439617144  strength=0.8  candidate:Product with User Experiencing Benefit & Data Callouts  fits=conditional
+   [12/41] 28591224133814647  strength=0.8  candidate:Aspirational Morning with Product & Benefit  fits=conditional
+   [13/41] 1389080356727703  strength=0.8  candidate:Problem-Solution: Night Owl Lifestyle  fits=conditional
+   [14/41] 1053848850586964  strength=0.8  candidate:Floating Protein Sources with Question  fits=conditional
+   [15/41] 806011613495552  strength=0.8  candidate:Festive Celebration with Health Support  fits=yes
+   [16/41] 1643418224064493  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [17/41] 413577233688084  strength=0.7  candidate:Problem-Solution: Environmental Threat  fits=conditional
+   [18/41] 852195657882510  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [19/41] 1773442323692328  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [20/41] 1593031249027368  strength=0.8  candidate:Problem-Solution: On-the-Go Discomfort  fits=conditional
+   [21/41] 2372013516877139  strength=0.8  candidate:Relaxed User with Product & Clinical Proof  fits=conditional
+   [22/41] 2177029329547466  strength=0.8  candidate:Problem-Solution: Lifestyle-Induced Internal Strain  fits=conditional
+   [23/41] 1423368292974453  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [24/41] 26136209129410134  strength=0.8  candidate:Enjoy Indulgence Without Regret  fits=conditional
+   [25/41] 1756494256480610  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [26/41] 1391908116466243  strength=0.8  candidate:Problem-Solution: Lifestyle Risk  fits=conditional
+   [27/41] 1055213677316113  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [28/41] 2286604225492568  strength=0.8  candidate:Product with User Experiencing Benefit & Data Callouts  fits=conditional
+   [29/41] 1082819001007780  strength=0.8  candidate:Aspirational Morning with Product & Benefit  fits=conditional
+   [30/41] 1604824081101876  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [31/41] 1057673630579938  strength=0.8  candidate:Floating Protein Sources with Question  fits=conditional
+   [32/41] 1888983205412961  strength=0.8  candidate:Lifestyle Enjoyment with Solution  fits=conditional
+   [33/41] 1657851066133248  strength=0.8  candidate:Unleash Inner Power with Product  fits=conditional
+   [34/41] 1092555099969729  strength=0.8  candidate:Aspirational User with Progressive Challenge  fits=conditional
+   [35/41] 1568710978368944  strength=0.8  candidate:Aspirational Challenge with Product & Benefit  fits=conditional
+   [36/41] 1125085359946579  strength=0.8  candidate:Problem-Solution: Night Owl Lifestyle  fits=conditional
+   [37/41] 1386490550334606  strength=0.8  candidate:Benefit-Driven Negative Headline with Product  fits=conditional
+   [38/41] 2115761075694901  strength=0.8  candidate:Aspirational Challenge with Product & Benefit  fits=conditional
+   [39/41] 2196237294266843  strength=0.8  candidate:Benefit-Driven Negative Headline with Product  fits=conditional
+   [40/41] 2674994446271474  strength=0.8  candidate:Aspirational User with Progressive Challenge  fits=conditional
+   [41/41] 1308093234613574  strength=0.8  candidate:Unleash Inner Power with Product  fits=conditional
+>> Zero Block: 0 new / 0 ads
+catalogue (supabase): 5 named roots, 498 candidates
+Review candidates in the UI and Promote / Merge them by hand.
