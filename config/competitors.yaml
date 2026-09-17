@@ -127,6 +127,79 @@ competitors:
     page_ids: ["127888574561092"]   # ZERO BLOCK Official — low ad volume, confirm this is right
     tier: every_run
 
+  # -- broad creative-inspiration set: skincare / makeup / haircare / nutrition D2C
+  # brands (not direct cardio-tea competitors) -- team-supplied 2026-09-17. No page_ids
+  # yet, keyword search only; page_ids can be pinned later once confirmed. --
+  - {name: MuscleBlaze, search: MuscleBlaze, page_ids: [], tier: broad_only}
+  - {name: Optimum Nutrition, search: Optimum Nutrition, page_ids: [], tier: broad_only}
+  - {name: Myprotein, search: Myprotein, page_ids: [], tier: broad_only}
+  - {name: The Whole Truth Foods, search: The Whole Truth Foods, page_ids: [], tier: broad_only}
+  - {name: Yogabar, search: Yogabar, page_ids: [], tier: broad_only}
+  - {name: Fast&Up India, search: "Fast&Up India", page_ids: [], tier: broad_only}
+
+  - {name: Minimalist, search: Minimalist, page_ids: [], tier: broad_only}
+  - {name: Dot & Key, search: "Dot & Key", page_ids: [], tier: broad_only}
+  - {name: Foxtale, search: Foxtale, page_ids: [], tier: broad_only}
+  - {name: Aqualogica, search: Aqualogica, page_ids: [], tier: broad_only}
+  - {name: Pilgrim, search: Pilgrim, page_ids: [], tier: broad_only}
+  - {name: The Derma Co., search: "The Derma Co", page_ids: [], tier: broad_only}
+  - {name: Plum, search: Plum Goodness, page_ids: [], tier: broad_only}
+  - {name: Mamaearth, search: Mamaearth, page_ids: [], tier: broad_only}
+  - {name: "Indé Wild", search: "Inde Wild", page_ids: [], tier: broad_only}
+  - {name: "Dr. Sheth's", search: "Dr Sheths", page_ids: [], tier: broad_only}
+  - {name: Hyphen, search: Hyphen Skincare, page_ids: [], tier: broad_only}
+  - {name: Conscious Chemist, search: Conscious Chemist, page_ids: [], tier: broad_only}
+  - {name: Biotique, search: Biotique, page_ids: [], tier: broad_only}
+  - {name: Forest Essentials, search: Forest Essentials, page_ids: [], tier: broad_only}
+  - {name: Kama Ayurveda, search: Kama Ayurveda, page_ids: [], tier: broad_only}
+
+  - {name: SUGAR Cosmetics, search: SUGAR Cosmetics, page_ids: [], tier: broad_only}
+  - {name: Swiss Beauty, search: Swiss Beauty, page_ids: [], tier: broad_only}
+  - {name: "Lakmé", search: "Lakme India", page_ids: [], tier: broad_only}
+  - {name: Nykaa Cosmetics, search: Nykaa Cosmetics, page_ids: [], tier: broad_only}
+  - {name: Renee Cosmetics, search: Renee Cosmetics, page_ids: [], tier: broad_only}
+  - {name: Colorbar, search: Colorbar Cosmetics, page_ids: [], tier: broad_only}
+  - {name: Faces Canada, search: Faces Canada, page_ids: [], tier: broad_only}
+  - {name: Blue Heaven, search: Blue Heaven Cosmetics, page_ids: [], tier: broad_only}
+  - {name: Chambor, search: Chambor, page_ids: [], tier: broad_only}
+  - {name: Insight Cosmetics, search: Insight Cosmetics, page_ids: [], tier: broad_only}
+
+  - {name: mCaffeine, search: mCaffeine, page_ids: [], tier: broad_only}
+  - {name: BBlunt, search: BBlunt, page_ids: [], tier: broad_only}
+  - {name: Streax Professional, search: Streax Professional, page_ids: [], tier: broad_only}
+  - {name: Love Beauty & Planet, search: "Love Beauty and Planet India", page_ids: [], tier: broad_only}
+  - {name: Arata, search: Arata, page_ids: [], tier: broad_only}
+  - {name: Ktein, search: Ktein, page_ids: [], tier: broad_only}
+  - {name: Earth Rhythm, search: Earth Rhythm, page_ids: [], tier: broad_only}
+  - {name: WishCare, search: WishCare, page_ids: [], tier: broad_only}
+  - {name: Curl Up, search: Curl Up, page_ids: [], tier: broad_only}
+
+  - {name: WOW Skin Science, search: WOW Skin Science, page_ids: [], tier: broad_only}
+  - {name: Just Herbs, search: Just Herbs, page_ids: [], tier: broad_only}
+  - {name: Juicy Chemistry, search: Juicy Chemistry, page_ids: [], tier: broad_only}
+  - {name: Soulflower, search: Soulflower, page_ids: [], tier: broad_only}
+  - {name: Earth Science Aesthetics, search: Earth Science, page_ids: [], tier: broad_only}
+  - {name: Ras Luxury Oils, search: Ras Luxury Oils, page_ids: [], tier: broad_only}
+  - {name: Shankara, search: Shankara, page_ids: [], tier: broad_only}
+  - {name: Tjori, search: Tjori, page_ids: [], tier: broad_only}
+
+  # -- from the handwritten/screenshot list, not already covered above --
+  - {name: "RE' EQUIL", search: "RE EQUIL", page_ids: [], tier: broad_only}
+  - {name: Beauty of Joseon, search: Beauty of Joseon India, page_ids: [], tier: broad_only}
+  - {name: Reginald Men, search: Reginald Men, page_ids: [], tier: broad_only}
+  - {name: Neutrogena, search: Neutrogena India, page_ids: [], tier: broad_only}
+  - {name: La Shield, search: La Shield Sunscreen, page_ids: [], tier: broad_only}
+  - {name: Cetaphil, search: Cetaphil India, page_ids: [], tier: broad_only}
+  - {name: Molecular Company, search: Molecular Company, page_ids: [], tier: broad_only}
+  - {name: Personal Touch Skincare, search: Personal Touch Skincare, page_ids: [], tier: broad_only}
+  - {name: Vaseline, search: Vaseline India, page_ids: [], tier: broad_only}
+  - {name: Venusia, search: Venusia Max, page_ids: [], tier: broad_only}
+  - {name: Fixderma, search: Fixderma, page_ids: [], tier: broad_only}
+  - {name: SunScoop, search: SunScoop, page_ids: [], tier: broad_only}
+  - {name: Dermatouch, search: Dermatouch, page_ids: [], tier: broad_only}
+  - {name: Suncros, search: Suncros Sunscreen, page_ids: [], tier: broad_only}
+  - {name: Lotus Herbals, search: Lotus Herbals, page_ids: [], tier: broad_only}
+
 keyword_searches:
   - arjuna tea
   - cardio tea
