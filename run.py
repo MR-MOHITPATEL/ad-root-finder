@@ -60,16 +60,26 @@ def cmd_scan(broad: bool, headed: bool, login: bool, skip_analyze: bool, deep: b
             skip_versions: bool = False) -> None:
     cfg = _load_config()
     comps = [c for c in cfg["competitors"] if broad or c.get("tier") == "every_run"]
-    brand_terms = [c["search"] for c in comps]
+    # Pinned-page brands: the page itself only ever runs India-targeted ads, so
+    # country=IN vs All returns the same ads -- keep it narrow (less noise, less
+    # Gemini spend). No-page-id brands + keyword searches rely on Meta's text
+    # search instead of a pinned page, so country=All can genuinely surface ads
+    # India-scoped search misses -- worth the extra noise there specifically.
+    pinned_terms = [c["search"] for c in comps if c.get("page_ids")]
+    unpinned_terms = [c["search"] for c in comps if not c.get("page_ids")]
     kw_terms = cfg.get("keyword_searches", []) if broad else []
 
     o = _opts(cfg, headless=not headed, login=login, deep=deep)
-    if brand_terms:
-        print(f"=== FETCH brands ({len(brand_terms)}) ===")
-        fetch(brand_terms, o, _page_ids_map(cfg))
+    if pinned_terms:
+        print(f"=== FETCH pinned-page brands ({len(pinned_terms)}), country=IN ===")
+        fetch(pinned_terms, o, _page_ids_map(cfg))
+    if unpinned_terms:
+        print(f"=== FETCH no-page-id brands ({len(unpinned_terms)}), country=All ===")
+        fetch(unpinned_terms, FetchOptions(**{**o.__dict__, "country": "ALL"}), _page_ids_map(cfg))
     if kw_terms:
-        print(f"=== FETCH keyword searches ({len(kw_terms)}) ===")
-        fetch(kw_terms, FetchOptions(**{**o.__dict__, "brand_filter": False}))
+        print(f"=== FETCH keyword searches ({len(kw_terms)}), country=All ===")
+        fetch(kw_terms, FetchOptions(**{**o.__dict__, "country": "ALL", "brand_filter": False}))
+    brand_terms = pinned_terms + unpinned_terms
 
     if not skip_analyze:
         print("=== ANALYZE ===")
