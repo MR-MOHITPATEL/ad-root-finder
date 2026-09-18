@@ -1,0 +1,173 @@
+9 of 63 still need fetching
+>> Molecular Company  [active]
+    -> page-scoped: view_all_page_id=1240479489138561
+    -> page-scoped: view_all_page_id=1141106715751535
+    -> page-scoped: view_all_page_id=1012780348577477
+  'Molecular Company': 51/291 image ads (brand_filter=True) in 180.3s
+  images: 51/51 downloaded, stored to supabase
+  ledger: 51 new · 0 returning
+  (pausing 19.6s before next brand, fresh session)
+>> Personal Touch Skincare  [active]
+    -> page-scoped: view_all_page_id=109165235374067
+    -> page-scoped: view_all_page_id=103893752583183
+  'Personal Touch Skincare': 48/214 image ads (brand_filter=True) in 160.0s
+  images: 48/48 downloaded, stored to supabase
+  ledger: 48 new · 0 returning
+  (pausing 17.5s before next brand, fresh session)
+>> Vaseline India  [active]
+  'Vaseline India': 11/46 image ads (brand_filter=True) in 202.9s
+  images: 11/11 downloaded, stored to supabase
+  ledger: 11 new · 0 returning
+  (pausing 12.5s before next brand, fresh session)
+>> Venusia Max  [active]
+  'Venusia Max': 0/13 image ads (brand_filter=True) in 50.1s
+  ledger: 0 new · 0 returning
+  (pausing 17.1s before next brand, fresh session)
+>> Fixderma  [active]
+    -> page-scoped: view_all_page_id=441634325978261
+    -> page-scoped: view_all_page_id=1504208279879256
+  ERROR: Page.goto: net::ERR_NETWORK_CHANGED at https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&view_all_page_id=1504208279879256&search_type=page&media_type=all
+Call log:
+navigating to "https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&view_all_page_id=1504208279879256&search_type=page&media_type=all", waiting until "domcontentloaded"
+
+  ledger: 0 new · 0 returning
+  (pausing 12.1s before next brand, fresh session)
+>> SunScoop  [active]
+    -> page-scoped: view_all_page_id=100420662596571
+  'SunScoop': 16/128 image ads (brand_filter=True) in 82.1s
+  images: 16/16 downloaded, stored to supabase
+  ledger: 16 new · 0 returning
+  (pausing 17.6s before next brand, fresh session)
+>> Dermatouch  [active]
+    -> page-scoped: view_all_page_id=205472562655185
+    -> page-scoped: view_all_page_id=921780504354894
+  'Dermatouch': 29/214 image ads (brand_filter=True) in 132.0s
+  images: 29/29 downloaded, stored to supabase
+  ledger: 29 new · 0 returning
+  (pausing 13.6s before next brand, fresh session)
+>> Suncros Sunscreen  [active]
+  'Suncros Sunscreen': 0/0 image ads (brand_filter=True) in 49.9s
+  ledger: 0 new · 0 returning
+  (pausing 10.7s before next brand, fresh session)
+>> Lotus Herbals  [active]
+    -> page-scoped: view_all_page_id=136186849766166
+    -> page-scoped: view_all_page_id=915490595190062
+    -> page-scoped: view_all_page_id=594368840426140
+  'Lotus Herbals': 14/65 image ads (brand_filter=True) in 191.8s
+  images: 14/14 downloaded, stored to supabase
+  ledger: 14 new · 0 returning
+=== ANALYZE (all new brands) ===
+>> MuscleBlaze: 52 new / 52 ads
+   [1/52] 2343039256227307  strength=0.8  candidate:Product Immersed in Key Ingredient  fits=conditional
+   [2/52] 26568876469439362  strength=0.7  candidate:Confident User with Product Pair & Offer  fits=conditional
+   [3/52] 2015512595695043  strength=0.7  candidate:Confident User with Product Pair & Offer  fits=conditional
+   [4/52] 2682630038781161  strength=0.8  candidate:Product with Multi-Benefit Feature Callouts  fits=conditional
+   [5/52] 26960358556970391  strength=0.6  candidate:Product with Purity & Performance Cues  fits=conditional
+   [6/52] 1351353960219830  strength=0.7  candidate:Confident User with Product Pair & Offer  fits=conditional
+   [7/52] 952918313996338  strength=0.5  candidate:Product Pair with Benefit & Offer Callouts  fits=conditional
+   [8/52] 3914782015324210  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [9/52] 1311673604151762  strength=0.7  candidate:Confident User with Product Pair & Offer  fits=conditional
+   [10/52] 2168964153877683  strength=0.8  candidate:Confident User with Product Pair & Promotional Offer  fits=conditional
+   [11/52] 895501176716553  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [12/52] 1694142728312982  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [13/52] 1584571649798369  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=no
+   [14/52] 3287545951445954  strength=0.8  candidate:Confident User with Product Pair & Promotional Offer  fits=conditional
+   [15/52] 2172882010294037  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [16/52] 2400150654136728  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [17/52] 1391810956285917  strength=0.8  candidate:Hero Product with Benefit Callouts & Icons  fits=conditional
+   [18/52] 2409439569523453  strength=0.8  candidate:Hero Product with Multi-Benefit Callouts  fits=conditional
+   [19/52] 1411718620902373  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [20/52] 853652714501453  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [21/52] 2340656093454617  strength=0.7  candidate:Product with Aspirational Benefit & Scientific Proof  fits=conditional
+   [22/52] 2474933709584134  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [23/52] 2046885572527268  strength=0.8  candidate:Confident User with Product Pair & Promotional Offer  fits=conditional
+   [24/52] 1102010365834815  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [25/52] 1016205557498357  strength=0.6  candidate:Product Pair with Promotional Offer  fits=conditional
+   [26/52] 2008766359868156  strength=0.4  candidate:Hero Product with Price Drop & Offer  fits=yes
+   [27/52] 835556122907381  strength=0.8  candidate:Problem-Solution with Ingredient & Potency Callouts  fits=conditional
+   [28/52] 930764443189089  strength=0.8  candidate:Confident User with Product Pair & Promotional Offer  fits=conditional
+   [29/52] 1752568045984613  strength=0.7  candidate:Product with Flavor & Form Showcase  fits=conditional
+   [30/52] 1052827634019814  strength=0.7  candidate:Product with Flavor & Form Showcase  fits=conditional
+   [31/52] 2129745114630648  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [32/52] 2007703620100151  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [33/52] 4943356929231912  strength=0.4  candidate:Hero Product with Price Drop & Offer  fits=yes
+   [34/52] 969337512443278  strength=0.6  candidate:Product Pair with Promotional Offer  fits=conditional
+   [35/52] 1072628348484263  strength=0.8  candidate:On-the-Go Convenience with Product  fits=yes
+   [36/52] 1477287671086419  strength=0.8  candidate:Hero Product with Exploding Ingredient & Benefits  fits=conditional
+   [37/52] 2966829290320285  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [38/52] 2591424011277725  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [39/52] 1043926795230234  strength=0.6  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [40/52] 1980038795979819  strength=0.5  candidate:Product Pair with Benefit & Offer Callouts  fits=conditional
+   [41/52] 26230415563308037  strength=0.6  candidate:Product with Active Lifestyle & Flavor Showcase  fits=conditional
+   [42/52] 1065737899131533  strength=0.7  candidate:Product with Purity & Performance Callouts  fits=conditional
+   [43/52] 900777309526723  strength=0.7  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [44/52] 1411338067566139  strength=0.7  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [45/52] 1970395090182192  strength=0.8  candidate:Hero Product with Dual Flavor Showcase  fits=conditional
+   [46/52] 1090557489963687  strength=0.8  candidate:Hero Product with Exploding Ingredient & Benefits  fits=conditional
+   [47/52] 1037362009142925  strength=0.8  candidate:Hero Product with Benefit Pills  fits=conditional
+   [48/52] 1036297059269813  strength=None  noise (?)  fits=None
+   [49/52] 1111264091423978  strength=None  noise (?)  fits=None
+   [50/52] 1605104414679071  strength=None  noise (?)  fits=None
+   [51/52] 2116401652616421  strength=None  noise (?)  fits=None
+   [52/52] 1269166628577102  strength=None  noise (?)  fits=None
+Traceback (most recent call last):
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\scripts\resume_new_brands.py", line 41, in <module>
+    main()
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\scripts\resume_new_brands.py", line 33, in main
+    analyze.run(new_terms)
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\analyze.py", line 307, in run
+    store.matches_save(competitor, results)
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\store.py", line 466, in matches_save
+    _sb_call(op)
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\store.py", line 113, in _sb_call
+    return op(sb)
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\store.py", line 465, in op
+    sb.table("matches").upsert(rows[i:i + 200]).execute()
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\postgrest\_sync\request_builder.py", line 90, in execute
+    r = send_with_retry(self.request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\postgrest\_sync\request_builder.py", line 51, in send_with_retry
+    resp = req.send(headers)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\postgrest\base_request_builder.py", line 90, in send
+    return self.session.request(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 11001] getaddrinfo failed

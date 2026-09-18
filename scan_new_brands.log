@@ -1,0 +1,411 @@
+63 new brands to scan
+>> MuscleBlaze  [active]
+    -> page-scoped: view_all_page_id=489081634454102
+    -> page-scoped: view_all_page_id=1080169811846133
+  'MuscleBlaze': 52/212 image ads (brand_filter=True) in 139.5s
+  images: 52/52 downloaded, stored to supabase
+  ledger: 52 new · 0 returning
+  (pausing 16.5s before next brand, fresh session)
+>> Optimum Nutrition  [active]
+    -> page-scoped: view_all_page_id=1415869608627860
+    -> page-scoped: view_all_page_id=136997563154286
+    -> page-scoped: view_all_page_id=1550725185144655
+  'Optimum Nutrition': 49/209 image ads (brand_filter=True) in 195.7s
+  images: 49/49 downloaded, stored to supabase
+  ledger: 49 new · 0 returning
+  (pausing 17.2s before next brand, fresh session)
+>> Myprotein  [active]
+    -> page-scoped: view_all_page_id=24808861862
+    -> page-scoped: view_all_page_id=625478704283556
+    -> page-scoped: view_all_page_id=168071976568151
+  'Myprotein': 43/233 image ads (brand_filter=True) in 202.8s
+  images: 43/43 downloaded, stored to supabase
+  ledger: 43 new · 0 returning
+  (pausing 16.4s before next brand, fresh session)
+>> The Whole Truth Foods  [active]
+    -> page-scoped: view_all_page_id=108531977179455
+  'The Whole Truth Foods': 39/122 image ads (brand_filter=True) in 82.2s
+  images: 39/39 downloaded, stored to supabase
+  ledger: 39 new · 0 returning
+  (pausing 18.4s before next brand, fresh session)
+>> Yogabar  [active]
+    -> page-scoped: view_all_page_id=336994479721509
+  'Yogabar': 21/127 image ads (brand_filter=True) in 87.2s
+  images: 21/21 downloaded, stored to supabase
+  ledger: 21 new · 0 returning
+  (pausing 16.6s before next brand, fresh session)
+>> Fast&Up India  [active]
+    -> page-scoped: view_all_page_id=1600309033572747
+  'Fast&Up India': 19/132 image ads (brand_filter=True) in 102.9s
+  images: 19/19 downloaded, stored to supabase
+  ledger: 19 new · 0 returning
+  (pausing 17.6s before next brand, fresh session)
+>> Minimalist  [active]
+    -> page-scoped: view_all_page_id=107597820995682
+  'Minimalist': 20/124 image ads (brand_filter=True) in 79.8s
+  images: 20/20 downloaded, stored to supabase
+  ledger: 20 new · 0 returning
+  (pausing 14.3s before next brand, fresh session)
+>> Dot & Key  [active]
+    -> page-scoped: view_all_page_id=1806087489455976
+  'Dot & Key': 19/124 image ads (brand_filter=True) in 90.4s
+  images: 19/19 downloaded, stored to supabase
+  ledger: 19 new · 0 returning
+  (pausing 11.1s before next brand, fresh session)
+>> Foxtale  [active]
+    -> page-scoped: view_all_page_id=110186374689636
+  'Foxtale': 10/120 image ads (brand_filter=True) in 106.2s
+  images: 10/10 downloaded, stored to supabase
+  ledger: 10 new · 0 returning
+  (pausing 16.9s before next brand, fresh session)
+>> Aqualogica  [active]
+    -> page-scoped: view_all_page_id=102296448721449
+  'Aqualogica': 61/133 image ads (brand_filter=True) in 96.2s
+  images: 61/61 downloaded, stored to supabase
+  ledger: 61 new · 0 returning
+  (pausing 13.0s before next brand, fresh session)
+>> Pilgrim  [active]
+    -> page-scoped: view_all_page_id=111982120196545
+  'Pilgrim': 39/127 image ads (brand_filter=True) in 97.4s
+  images: 39/39 downloaded, stored to supabase
+  ledger: 39 new · 0 returning
+  (pausing 14.7s before next brand, fresh session)
+>> The Derma Co  [active]
+    -> page-scoped: view_all_page_id=107783513956553
+  'The Derma Co': 17/137 image ads (brand_filter=True) in 83.5s
+  images: 17/17 downloaded, stored to supabase
+  ledger: 17 new · 0 returning
+  (pausing 12.8s before next brand, fresh session)
+>> Plum Goodness  [active]
+    -> page-scoped: view_all_page_id=100558704915674
+    -> page-scoped: view_all_page_id=511641355600533
+  'Plum Goodness': 20/206 image ads (brand_filter=True) in 147.5s
+  images: 20/20 downloaded, stored to supabase
+  ledger: 20 new · 0 returning
+  (pausing 19.6s before next brand, fresh session)
+>> Mamaearth  [active]
+    -> page-scoped: view_all_page_id=619181354927737
+  'Mamaearth': 25/125 image ads (brand_filter=True) in 87.6s
+  images: 25/25 downloaded, stored to supabase
+  ledger: 25 new · 0 returning
+  (pausing 13.2s before next brand, fresh session)
+>> Inde Wild  [active]
+    -> page-scoped: view_all_page_id=102335392182071
+    -> page-scoped: view_all_page_id=483323755096148
+  'Inde Wild': 8/49 image ads (brand_filter=True) in 139.0s
+  images: 8/8 downloaded, stored to supabase
+  ledger: 8 new · 0 returning
+  (pausing 11.1s before next brand, fresh session)
+>> Dr Sheths  [active]
+    -> page-scoped: view_all_page_id=1532336456993990
+  'Dr Sheths': 17/131 image ads (brand_filter=True) in 95.8s
+  images: 17/17 downloaded, stored to supabase
+  ledger: 17 new · 0 returning
+  (pausing 11.0s before next brand, fresh session)
+>> Hyphen Skincare  [active]
+    -> page-scoped: view_all_page_id=107238405785525
+  'Hyphen Skincare': 22/124 image ads (brand_filter=True) in 83.3s
+  images: 22/22 downloaded, stored to supabase
+  ledger: 22 new · 0 returning
+  (pausing 10.7s before next brand, fresh session)
+>> Conscious Chemist  [active]
+    -> page-scoped: view_all_page_id=484270765443744
+    -> page-scoped: view_all_page_id=1042280222297698
+  'Conscious Chemist': 24/133 image ads (brand_filter=True) in 138.0s
+  images: 24/24 downloaded, stored to supabase
+  ledger: 24 new · 0 returning
+  (pausing 13.8s before next brand, fresh session)
+>> Biotique  [active]
+    -> page-scoped: view_all_page_id=160394014084503
+    -> page-scoped: view_all_page_id=1749161068648895
+    -> page-scoped: view_all_page_id=996488480210861
+  'Biotique': 23/134 image ads (brand_filter=True) in 202.9s
+  images: 23/23 downloaded, stored to supabase
+  ledger: 23 new · 0 returning
+  (pausing 12.9s before next brand, fresh session)
+>> Forest Essentials  [active]
+    -> page-scoped: view_all_page_id=122921587768955
+    -> page-scoped: view_all_page_id=104622785643147
+    -> page-scoped: view_all_page_id=114074721711032
+  'Forest Essentials': 32/213 image ads (brand_filter=True) in 200.8s
+  images: 32/32 downloaded, stored to supabase
+  ledger: 32 new · 0 returning
+  (pausing 11.5s before next brand, fresh session)
+>> Kama Ayurveda  [active]
+    -> page-scoped: view_all_page_id=322000234560669
+    -> page-scoped: view_all_page_id=565321043320155
+    -> page-scoped: view_all_page_id=110952162101957
+  'Kama Ayurveda': 23/124 image ads (brand_filter=True) in 201.4s
+  images: 23/23 downloaded, stored to supabase
+  ledger: 23 new · 0 returning
+  (pausing 19.3s before next brand, fresh session)
+>> SUGAR Cosmetics  [active]
+    -> page-scoped: view_all_page_id=100116710332265
+    -> page-scoped: view_all_page_id=548203448657240
+    -> page-scoped: view_all_page_id=126689487631
+  'SUGAR Cosmetics': 46/174 image ads (brand_filter=True) in 188.9s
+  images: 46/46 downloaded, stored to supabase
+  ledger: 46 new · 0 returning
+  (pausing 15.3s before next brand, fresh session)
+>> Swiss Beauty  [active]
+    -> page-scoped: view_all_page_id=856739657686939
+    -> page-scoped: view_all_page_id=446401778763006
+  'Swiss Beauty': 32/223 image ads (brand_filter=True) in 135.6s
+  images: 32/32 downloaded, stored to supabase
+  ledger: 32 new · 0 returning
+  (pausing 19.6s before next brand, fresh session)
+>> Lakme India  [active]
+    -> page-scoped: view_all_page_id=195073944172
+    -> page-scoped: view_all_page_id=100281786832302
+  'Lakme India': 11/213 image ads (brand_filter=True) in 141.4s
+  images: 11/11 downloaded, stored to supabase
+  ledger: 9 new · 2 returning
+  (pausing 18.0s before next brand, fresh session)
+>> Nykaa Cosmetics  [active]
+    -> page-scoped: view_all_page_id=404967236539378
+    -> page-scoped: view_all_page_id=290603811040262
+  'Nykaa Cosmetics': 46/221 image ads (brand_filter=True) in 145.1s
+  images: 46/46 downloaded, stored to supabase
+  ledger: 46 new · 0 returning
+  (pausing 14.4s before next brand, fresh session)
+>> Renee Cosmetics  [active]
+    -> page-scoped: view_all_page_id=143707435494061
+  'Renee Cosmetics': 0/53 image ads (brand_filter=True) in 87.4s
+  ledger: 0 new · 0 returning
+  (pausing 13.9s before next brand, fresh session)
+>> Colorbar Cosmetics  [active]
+  'Colorbar Cosmetics': 0/2 image ads (brand_filter=True) in 50.4s
+  ledger: 0 new · 0 returning
+  (pausing 17.8s before next brand, fresh session)
+>> Faces Canada  [active]
+    -> page-scoped: view_all_page_id=558154974515535
+  'Faces Canada': 59/132 image ads (brand_filter=True) in 85.6s
+  images: 59/59 downloaded, stored to supabase
+  ledger: 59 new · 0 returning
+  (pausing 13.8s before next brand, fresh session)
+>> Blue Heaven Cosmetics  [active]
+    -> page-scoped: view_all_page_id=607549355776074
+    -> page-scoped: view_all_page_id=136427782878251
+  'Blue Heaven Cosmetics': 1/29 image ads (brand_filter=True) in 153.2s
+  images: 1/1 downloaded, stored to supabase
+  ledger: 1 new · 0 returning
+  (pausing 13.0s before next brand, fresh session)
+>> Chambor  [active]
+    -> page-scoped: view_all_page_id=191117667981901
+  'Chambor': 2/18 image ads (brand_filter=True) in 103.4s
+  images: 2/2 downloaded, stored to supabase
+  ledger: 2 new · 0 returning
+  (pausing 16.6s before next brand, fresh session)
+>> Insight Cosmetics  [active]
+    -> page-scoped: view_all_page_id=184922985001575
+    -> page-scoped: view_all_page_id=271503877335
+    -> page-scoped: view_all_page_id=59663392272
+  'Insight Cosmetics': 74/302 image ads (brand_filter=True) in 182.0s
+  images: 74/74 downloaded, stored to supabase
+  ledger: 74 new · 0 returning
+  (pausing 18.5s before next brand, fresh session)
+>> mCaffeine  [active]
+    -> page-scoped: view_all_page_id=1227086873991372
+  'mCaffeine': 3/120 image ads (brand_filter=True) in 81.9s
+  images: 3/3 downloaded, stored to supabase
+  ledger: 3 new · 0 returning
+  (pausing 13.3s before next brand, fresh session)
+>> BBlunt  [active]
+    -> page-scoped: view_all_page_id=130671740942
+  'BBlunt': 40/131 image ads (brand_filter=True) in 93.4s
+  images: 40/40 downloaded, stored to supabase
+  ledger: 40 new · 0 returning
+  (pausing 19.6s before next brand, fresh session)
+>> Streax Professional  [active]
+    -> page-scoped: view_all_page_id=177306979047899
+  'Streax Professional': 0/124 image ads (brand_filter=True) in 86.1s
+  ledger: 0 new · 0 returning
+  (pausing 15.9s before next brand, fresh session)
+>> Love Beauty and Planet India  [active]
+  'Love Beauty and Planet India': 0/44 image ads (brand_filter=True) in 41.5s
+  ledger: 0 new · 0 returning
+  (pausing 12.2s before next brand, fresh session)
+>> Arata  [active]
+    -> page-scoped: view_all_page_id=415898978762902
+  'Arata': 8/125 image ads (brand_filter=True) in 88.4s
+  images: 8/8 downloaded, stored to supabase
+  ledger: 8 new · 0 returning
+  (pausing 15.5s before next brand, fresh session)
+>> Ktein  [active]
+    -> page-scoped: view_all_page_id=872580559271410
+  'Ktein': 20/36 image ads (brand_filter=True) in 103.7s
+  images: 20/20 downloaded, stored to supabase
+  ledger: 20 new · 0 returning
+  (pausing 13.9s before next brand, fresh session)
+>> Earth Rhythm  [active]
+    -> page-scoped: view_all_page_id=1622722271299150
+  'Earth Rhythm': 14/120 image ads (brand_filter=True) in 91.1s
+  images: 14/14 downloaded, stored to supabase
+  ledger: 14 new · 0 returning
+  (pausing 12.9s before next brand, fresh session)
+>> WishCare  [active]
+    -> page-scoped: view_all_page_id=170694943611404
+  'WishCare': 48/130 image ads (brand_filter=True) in 99.1s
+  images: 48/48 downloaded, stored to supabase
+  ledger: 48 new · 0 returning
+  (pausing 15.0s before next brand, fresh session)
+>> Curl Up  [active]
+  'Curl Up': 0/40 image ads (brand_filter=True) in 33.3s
+  ledger: 0 new · 0 returning
+  (pausing 19.1s before next brand, fresh session)
+>> WOW Skin Science  [active]
+    -> page-scoped: view_all_page_id=168125940677887
+  'WOW Skin Science': 12/127 image ads (brand_filter=True) in 90.0s
+  images: 12/12 downloaded, stored to supabase
+  ledger: 12 new · 0 returning
+  (pausing 16.0s before next brand, fresh session)
+>> Just Herbs  [active]
+    -> page-scoped: view_all_page_id=119280251482021
+  'Just Herbs': 10/131 image ads (brand_filter=True) in 87.7s
+  images: 10/10 downloaded, stored to supabase
+  ledger: 10 new · 0 returning
+  (pausing 11.1s before next brand, fresh session)
+>> Juicy Chemistry  [active]
+    -> page-scoped: view_all_page_id=1455276184718556
+  'Juicy Chemistry': 58/128 image ads (brand_filter=True) in 79.9s
+  images: 58/58 downloaded, stored to supabase
+  ledger: 58 new · 0 returning
+  (pausing 19.3s before next brand, fresh session)
+>> Soulflower  [active]
+    -> page-scoped: view_all_page_id=207355555959946
+    -> page-scoped: view_all_page_id=351952015514546
+  'Soulflower': 53/134 image ads (brand_filter=True) in 139.7s
+  images: 53/53 downloaded, stored to supabase
+  ledger: 53 new · 0 returning
+  (pausing 16.1s before next brand, fresh session)
+>> Earth Science  [active]
+  'Earth Science': 0/40 image ads (brand_filter=True) in 37.8s
+  ledger: 0 new · 0 returning
+  (pausing 12.0s before next brand, fresh session)
+>> Ras Luxury Oils  [active]
+    -> page-scoped: view_all_page_id=725902164249543
+    -> page-scoped: view_all_page_id=102334431897017
+  'Ras Luxury Oils': 47/185 image ads (brand_filter=True) in 151.9s
+  images: 47/47 downloaded, stored to supabase
+  ledger: 47 new · 0 returning
+  (pausing 13.3s before next brand, fresh session)
+>> Shankara  [active]
+    -> page-scoped: view_all_page_id=880074872139835
+    -> page-scoped: view_all_page_id=285301855434
+  'Shankara': 85/201 image ads (brand_filter=True) in 154.2s
+  images: 80/80 downloaded, stored to supabase
+  ledger: 80 new · 0 returning
+  (pausing 15.5s before next brand, fresh session)
+>> Tjori  [active]
+    -> page-scoped: view_all_page_id=256526801040824
+    -> page-scoped: view_all_page_id=105079045431778
+    -> page-scoped: view_all_page_id=102369629522019
+  'Tjori': 16/48 image ads (brand_filter=True) in 191.2s
+  images: 16/16 downloaded, stored to supabase
+  ledger: 16 new · 0 returning
+  (pausing 14.0s before next brand, fresh session)
+>> RE EQUIL  [active]
+    -> page-scoped: view_all_page_id=1914679578768869
+  'RE EQUIL': 68/127 image ads (brand_filter=True) in 91.6s
+  images: 68/68 downloaded, stored to supabase
+  ledger: 68 new · 0 returning
+  (pausing 17.8s before next brand, fresh session)
+>> Beauty of Joseon India  [active]
+  'Beauty of Joseon India': 0/48 image ads (brand_filter=True) in 35.6s
+  ledger: 0 new · 0 returning
+  (pausing 12.4s before next brand, fresh session)
+>> Reginald Men  [active]
+    -> page-scoped: view_all_page_id=1075237819008469
+    -> page-scoped: view_all_page_id=1029308013608884
+  'Reginald Men': 81/221 image ads (brand_filter=True) in 147.2s
+  images: 80/80 downloaded, stored to supabase
+  ledger: 80 new · 0 returning
+  (pausing 13.8s before next brand, fresh session)
+>> Neutrogena India  [active]
+    -> page-scoped: view_all_page_id=215468751074
+  'Neutrogena India': 2/41 image ads (brand_filter=True) in 104.7s
+  images: 2/2 downloaded, stored to supabase
+  ledger: 2 new · 0 returning
+  (pausing 17.2s before next brand, fresh session)
+>> La Shield Sunscreen  [active]
+    -> page-scoped: view_all_page_id=101676145726881
+  'La Shield Sunscreen': 5/81 image ads (brand_filter=True) in 88.4s
+  images: 5/5 downloaded, stored to supabase
+  ledger: 5 new · 0 returning
+  (pausing 11.8s before next brand, fresh session)
+>> Cetaphil India  [active]
+    -> page-scoped: view_all_page_id=307750105755563
+    -> page-scoped: view_all_page_id=810497292339670
+    -> page-scoped: view_all_page_id=210394695493604
+  'Cetaphil India': 2/130 image ads (brand_filter=True) in 190.8s
+  images: 2/2 downloaded, stored to supabase
+  ledger: 2 new · 0 returning
+  (pausing 16.4s before next brand, fresh session)
+>> Molecular Company  [active]
+  'Molecular Company': 3/30 image ads (brand_filter=True) in 408.7s
+  images: 0/3 downloaded, stored to supabase
+Traceback (most recent call last):
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\scripts\scan_new_brands.py", line 39, in <module>
+    main()
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\scripts\scan_new_brands.py", line 28, in main
+    fetch(new_terms, FetchOptions(**{**o.__dict__, "country": "ALL"}), _page_ids_map(cfg))
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\fetch.py", line 579, in fetch
+    delta = ledger.update(term, ads)
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\ledger.py", line 18, in update
+    d = load()
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\ledger.py", line 12, in load
+    return store.ledger_load()
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\store.py", line 375, in ledger_load
+    rows = _sb_call(lambda sb: sb.table("ledger").select("*").execute()).data
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\store.py", line 113, in _sb_call
+    return op(sb)
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\store.py", line 375, in <lambda>
+    rows = _sb_call(lambda sb: sb.table("ledger").select("*").execute()).data
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\postgrest\_sync\request_builder.py", line 90, in execute
+    r = send_with_retry(self.request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\postgrest\_sync\request_builder.py", line 51, in send_with_retry
+    resp = req.send(headers)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\postgrest\base_request_builder.py", line 90, in send
+    return self.session.request(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 11001] getaddrinfo failed

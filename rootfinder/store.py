@@ -95,22 +95,32 @@ _TRANSIENT_ERRORS = (
 )
 
 
+_RETRY_DELAYS = (2, 5, 10)  # seconds -- covers a several-second local DNS/Wi-Fi blip,
+                            # not just a dead Supabase-side connection
+
+
 def _sb_call(op):
-    """Run op(client) against the cached Supabase client. On a dropped
-    pooled connection, evict the cached client and retry once with a
-    fresh one before giving up."""
+    """Run op(client) against the cached Supabase client. On a transient network
+    error (dropped pooled connection, or the local machine's DNS/Wi-Fi blipping
+    for a few seconds during a long unattended run), evict the cached client and
+    retry with backoff before giving up."""
     sb = _supabase()
     if sb is None:
         return None
-    try:
-        return op(sb)
-    except Exception as e:  # noqa: BLE001
-        transient = type(e).__name__ in _TRANSIENT_ERRORS or "disconnect" in str(e).lower()
-        if not transient:
-            raise
-        _supabase.cache_clear()
-        sb = _supabase()
-        return op(sb)
+    last_err = None
+    for attempt, delay in enumerate((0, *_RETRY_DELAYS)):
+        if delay:
+            time.sleep(delay)
+        try:
+            return op(sb)
+        except Exception as e:  # noqa: BLE001
+            transient = type(e).__name__ in _TRANSIENT_ERRORS or "disconnect" in str(e).lower()
+            if not transient:
+                raise
+            last_err = e
+            _supabase.cache_clear()
+            sb = _supabase()
+    raise last_err
 
 
 # ── SEED (first run) ────────────────────────────────────────────────────────
