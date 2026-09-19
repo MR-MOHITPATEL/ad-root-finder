@@ -1,7 +1,12 @@
 """
-Single data layer. Two backends, chosen at runtime:
+Single data layer. Three backends, chosen at runtime (checked in this order):
 
-  * Supabase   — when SUPABASE_URL + SUPABASE_KEY are set (production)
+  * Firestore + Cloudflare R2 — when GCP_PROJECT_ID + GCP_SERVICE_ACCOUNT_JSON
+    are set (production, post-Supabase-migration). Structured data (matches,
+    roots, candidates, ledger, decisions) lives in Firestore; images live in
+    R2 (S3-compatible, zero egress fees) when R2_* env vars are also set,
+    else fall back to local files for images.
+  * Supabase   — when SUPABASE_URL + SUPABASE_KEY are set (legacy prod)
   * local files — otherwise (dev / offline)
 
 Consumers (decisions.py, analyze.py, ledger.py, web/data.py) call these
@@ -35,7 +40,7 @@ def _now() -> str:
 
 # ── in-process read cache ──────────────────────────────────────────────────
 # Every page nav used to re-fetch matches/decisions/catalogue/ledger from
-# Supabase from scratch (4+ network round trips per click). These are read
+# the backend from scratch (4+ network round trips per click). These are read
 # far more often than they change, so cache each whole-table read briefly
 # and drop the cache the moment something writes to that table.
 _CACHE_TTL = 20  # seconds
@@ -59,6 +64,40 @@ def _cache_clear(*keys: str) -> None:
         _cache.pop(k, None)
 
 
+# ── Firestore client ─────────────────────────────────────────────────────────
+
+@lru_cache(maxsize=1)
+def _firestore():
+    project = os.getenv("GCP_PROJECT_ID", "").strip()
+    creds_json = os.getenv("GCP_SERVICE_ACCOUNT_JSON", "").strip()
+    if not (project and creds_json):
+        return None
+    from google.cloud import firestore
+    from google.oauth2 import service_account
+    info = json.loads(creds_json)
+    creds = service_account.Credentials.from_service_account_info(info)
+    return firestore.Client(project=project, credentials=creds)
+
+
+# ── Cloudflare R2 client (S3-compatible) ────────────────────────────────────
+
+R2_BUCKET = os.getenv("R2_BUCKET", "ad-images")
+R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "").rstrip("/")
+
+
+@lru_cache(maxsize=1)
+def _r2():
+    account_id = os.getenv("R2_ACCOUNT_ID", "").strip()
+    key_id = os.getenv("R2_ACCESS_KEY_ID", "").strip()
+    secret = os.getenv("R2_SECRET_ACCESS_KEY", "").strip()
+    if not (account_id and key_id and secret and R2_PUBLIC_URL):
+        return None
+    import boto3
+    return boto3.client(
+        "s3", endpoint_url=f"https://{account_id}.r2.cloudflarestorage.com",
+        aws_access_key_id=key_id, aws_secret_access_key=secret, region_name="auto")
+
+
 @lru_cache(maxsize=1)
 def _supabase():
     url = os.getenv("SUPABASE_URL", "").strip()
@@ -79,6 +118,8 @@ def _supabase():
 
 
 def mode() -> str:
+    if _firestore():
+        return "firestore"
     return "supabase" if _supabase() else "local"
 
 
@@ -88,27 +129,23 @@ def mode() -> str:
 # identically ("RemoteProtocolError: ConnectionTerminated") until the
 # process restarts. Every Supabase call goes through this wrapper so a
 # dead connection is detected and replaced automatically instead of
-# taking the whole site down.
+# taking the whole site down. Also covers a several-second local DNS/Wi-Fi
+# blip during a long unattended scrape (retries with backoff, not just once).
 _TRANSIENT_ERRORS = (
     "RemoteProtocolError", "ConnectionTerminated", "ConnectError",
     "ConnectTimeout", "ReadTimeout", "WriteTimeout", "PoolTimeout",
 )
-
-
-_RETRY_DELAYS = (2, 5, 10)  # seconds -- covers a several-second local DNS/Wi-Fi blip,
-                            # not just a dead Supabase-side connection
+_RETRY_DELAYS = (2, 5, 10)  # seconds
 
 
 def _sb_call(op):
-    """Run op(client) against the cached Supabase client. On a transient network
-    error (dropped pooled connection, or the local machine's DNS/Wi-Fi blipping
-    for a few seconds during a long unattended run), evict the cached client and
-    retry with backoff before giving up."""
+    """Run op(client) against the cached Supabase client, retrying with backoff
+    on a transient network error before giving up."""
     sb = _supabase()
     if sb is None:
         return None
     last_err = None
-    for attempt, delay in enumerate((0, *_RETRY_DELAYS)):
+    for delay in (0, *_RETRY_DELAYS):
         if delay:
             time.sleep(delay)
         try:
@@ -120,6 +157,27 @@ def _sb_call(op):
             last_err = e
             _supabase.cache_clear()
             sb = _supabase()
+    raise last_err
+
+
+def _fs_call(op):
+    """Same retry-with-backoff wrapper as _sb_call, for Firestore calls."""
+    db = _firestore()
+    if db is None:
+        return None
+    last_err = None
+    for delay in (0, *_RETRY_DELAYS):
+        if delay:
+            time.sleep(delay)
+        try:
+            return op(db)
+        except Exception as e:  # noqa: BLE001
+            transient = type(e).__name__ in _TRANSIENT_ERRORS or "disconnect" in str(e).lower()
+            if not transient:
+                raise
+            last_err = e
+            _firestore.cache_clear()
+            db = _firestore()
     raise last_err
 
 
@@ -171,6 +229,9 @@ def decisions_load() -> dict:
     cached = _cache_get("decisions")
     if cached is not None:
         return cached
+    if _firestore():
+        docs = _fs_call(lambda db: list(db.collection("decisions").stream()))
+        return _cache_put("decisions", {d.id: (d.to_dict() | {"ad_id": d.id}) for d in docs})
     if _supabase():
         rows = _sb_call(lambda sb: sb.table("decisions").select("*").execute()).data
         return _cache_put("decisions", {r["ad_id"]: r for r in rows})
@@ -183,6 +244,21 @@ def decisions_load() -> dict:
 
 
 def decision_set(ad_id: str, status: str, *, root_id=None, note="", phash=None, by="") -> None:
+    if _firestore():
+        def op(db):
+            ref = db.collection("decisions").document(ad_id)
+            prev = ref.get().to_dict() or {}
+            ref.set({
+                "ad_id": ad_id, "status": status,
+                "root_id": root_id or prev.get("root_id"),
+                "note": note or prev.get("note", ""),
+                "phash": phash or prev.get("phash"),
+                "decided_by": by or prev.get("decided_by", ""),
+                "decided_at": _now(),
+            })
+        _fs_call(op)
+        _cache_clear("decisions")
+        return
     if _supabase():
         def op(sb):
             existing = sb.table("decisions").select("*").eq("ad_id", ad_id).execute().data
@@ -212,6 +288,10 @@ def decision_set(ad_id: str, status: str, *, root_id=None, note="", phash=None, 
 
 
 def decision_clear(ad_id: str) -> None:
+    if _firestore():
+        _fs_call(lambda db: db.collection("decisions").document(ad_id).delete())
+        _cache_clear("decisions")
+        return
     if _supabase():
         _sb_call(lambda sb: sb.table("decisions").delete().eq("ad_id", ad_id).execute())
         _cache_clear("decisions")
@@ -232,18 +312,36 @@ def decided_phashes() -> dict[str, dict]:
 # ── CATALOGUE (roots + candidates) ─────────────────────────────────────────
 
 # The storyboard fields (line of attack / RTB / attributes / story / root_kind) live on
-# both a root and a candidate, carried straight through from the Gemini output. Requires
-# the matching columns on the Supabase roots + candidates tables — see rootfinder/README
-# migration note; catalogue_load()/catalogue_save() use .get() so this degrades gracefully
-# (blank fields) if the columns aren't there yet.
+# both a root and a candidate, carried straight through from the Gemini output.
 _STORY_FIELDS = ("line_of_attack_type", "line_of_attack", "reason_to_believe",
                  "attributes_verbal", "attributes_visual", "story", "root_kind")
+
+
+def _candidate_doc_id(name: str) -> str:
+    return slug(name) or "unnamed"
 
 
 def catalogue_load() -> dict:
     cached = _cache_get("catalogue")
     if cached is not None:
         return cached
+    if _firestore():
+        def op(db):
+            roots = list(db.collection("roots").stream())
+            if not roots:  # first run — seed
+                for r in _seed_roots():
+                    db.collection("roots").document(r["root_id"]).set(_root_row(r))
+                roots = list(db.collection("roots").stream())
+            cands = list(db.collection("candidates").stream())
+            return roots, cands
+        roots, cands = _fs_call(op)
+        return _cache_put("catalogue", {
+            "roots": [_root_from_row(d.to_dict() | {"root_id": d.id}) for d in roots],
+            "candidates": [{"candidate_name": d.to_dict().get("candidate_name", d.id),
+                            **{k: d.to_dict().get(k) for k in
+                               ("mechanism", "visual_motif", "fits_our_brand") + _STORY_FIELDS},
+                            "examples": d.to_dict().get("examples") or []} for d in cands],
+        })
     if _supabase():
         def op(sb):
             roots = sb.table("roots").select("*").execute().data
@@ -285,6 +383,44 @@ def _root_from_row(r: dict) -> dict:
 
 
 def catalogue_save(cat: dict) -> None:
+    if _firestore():
+        def op(db):
+            batch = db.batch()
+            n = 0
+            for r in cat.get("roots", []):
+                batch.set(db.collection("roots").document(r["root_id"]), _root_row(r))
+                n += 1
+                if n >= 400:
+                    batch.commit()
+                    batch = db.batch()
+                    n = 0
+            have = {d.id for d in db.collection("candidates").stream()}
+            want = set()
+            for c in cat.get("candidates", []):
+                doc_id = _candidate_doc_id(c["candidate_name"])
+                want.add(doc_id)
+                batch.set(db.collection("candidates").document(doc_id), {
+                    "candidate_name": c["candidate_name"], "mechanism": c.get("mechanism"),
+                    "visual_motif": c.get("visual_motif"), "fits_our_brand": c.get("fits_our_brand"),
+                    **{k: c.get(k) for k in _STORY_FIELDS},
+                    "examples": c.get("examples") or []})
+                n += 1
+                if n >= 400:
+                    batch.commit()
+                    batch = db.batch()
+                    n = 0
+            for gone in have - want:
+                batch.delete(db.collection("candidates").document(gone))
+                n += 1
+                if n >= 400:
+                    batch.commit()
+                    batch = db.batch()
+                    n = 0
+            if n:
+                batch.commit()
+        _fs_call(op)
+        _cache_clear("catalogue")
+        return
     if _supabase():
         def op(sb):
             for r in cat.get("roots", []):
@@ -336,17 +472,8 @@ def root_add_image(root_id: str, data: bytes, *, filename: str, kind: str,
 
     ext = "." + filename.rsplit(".", 1)[-1].lower() if "." in filename else ".jpg"
     key = f"manual/{root_id}/{_now().replace(':', '').replace('.', '')}{ext}"
-    url = None
-    if _supabase():
-        mime = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
-                ".webp": "image/webp"}.get(ext, "image/jpeg")
-        try:
-            _sb_call(lambda sb: sb.storage.from_(BUCKET).upload(
-                key, data, {"upsert": "true", "content-type": mime}))
-        except Exception as e:  # noqa: BLE001
-            return {"ok": False, "reason": f"upload failed: {e}"}
-        url = f"{os.getenv('SUPABASE_URL', '').rstrip('/')}/storage/v1/object/public/{BUCKET}/{key}"
-    else:
+    url = _upload_image_bytes(data, key, ext)
+    if url is None:
         p = IMAGES_DIR / "manual" / root_id
         p.mkdir(parents=True, exist_ok=True)
         fp = p / (filename or "img" + ext)
@@ -381,6 +508,9 @@ def ledger_load() -> dict:
     cached = _cache_get("ledger")
     if cached is not None:
         return cached
+    if _firestore():
+        docs = _fs_call(lambda db: list(db.collection("ledger").stream()))
+        return _cache_put("ledger", {d.id: d.to_dict() for d in docs})
     if _supabase():
         rows = _sb_call(lambda sb: sb.table("ledger").select("*").execute()).data
         return _cache_put("ledger", {r["ad_id"]: r for r in rows})
@@ -393,6 +523,24 @@ def ledger_load() -> dict:
 
 
 def ledger_save(d: dict) -> None:
+    if _firestore():
+        def op(db):
+            batch = db.batch()
+            n = 0
+            for k, v in d.items():
+                batch.set(db.collection("ledger").document(k), {f: v.get(f) for f in (
+                    "competitor", "page_name", "first_seen", "last_seen",
+                    "times_seen", "was_active", "went_inactive_at")})
+                n += 1
+                if n >= 400:
+                    batch.commit()
+                    batch = db.batch()
+                    n = 0
+            if n:
+                batch.commit()
+        _fs_call(op)
+        _cache_clear("ledger")
+        return
     if _supabase():
         rows = [{"ad_id": k, **{f: v.get(f) for f in ("competitor", "page_name", "first_seen",
                 "last_seen", "times_seen", "was_active", "went_inactive_at")}}
@@ -414,6 +562,9 @@ def matches_all() -> list[dict]:
     cached = _cache_get("matches")
     if cached is not None:
         return cached
+    if _firestore():
+        docs = _fs_call(lambda db: list(db.collection("matches").stream()))
+        return _cache_put("matches", [_match_from_row(d.to_dict() | {"ad_id": d.id}) for d in docs])
     if _supabase():
         def op(sb):
             rows, page = [], 0
@@ -448,6 +599,10 @@ def _match_from_row(r: dict) -> dict:
 
 
 def matches_existing_ids(competitor: str) -> set[str]:
+    if _firestore():
+        docs = _fs_call(lambda db: list(
+            db.collection("matches").where("competitor", "==", competitor).stream()))
+        return {d.id for d in docs}
     if _supabase():
         rows = _sb_call(lambda sb: sb.table("matches").select("ad_id").eq("competitor", competitor).execute()).data
         return {r["ad_id"] for r in rows}
@@ -457,18 +612,38 @@ def matches_existing_ids(competitor: str) -> set[str]:
     return set()
 
 
+def _match_row(m: dict, competitor: str) -> dict:
+    return {
+        "ad_id": m["ad_id"], "competitor": competitor, "page_name": m.get("page_name"),
+        "headline": m.get("headline"), "body": m.get("body"),
+        "link_description": m.get("link_description"), "snapshot_url": m.get("snapshot_url"),
+        "image_url": m.get("image"), "image_phash": m.get("image_phash"),
+        "start_time": m.get("start_time"), "is_active": m.get("is_active"),
+        "is_noise": bool(m.get("is_noise")), "root": m.get("root") or {},
+        "versions": m.get("versions") or [], "version_capacity": m.get("version_capacity") or {},
+        "analyzed_at": _now(),
+    }
+
+
 def matches_save(competitor: str, records: list[dict]) -> None:
+    if _firestore():
+        def op(db):
+            batch = db.batch()
+            n = 0
+            for m in records:
+                batch.set(db.collection("matches").document(m["ad_id"]), _match_row(m, competitor))
+                n += 1
+                if n >= 400:
+                    batch.commit()
+                    batch = db.batch()
+                    n = 0
+            if n:
+                batch.commit()
+        _fs_call(op)
+        _cache_clear("matches")
+        return
     if _supabase():
-        rows = [{
-            "ad_id": m["ad_id"], "competitor": competitor, "page_name": m.get("page_name"),
-            "headline": m.get("headline"), "body": m.get("body"),
-            "link_description": m.get("link_description"), "snapshot_url": m.get("snapshot_url"),
-            "image_url": m.get("image"), "image_phash": m.get("image_phash"),
-            "start_time": m.get("start_time"), "is_active": m.get("is_active"),
-            "is_noise": bool(m.get("is_noise")), "root": m.get("root") or {},
-            "versions": m.get("versions") or [], "version_capacity": m.get("version_capacity") or {},
-            "analyzed_at": _now(),
-        } for m in records]
+        rows = [_match_row(m, competitor) for m in records]
 
         def op(sb):
             for i in range(0, len(rows), 200):
@@ -485,20 +660,38 @@ def matches_save(competitor: str, records: list[dict]) -> None:
 
 # ── IMAGES ─────────────────────────────────────────────────────────────────
 
+_MIME = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp"}
+
+
+def _upload_image_bytes(data: bytes, key: str, ext: str) -> str | None:
+    """Try R2 first, then Supabase Storage. Returns the public URL, or None if
+    neither backend is configured (caller falls back to local files)."""
+    mime = _MIME.get(ext, "image/jpeg")
+    if _r2():
+        try:
+            _r2().put_object(Bucket=R2_BUCKET, Key=key, Body=data, ContentType=mime)
+        except Exception as e:  # noqa: BLE001
+            raise RuntimeError(f"R2 upload failed: {e}") from e
+        return f"{R2_PUBLIC_URL}/{key}"
+    if _supabase():
+        try:
+            _sb_call(lambda sb: sb.storage.from_(BUCKET).upload(
+                key, data, {"upsert": "true", "content-type": mime}))
+        except Exception as e:  # noqa: BLE001
+            raise RuntimeError(f"Supabase upload failed: {e}") from e
+        return f"{os.getenv('SUPABASE_URL', '').rstrip('/')}/storage/v1/object/public/{BUCKET}/{key}"
+    return None
+
+
 def put_image(local_path: str | Path, key: str) -> str | None:
-    """Upload to Supabase Storage; return public URL. Local mode: return the path."""
+    """Upload to R2 / Supabase Storage; return public URL. Local mode: return the path."""
     local_path = Path(local_path)
     if not local_path.exists():
         return None
-    if not _supabase():
+    if not (_r2() or _supabase()):
         return str(local_path)
-    mime = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
-            ".webp": "image/webp"}.get(local_path.suffix.lower(), "image/jpeg")
-    data = local_path.read_bytes()
     try:
-        _sb_call(lambda sb: sb.storage.from_(BUCKET).upload(
-            key, data, {"upsert": "true", "content-type": mime}))
-    except Exception:  # noqa: BLE001 — already exists is fine
-        pass
-    base = os.getenv("SUPABASE_URL", "").rstrip("/")
-    return f"{base}/storage/v1/object/public/{BUCKET}/{key}"
+        url = _upload_image_bytes(local_path.read_bytes(), key, local_path.suffix.lower())
+    except RuntimeError:
+        return str(local_path)  # already-exists-style errors are fine to ignore, same as before
+    return url or str(local_path)

@@ -1,0 +1,588 @@
+0 of 63 still need fetching
+=== ANALYZE (all new brands) ===
+>> MuscleBlaze: 52 new / 52 ads
+   [1/52] 26568876469439362  strength=0.7  candidate:Confident User with Product Pair & Offer  fits=conditional
+   [2/52] 2343039256227307  strength=0.8  candidate:Product Immersed in Key Ingredient  fits=conditional
+   [3/52] 2682630038781161  strength=0.8  candidate:Product with Multi-Benefit Feature Callouts  fits=conditional
+   [4/52] 2015512595695043  strength=0.7  candidate:Confident User with Product Pair & Offer  fits=conditional
+   [5/52] 26960358556970391  strength=0.6  candidate:Product with Purity & Performance Cues  fits=conditional
+   [6/52] 1351353960219830  strength=0.7  candidate:Confident User with Product Pair & Offer  fits=conditional
+   [7/52] 952918313996338  strength=0.5  candidate:Product Pair with Benefit & Offer Callouts  fits=conditional
+   [8/52] 3914782015324210  strength=0.6  candidate:Product Pair with Promotional Offer  fits=conditional
+   [9/52] 1311673604151762  strength=0.7  candidate:Confident User with Product Pair & Offer  fits=conditional
+   [10/52] 895501176716553  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [11/52] 2168964153877683  strength=0.8  candidate:Confident User with Product Pair & Promotional Offer  fits=conditional
+   [12/52] 1584571649798369  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [13/52] 1694142728312982  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [14/52] 2172882010294037  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [15/52] 3287545951445954  strength=0.8  candidate:Confident User with Product Pair & Promotional Offer  fits=conditional
+   [16/52] 2400150654136728  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [17/52] 1391810956285917  strength=0.8  candidate:Hero Product with Benefit Callouts & Icons  fits=conditional
+   [18/52] 2409439569523453  strength=0.8  candidate:Hero Product with Multi-Benefit Callouts  fits=conditional
+   [19/52] 1411718620902373  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [20/52] 2474933709584134  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [21/52] 853652714501453  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [22/52] 2340656093454617  strength=0.7  candidate:Product with Aspirational Benefit & Scientific Proof  fits=conditional
+   [23/52] 2046885572527268  strength=0.7  candidate:Confident User with Product Pair & Offer  fits=conditional
+   [24/52] 1016205557498357  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [25/52] 835556122907381  strength=0.8  candidate:Problem-Solution with Ingredient & Potency Callouts  fits=conditional
+   [26/52] 1102010365834815  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [27/52] 2008766359868156  strength=0.4  candidate:Hero Product with Price Drop & Offer  fits=yes
+   [28/52] 1752568045984613  strength=0.7  candidate:Product with Flavor & Form Showcase  fits=yes
+   [29/52] 1052827634019814  strength=0.7  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [30/52] 930764443189089  strength=0.8  candidate:Confident User with Product Pair & Promotional Offer  fits=conditional
+   [31/52] 2007703620100151  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [32/52] 4943356929231912  strength=0.4  candidate:Hero Product with Price Drop & Offer  fits=yes
+   [33/52] 969337512443278  strength=0.5  candidate:Product Pair with Benefit & Offer Callouts  fits=conditional
+   [34/52] 2129745114630648  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [35/52] 2966829290320285  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [36/52] 1477287671086419  strength=0.8  candidate:Hero Product with Exploding Ingredient & Benefits  fits=conditional
+   [37/52] 1072628348484263  strength=0.8  candidate:On-the-Go Convenience with Product  fits=yes
+   [38/52] 1043926795230234  strength=0.6  candidate:Product with Internal Benefit Question  fits=conditional
+   [39/52] 2591424011277725  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [40/52] 1411338067566139  strength=0.7  candidate:Product with Flavor & Form Showcase  fits=yes
+   [41/52] 1980038795979819  strength=0.5  candidate:Product Pair with Benefit & Offer Callouts  fits=conditional
+   [42/52] 1065737899131533  strength=0.6  candidate:Product with Purity Callouts & Lifestyle Prop  fits=yes
+   [43/52] 26230415563308037  strength=0.6  candidate:Product with Active Lifestyle & Flavor Showcase  fits=conditional
+   [44/52] 900777309526723  strength=0.7  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [45/52] 1970395090182192  strength=0.8  candidate:Hero Product with Dual Flavor Showcase & Benefit Callouts  fits=conditional
+   [46/52] 1090557489963687  strength=0.8  candidate:Hero Product with Exploding Ingredient & Benefits  fits=conditional
+   [47/52] 2116401652616421  strength=0.8  candidate:Hero Product with Massed Form Factor  fits=conditional
+   [48/52] 1605104414679071  strength=0.8  candidate:Product with Problem-Solving Feature Highlight  fits=conditional
+   [49/52] 1111264091423978  strength=0.8  candidate:Hero Product with Convenience Callouts & Flavor  fits=conditional
+   [50/52] 1037362009142925  strength=0.8  candidate:Hero Product with Surrounding Pills/Tablets  fits=conditional
+   [51/52] 1269166628577102  strength=0.7  candidate:Product with Convenience & Dosing Callouts  fits=conditional
+   [52/52] 1036297059269813  strength=0.8  candidate:Hero Product with Miniature User Scenario  fits=conditional
+>> Optimum Nutrition: 49 new / 49 ads
+   [1/49] 796145023351781  strength=0.5  candidate:New Store Opening Announcement  fits=yes
+   [2/49] 1404566865200319  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [3/49] 1589796135971462  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [4/49] 1749848006159833  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [5/49] 1387501836692381  strength=0.8  candidate:Confident User with Internal Benefit Visualization & Product Offer  fits=conditional
+   [6/49] 1459701865988269  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [7/49] 1046871797859085  strength=0.7  candidate:Celebrity Endorsement with Product & Benefits  fits=conditional
+   [8/49] 1539508160643568  strength=0.8  candidate:Confident User with Internal Benefit Visualization & Product Offer  fits=conditional
+   [9/49] 1553306973207756  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [10/49] 1067049699071552  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [11/49] 1401518814779176  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [12/49] 2659983684398416  strength=0.8  candidate:Confident User with Internal Benefit Visualization  fits=conditional
+   [13/49] 1082310740843259  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [14/49] 1421271040071243  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [15/49] 1581199239670712  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [16/49] 1790691685289673  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [17/49] 919942700812180  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [18/49] 1096299206313002  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [19/49] 2228103374700336  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [20/49] 28324454933862641  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [21/49] 1726629471957900  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [22/49] 4601357923455528  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [23/49] 1159041290127663  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [24/49] 947097784500896  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [25/49] 1088795937403947  strength=0.8  candidate:Before-After User Transformation with Product  fits=conditional
+   [26/49] 1016619038070679  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [27/49] 1790933325694750  strength=0.8  candidate:Before-After User Transformation with Product  fits=conditional
+   [28/49] 1403731477842886  strength=0.8  candidate:Before-After User Transformation with Product  fits=conditional
+   [29/49] 2294961581243718  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [30/49] 1074098061882007  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [31/49] 1587621706346870  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [32/49] 3064372140433363  strength=0.8  candidate:Effortless Benefit with Feature Callouts  fits=conditional
+   [33/49] 909158182269570  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [34/49] 1038257539032107  strength=0.8  candidate:Aspirational Lifestyle with Value-Add Offer  fits=conditional
+   [35/49] 1414817383947273  strength=0.8  candidate:Effortless Potency Showcase  fits=conditional
+   [36/49] 1684837792581602  strength=0.8  candidate:Active Lifestyle with Refreshing Product  fits=conditional
+   [37/49] 1111830141528123  strength=0.8  candidate:Active Lifestyle with Refreshing Product  fits=conditional
+   [38/49] 1108555811527501  strength=0.8  candidate:Refreshing Lifestyle with Product & Benefit Callouts  fits=conditional
+   [39/49] 1078143584939868  strength=0.8  candidate:Effortless Potency Showcase  fits=conditional
+   [40/49] 1747547403233344  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [41/49] 1595852188743391  strength=0.8  candidate:Refreshing Protein Experience with Lifestyle  fits=conditional
+   [42/49] 2331719404302936  strength=0.7  candidate:Refreshing Active Lifestyle with Product Attributes  fits=conditional
+   [43/49] 1741925863531868  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [44/49] 1796811395107695  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [45/49] 1326181076257868  strength=0.7  candidate:Refreshing Drink Transformation  fits=conditional
+   [46/49] 2147913176137574  strength=0.7  candidate:Refreshing Product in Context  fits=conditional
+   [47/49] 1751953659073887  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [48/49] 2376460396630031  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [49/49] 1310379002154220  strength=0.7  candidate:Refreshing Drink Transformation  fits=conditional
+>> Myprotein: 43 new / 43 ads
+   [1/43] 1699864024523881  strength=0.8  candidate:Product with Fruit Splash & Water Droplets  fits=conditional
+   [2/43] 4572830122935971  strength=0.7  candidate:Product as Refreshing Lifestyle Essential  fits=conditional
+   [3/43] 1037799439236004  strength=0.8  candidate:Product with Aspirational Natural Setting & Flavor Cues  fits=conditional
+   [4/43] 1548591480096272  strength=0.7  candidate:Product as Lifestyle Accessory  fits=conditional
+   [5/43] 889021424270354  strength=0.8  candidate:Product Splash Showcase  fits=conditional
+   [6/43] 2901691403505161  strength=0.8  candidate:Product on Beach with Natural Ingredients  fits=conditional
+   [7/43] 28067590796199443  strength=0.7  candidate:Curated Performance Gear Showcase  fits=conditional
+   [8/43] 1192196923141275  strength=0.7  candidate:Product in Aspirational Natural Setting  fits=conditional
+   [9/43] 1066121409238892  strength=0.8  candidate:Product Assessment Sheet  fits=conditional
+   [10/43] 981780811580847  strength=0.8  candidate:Hero Product with Ingredient & Benefit Callouts on Natural Background  fits=conditional
+   [11/43] 1084140357442169  strength=0.8  candidate:Vibrant Splash Showcase  fits=conditional
+   [12/43] 990566494014641  strength=0.6  candidate:Product on Red Carpet  fits=conditional
+   [13/43] 2089959351640393  strength=0.7  candidate:Refreshing Product with Natural Elements  fits=conditional
+   [14/43] 2476123849523107  strength=0.7  candidate:Product as Refreshing Drink  fits=conditional
+   [15/43] 1117125960638982  strength=0.7  candidate:Product Stack Showcase  fits=no
+   [16/43] 1750690092642044  strength=0.8  candidate:Product with Multi-Benefit Callouts & Appetizing Visual  fits=conditional
+   [17/43] 2036885327194289  strength=0.8  candidate:Side-by-Side Nutritional Comparison  fits=conditional
+   [18/43] 1822085235483189  strength=0.5  candidate:Product with Refreshing Visual & Offer  fits=conditional
+   [19/43] 1067383699355074  strength=0.6  candidate:App Showcase with Offer  fits=conditional
+   [20/43] 2335746960568898  strength=0.8  candidate:Product Assessment Sheet  fits=conditional
+   [21/43] 1614629133622034  strength=0.6  candidate:Product Stack Showcase  fits=conditional
+   [22/43] 1931739951035513  strength=0.8  candidate:Product with Refreshing Ingredient Splash  fits=conditional
+   [23/43] 1410546227659896  strength=0.6  candidate:Hero Product with Flavor-Specific Ingredient Display  fits=conditional
+   [24/43] 815045091165929  strength=0.8  candidate:Brand Authority with Credibility Badges  fits=conditional
+   [25/43] 1042482438331999  strength=0.8  candidate:Expert-Backed Product Journey  fits=conditional
+   [26/43] 1402119562116186  strength=0.8  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [27/43] 2209716243146142  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [28/43] 1006883502325734  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [29/43] 1664475602173171  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [30/43] 1757344942141478  strength=0.8  pile-vs-one  fits=conditional
+   [31/43] 2205228840050532  strength=0.6  candidate:Hero Product with Promotional Offer & Action  fits=yes
+   [32/43] 1571808767770349  strength=0.8  candidate:Official Approval Document  fits=conditional
+   [33/43] 1606850067509956  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [34/43] 1068056922621420  strength=0.7  candidate:Product with Flavor Splash & Offer  fits=conditional
+   [35/43] 2156968135222293  strength=0.8  candidate:Product as Refreshing Drink with Feature Callouts  fits=conditional
+   [36/43] 1804130877449514  strength=0.8  candidate:Hero Product with Refreshing Ingredient Display  fits=conditional
+   [37/43] 2156780638580826  strength=0.8  candidate:Hero Product with Feature Callouts & Credibility  fits=conditional
+   [38/43] 1022727237436583  strength=0.6  candidate:Product with Dynamic Splash & Offer  fits=conditional
+   [39/43] 1662214679024424  strength=0.8  candidate:Indulgent Treat with Health Stats  fits=conditional
+   [40/43] 1387531983529623  strength=0.8  candidate:Product with Ingredient Callouts on Receipt  fits=conditional
+   [41/43] 2754391394941884  strength=0.8  candidate:Product with Feature & Benefit Callouts  fits=conditional
+   [42/43] 1621042049578668  strength=0.8  candidate:Hero Product with Exploding Ingredients  fits=conditional
+   [43/43] 916665791512798  strength=0.8  candidate:Product as Refreshing Drink with Benefit Callouts  fits=conditional
+>> The Whole Truth Foods: 39 new / 39 ads
+   [1/39] 27817782831195385  strength=0.7  candidate:Product with Quality Assurance Statement  fits=yes
+   [2/39] 1560615629121953  strength=0.8  candidate:Ingredient Purity Comparison Chart  fits=yes
+   [3/39] 1611808079933700  strength=0.7  candidate:Engaged Child with Parent Preparing Product  fits=conditional
+   [4/39] 1337181738583293  strength=0.7  candidate:Product Line with Quality Assurance Headline  fits=conditional
+   [5/39] 1348821437054865  strength=0.4  candidate:Product Showcase with Promotional Offer  fits=yes
+   [6/39] 1389185419323830  strength=0.8  candidate:Transparency Checklist Comparison  fits=yes
+   [7/39] 1048471061109717  strength=0.8  candidate:Product with Flavor & Texture Callouts  fits=conditional
+   [8/39] 1881432285844411  strength=0.8  candidate:Product with Flavor & Ingredient Callouts  fits=conditional
+   [9/39] 1750947279544426  strength=0.6  candidate:Product Stack Showcase  fits=yes
+   [10/39] 1032002299622315  strength=0.8  candidate:Product vs. Competitor Feature Comparison  fits=conditional
+   [11/39] 1076778985046842  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [12/39] 1122093473487449  strength=0.7  candidate:Confident User with Product Haul & Offer  fits=yes
+   [13/39] 1625030565917269  strength=0.8  candidate:Shelf Life Comparison for Naturalness  fits=conditional
+   [14/39] 902640915973582  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=yes
+   [15/39] 1718379516122104  strength=0.8  candidate:Product with Flavor-Specific Ingredient Display  fits=yes
+   [16/39] 2869501446765475  strength=0.6  candidate:Product Stack Showcase  fits=yes
+   [17/39] 946835521800229  strength=0.4  candidate:Product Showcase with Promotional Offer  fits=yes
+   [18/39] 1352219293659718  strength=0.7  candidate:Lifestyle with Value-Add Offer  fits=yes
+   [19/39] 900913646214997  strength=0.7  candidate:Confident User with Product Haul & Offer  fits=yes
+   [20/39] 2660252944404429  strength=0.6  candidate:Product Stack Showcase  fits=yes
+   [21/39] 1636610098244307  strength=0.4  ?  fits=conditional
+   [22/39] 1641892494023517  strength=0.8  candidate:Transparency Badges with Product Showcase  fits=conditional
+   [23/39] 1121164337007553  strength=0.8  candidate:Bold Claim with Ingredient Transparency  fits=conditional
+   [24/39] 3122612637930007  strength=0.8  candidate:Hero Product with Floating Ingredients & Callouts  fits=yes
+   [25/39] 2107553463473426  strength=0.6  candidate:Hero Product with Ingredient Silhouettes  fits=yes
+   [26/39] 1603819377856674  strength=0.7  candidate:Confident User with Product Haul & Offer  fits=yes
+   [27/39] 1586631949629010  strength=0.8  candidate:Parent-Child Bonding with Product Preparation  fits=conditional
+   [28/39] 1808698050183676  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=yes
+   [29/39] 4729590437262957  strength=0.8  candidate:User Testimonial with Product & Specific Problem-Solution  fits=conditional
+   [30/39] 3501771836665664  strength=0.7  candidate:Customizable Product Box  fits=yes
+   [31/39] 1762378961688781  strength=0.7  candidate:Lifestyle with Value-Add Offer  fits=yes
+   [32/39] 38451653337753127  strength=0.8  candidate:Product vs. Competitor Feature Comparison  fits=conditional
+   [33/39] 1881497176591060  strength=0.7  candidate:Confident User with Product Haul & Offer  fits=yes
+   [34/39] 1584404193143197  strength=0.7  candidate:Confident User with Product & Brand Authority  fits=yes
+   [35/39] 4505302259743677  strength=0.4  candidate:Product Showcase with Promotional Offer  fits=yes
+   [36/39] 1405689071713234  strength=0.4  candidate:Product with Promotional Offer & Transparency Callouts  fits=conditional
+   [37/39] 2365906137512955  strength=0.9  product-with-raw-ingredients-&-prepared-food  fits=yes
+   [38/39] 28460210516944893  strength=0.7  candidate:Confident Kid with Product & Taste Appeal  fits=conditional
+   [39/39] 2557786501391089  strength=0.6  candidate:Product Showcase with Provocative Question  fits=conditional
+>> Yogabar: 21 new / 21 ads
+   [1/21] 1486001952880807  strength=0.7  candidate:Hero Product with Aspirational Lifestyle & Offer  fits=conditional
+   [2/21] 25162329396779019  strength=0.8  candidate:Feature Comparison Table  fits=conditional
+   [3/21] 897472409914226  strength=0.7  candidate:Product as a Premium Offering  fits=conditional
+   [4/21] 913451701501203  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [5/21] 1465201478584137  strength=0.7  candidate:Hero Product with Aspirational Lifestyle & Offer  fits=conditional
+   [6/21] 3385619474934977  strength=0.7  candidate:Product as Premium Served Dish  fits=conditional
+   [7/21] 1671779557594247  strength=0.8  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [8/21] 1753087005632106  strength=0.8  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [9/21] 1458740625999786  strength=0.7  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [10/21] 1693430028321647  strength=0.7  candidate:Multiple Products in Shopping Basket  fits=conditional
+   [11/21] 1279853933586796  strength=0.7  candidate:Product Variety Showcase in Basket  fits=conditional
+   [12/21] 782018021398347  strength=0.7  candidate:Testimonial with Product & Benefit Callouts  fits=yes
+   [13/21] 1714106196421941  strength=0.7  candidate:Product with Taste Testimonial & Feature Callouts  fits=conditional
+   [14/21] 1505175941062751  strength=0.7  candidate:Active Lifestyle with Product & Benefit Callouts  fits=conditional
+   [15/21] 849867348198423  strength=0.7  candidate:Variety Showcase with Trend Rejection  fits=conditional
+   [16/21] 1519438683197893  strength=0.7  candidate:Variety Showcase with Trend Rejection  fits=conditional
+   [17/21] 1249618753961439  strength=0.7  candidate:Hero Product with Key Benefit Callouts  fits=conditional
+   [18/21] 1587820176459799  strength=0.4  candidate:Hero Product with Bold Claim & Feature Callouts  fits=conditional
+   [19/21] 1977937409581743  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [20/21] 3473809352786130  strength=0.8  candidate:Hero Product with Unique Ingredient Callout  fits=conditional
+   [21/21] 27627999673545994  strength=0.7  candidate:Hero Product with Bold Claim & Feature Callouts  fits=conditional
+>> Fast&Up India: 19 new / 19 ads
+   [1/19] 1564724448478403  strength=0.7  candidate:Product with Price Comparison & Savings  fits=conditional
+   [2/19] 1584121050103886  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [3/19] 1058248580287626  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=no
+   [4/19] 1043046541862009  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=no
+   [5/19] 1423481369644814  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [6/19] 908238282005946  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [7/19] 1056989333636242  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [8/19] 1065540516061857  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [9/19] 1048118114658158  strength=0.8  candidate:Confident User with Targeted Fat Loss Visualization  fits=no
+   [10/19] 1010834265334078  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [11/19] 2348214209321136  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [12/19] 27612431888436600  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=no
+   [13/19] 1816081566228876  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [14/19] 1828459041718021  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [15/19] 950526767454315  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [16/19] 1397738391800921  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [17/19] 2608690832923117  strength=0.9  candidate:Internal Problem Visualization with Solution  fits=no
+   [18/19] 1083183454401036  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [19/19] 2698635880594419  strength=0.7  candidate:Product with Price Comparison & Savings  fits=yes
+>> Minimalist: 20 new / 20 ads
+   [1/20] 2422634991565984  strength=0.8  candidate:Numbered Routine with Product & Benefit  fits=conditional
+   [2/20] 1954678661915794  strength=0.8  candidate:Product Pair with Promotional Offer  fits=yes
+   [3/20] 27661205520165170  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [4/20] 1696090274972324  strength=0.8  candidate:Product Pair with Promotional Offer  fits=yes
+   [5/20] 1370204235202193  strength=0.8  candidate:Product Pair with Promotional Offer  fits=yes
+   [6/20] 772234239305872  strength=0.8  candidate:Product Pair with Promotional Offer  fits=yes
+   [7/20] 2223696485078895  strength=0.8  candidate:Product with User Testimonial & Ingredient Focus  fits=conditional
+   [8/20] 1634772544735775  strength=0.8  candidate:Product with User Testimonial & Ingredient Focus  fits=conditional
+   [9/20] 2408108386266449  strength=0.7  candidate:Product with User Testimonial & Key Benefit  fits=conditional
+   [10/20] 2052733782036230  strength=0.8  candidate:Internal Problem Visualization with Solution  fits=conditional
+   [11/20] 820365597708835  strength=0.7  candidate:Product Line with Ingredient Swatches  fits=conditional
+   [12/20] 1873177680307341  strength=0.8  candidate:Product Pair with Promotional Offer  fits=yes
+   [13/20] 1567357638343544  strength=0.7  candidate:Product Lineup with Benefit & Credibility  fits=conditional
+   [14/20] 4611729382383720  strength=0.8  candidate:Microscopic Before-After with Product  fits=no
+   [15/20] 4601083810213335  strength=0.8  candidate:Hero Product with Ingredient Callouts & Benefit Flow  fits=conditional
+   [16/20] 1356409732734295  strength=0.8  candidate:Product with Ingredient Callouts on Problematic Hair  fits=conditional
+   [17/20] 1748452689673070  strength=0.7  candidate:Product Stack Showcase  fits=conditional
+   [18/20] 1248566807253131  strength=0.8  candidate:Product Kit with Step-by-Step Functionality Callouts  fits=conditional
+   [19/20] 983523194669342  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [20/20] 1058846929815372  strength=0.8  candidate:Multi-Step Routine Showcase  fits=conditional
+>> Dot & Key: 19 new / 19 ads
+   [1/19] 1052585330967773  strength=0.7  candidate:Product Pair with Benefit Callouts  fits=yes
+   [2/19] 1580651639678590  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=conditional
+   [3/19] 1078566594689170  strength=0.8  candidate:Confident User with Sensory Benefit Callout  fits=conditional
+   [4/19] 2593621517723635  strength=0.8  candidate:Confident User with Product Pair & Routine  fits=conditional
+   [5/19] 1345878971083946  strength=0.7  candidate:Product Line with Raw Ingredient & Seasonal Offer  fits=conditional
+   [6/19] 1007419621616891  strength=0.8  candidate:Confident User with Product & Sensory Experience  fits=conditional
+   [7/19] 1591796396290289  strength=0.7  candidate:Product Line with Hero Ingredient & Seasonal Offer  fits=conditional
+   [8/19] 1476770620698190  strength=0.8  candidate:Hero Product with Raw Ingredient & Texture Display  fits=conditional
+   [9/19] 1597334131562231  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [10/19] 1363804758988825  strength=0.8  candidate:Indulgent Product as Dessert  fits=conditional
+   [11/19] 2975548362636593  strength=0.8  candidate:Hero Product with Swatch & Floating Ingredients  fits=conditional
+   [12/19] 1604316287869886  strength=0.8  candidate:Confident User with Product Routine & Benefit  fits=conditional
+   [13/19] 1470174347932886  strength=0.8  candidate:Hero Product with Raw Ingredient & Credibility  fits=conditional
+   [14/19] 1393533052968055  strength=0.8  candidate:Product Array with Swatch Spectrum  fits=conditional
+   [15/19] 1106117522099037  strength=0.7  candidate:Hero Product with Floating Ingredients & Benefit Text  fits=conditional
+   [16/19] 1040518682111046  strength=0.8  candidate:Product with Floating Swatches  fits=conditional
+   [17/19] 2848362538866197  strength=0.8  candidate:Product with Floating Swatches  fits=conditional
+   [18/19] 2365349530598876  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [19/19] 942480971706481  strength=0.8  candidate:Hero Product with Raw Ingredient Display  fits=yes
+>> Foxtale: 10 new / 10 ads
+   [1/10] 1805764447250180  strength=0.7  candidate:Celebrity Endorsement Tease  fits=conditional
+   [2/10] 993265286626637  strength=0.8  candidate:Progressive Benefit Timeline with Product  fits=conditional
+   [3/10] 1895290854440327  strength=0.8  candidate:Graceful Balance with Product  fits=conditional
+   [4/10] 2504350106673673  strength=0.7  candidate:Product Stack Showcase with Seasonal Offer  fits=conditional
+   [5/10] 1340092097967278  strength=0.8  candidate:Confident User with Time-Bound Protection  fits=conditional
+   [6/10] 1695286844819326  strength=0.8  candidate:Graceful Balance with Product  fits=conditional
+   [7/10] 1750701036201363  strength=0.7  candidate:Product Stack Showcase with Environmental Cue  fits=conditional
+   [8/10] 1418542033483616  strength=0.7  candidate:Product Popularity Showcase  fits=conditional
+   [9/10] 2509826876187436  strength=0.8  candidate:Product with Graceful Movement & Floating Elements  fits=conditional
+   [10/10] 1493439859189008  strength=0.7  candidate:Product Stack Showcase  fits=conditional
+>> Aqualogica: 61 new / 61 ads
+   [1/61] 1395621091996167  strength=0.7  candidate:Product with Flavor Immersion & Offer  fits=no
+   [2/61] 1266576935569774  strength=0.7  candidate:Product with Flavor Immersion & Offer  fits=no
+   [3/61] 1590303999259164  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [4/61] 1060796313329824  strength=0.8  candidate:Product as Indulgent Treat  fits=no
+   [5/61] 1045734828306190  strength=0.7  candidate:Product as Indulgent Treat  fits=no
+   [6/61] 1239722628309007  strength=0.7  candidate:Product with Immersive Flavor Background & Offer  fits=conditional
+   [7/61] 1814263283086528  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [8/61] 28276593871997858  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [9/61] 914204928075592  strength=0.7  candidate:Hero Product with Flavor Immersion  fits=no
+   [10/61] 28158665893803015  strength=0.7  candidate:Product with Immersive Flavor Background & Offer  fits=conditional
+   [11/61] 1104406198909748  strength=0.7  candidate:Product Immersed in Flavor Texture  fits=no
+   [12/61] 1069977822186925  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [13/61] 2162890454323889  strength=0.8  candidate:Hero Product with Flavor Immersion  fits=no
+   [14/61] 2550146752092164  strength=0.7  candidate:Product with Flavor Immersion & Offer  fits=no
+   [15/61] 1750200746092815  strength=0.7  candidate:Product Immersed in Flavor/Texture  fits=no
+   [16/61] 2315455722534614  strength=0.8  candidate:Hero Product with Floating Ingredient & Texture Callouts  fits=conditional
+   [17/61] 1388660510112243  strength=0.8  candidate:Hero Product with Floating Ingredient & Texture Callouts  fits=conditional
+   [18/61] 998016779948611  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [19/61] 1039556705561450  strength=0.7  candidate:Product with Immersive Flavor Background & Offer  fits=conditional
+   [20/61] 2161138814465908  strength=0.7  candidate:Product with Immersive Flavor Background & Offer  fits=no
+   [21/61] 1127479629943799  strength=0.8  candidate:Hero Product with Floating Ingredient & Texture Callouts  fits=conditional
+   [22/61] 1994505541251515  strength=0.7  candidate:Product with Flavor Immersion & Offer  fits=no
+   [23/61] 1958794828177872  strength=0.8  candidate:Hero Product with Floating Ingredient & Texture Callouts  fits=conditional
+   [24/61] 1036582235831077  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [25/61] 1396178625239811  strength=0.7  candidate:Product with Flavor Immersion & Offer  fits=no
+   [26/61] 4763563740529723  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [27/61] 2891693631198030  strength=0.8  candidate:Product Pair with Promotional Offer  fits=conditional
+   [28/61] 1427006095953157  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [29/61] 3308043702712895  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [30/61] 2126197678240029  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [31/61] 1590530699112499  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [32/61] 1368522412035729  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [33/61] 1097017572795977  strength=0.8  candidate:Hero Product with Floating Ingredients in Water  fits=conditional
+   [34/61] 1008212165608744  strength=0.7  candidate:Product with Flavor Visualization & Offer  fits=no
+   [35/61] 1632966035134971  strength=0.8  candidate:Hero Product with Floating Ingredients & Offer  fits=conditional
+   [36/61] 3623108804530871  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [37/61] 1083801617352725  strength=0.8  candidate:Hero Product with Floating Ingredients in Water  fits=conditional
+   [38/61] 1099529695831724  strength=0.7  candidate:Product with Flavor Immersion & Offer  fits=no
+   [39/61] 1602456758134198  strength=0.7  candidate:Product as Indulgent Treat  fits=no
+   [40/61] 2821444204908510  strength=0.8  candidate:Hero Product with Floating Ingredients & Offer  fits=conditional
+   [41/61] 1507432087779789  strength=0.7  candidate:Product as Indulgent Treat  fits=no
+   [42/61] 1788059155685988  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [43/61] 2918070151877492  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [44/61] 2640692259662339  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [45/61] 1537975948074791  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [46/61] 27291474300526026  strength=0.7  candidate:Hero Product with Flavor Immersion  fits=no
+   [47/61] 1565211462069185  strength=0.8  candidate:Hero Product with Floating Ingredients & Offer  fits=conditional
+   [48/61] 1772349434030512  strength=0.8  candidate:Hero Product with Floating Ingredients & Offer  fits=conditional
+   [49/61] 1112393851208942  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [50/61] 1795199108137840  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [51/61] 1589048232930667  strength=0.6  candidate:Product Pair with Promotional Offer  fits=yes
+   [52/61] 936103086215348  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [53/61] 1616211546818981  strength=0.8  candidate:Hero Product with Floating Ingredient & Texture Callouts  fits=conditional
+   [54/61] 1079177671520964  strength=0.7  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [55/61] 1679536029687769  strength=0.7  candidate:Product Immersed in Sensory Texture  fits=no
+   [56/61] 1414170303997469  strength=0.7  candidate:Product Immersed in Sensory Texture  fits=no
+   [57/61] 2642973219556801  strength=0.7  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [58/61] 1711764860052308  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [59/61] 932765616079662  strength=0.7  candidate:Hero Product with Evocative Natural Elements & Offer  fits=conditional
+   [60/61] 1071869315734886  strength=0.8  candidate:Hero Product with Floating Ingredient & Texture Callouts  fits=conditional
+   [61/61] 1096969176249562  strength=0.7  candidate:Product Immersed in Sensory Texture  fits=no
+>> Pilgrim: 39 new / 39 ads
+   [1/39] 1337638141530683  strength=0.8  candidate:Product Line in Natural Habitat with Benefit Callouts  fits=conditional
+   [2/39] 1757628892056533  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [3/39] 1689584642340958  strength=0.8  candidate:Product Line in Natural Habitat with Benefit Callouts  fits=conditional
+   [4/39] 1111995831170496  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [5/39] 1407038578228058  strength=0.8  candidate:Hero Product with Ingredient & Texture Reveal  fits=conditional
+   [6/39] 2179851925895190  strength=0.8  candidate:Hero Product with Raw Ingredient & Texture Display  fits=conditional
+   [7/39] 1787481915776874  strength=0.8  candidate:Problem Visualization with Product & Proof  fits=no
+   [8/39] 3381719778697166  strength=0.8  candidate:Problem Visualization with Product & Proof  fits=conditional
+   [9/39] 1092780589971904  strength=0.8  candidate:Product Line in Natural Habitat with Benefit Callouts  fits=conditional
+   [10/39] 1055319390737026  strength=0.8  candidate:Product Line in Natural Habitat with Benefit Callouts  fits=yes
+   [11/39] 1773533543874021  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=conditional
+   [12/39] 942597165563224  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [13/39] 1388856853387480  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [14/39] 945106011260697  strength=0.8  candidate:Hero Product with Raw Ingredient & Texture Display  fits=conditional
+   [15/39] 1609609703934588  strength=0.8  candidate:Hero Product with Ingredient & Texture Reveal  fits=conditional
+   [16/39] 1067582818995570  strength=0.8  candidate:Product Duo with Benefit Callouts & Floating Ingredients  fits=conditional
+   [17/39] 1629380305196620  strength=0.8  candidate:Product Line in Natural Habitat with Benefit Callouts  fits=conditional
+   [18/39] 1111018274708028  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=conditional
+   [19/39] 1079958907863521  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [20/39] 1000219876379194  strength=0.8  candidate:Product Trio with Step-by-Step Routine  fits=conditional
+   [21/39] 1420890446893063  strength=0.8  candidate:Product Duo with Floating Benefits & Ingredients  fits=conditional
+   [22/39] 1060708996827139  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [23/39] 1354049630048516  strength=0.7  candidate:Product with Evocative Texture & Ingredient Display  fits=conditional
+   [24/39] 2073610133275783  strength=0.8  candidate:Product Trio with Step-by-Step Routine  fits=conditional
+   [25/39] 1049457384556418  strength=0.8  candidate:Product Line in Natural Habitat with Benefit Callouts  fits=conditional
+   [26/39] 1003477839409967  strength=0.8  candidate:Product Line in Natural Habitat with Benefit Callouts  fits=conditional
+   [27/39] 3027124550967342  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=conditional
+   [28/39] 1065374446192830  strength=0.8  candidate:Hero Product with Floating Ingredients & Names  fits=conditional
+   [29/39] 2534478877071238  strength=0.8  botanical-habitat  fits=yes
+   [30/39] 3584187115062151  strength=0.8  candidate:Product Routine Showcase with Benefits  fits=conditional
+   [31/39] 4592780707677888  strength=0.8  candidate:Product Lineup with Problem-Solution Callouts  fits=conditional
+   [32/39] 1363223559094092  strength=0.7  candidate:Product Showcase with Natural Habitat & Offer  fits=conditional
+   [33/39] 1372887091679862  strength=0.8  candidate:Hero Product with Floating Ingredient & Benefit Callouts  fits=conditional
+   [34/39] 4536716253265656  strength=0.8  candidate:Product Trio with Step-by-Step Routine  fits=conditional
+   [35/39] 2285362925336268  strength=0.8  candidate:Product Line in Natural Habitat with Benefit Callouts  fits=conditional
+   [36/39] 1606237581222688  strength=0.8  candidate:Product Duo with Floating Benefits & Ingredient Callouts  fits=conditional
+   [37/39] 1390285776568534  strength=0.8  candidate:Hero Product with Raw Ingredient & Texture Display  fits=conditional
+   [38/39] 1401212738810699  strength=0.8  candidate:Hero Product with Raw Ingredient & Texture Display  fits=conditional
+   [39/39] 4853811244846047  strength=0.8  candidate:Hero Product with Floating Ingredients & Benefit Callouts  fits=conditional
+>> The Derma Co: 17 new / 17 ads
+   [1/17] 4305763079698667  strength=0.7  candidate:Hero Product with Ingredient Callouts & Multiples  fits=conditional
+   [2/17] 1753516685592316  strength=0.7  candidate:Product Stack Showcase  fits=conditional
+   [3/17] 1686695169070390  strength=0.8  candidate:Skin Problem Torn Away  fits=conditional
+   [4/17] 1441026251175728  strength=0.7  candidate:Problem-Solution: Ingredient Superiority  fits=conditional
+   [5/17] 2041216953181171  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [6/17] 1418076786842041  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [7/17] 1406565258247440  strength=0.8  candidate:Product Stack with Active Ingredient Callouts  fits=conditional
+   [8/17] 1391126049254669  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [9/17] 2582897115464389  strength=0.8  candidate:Product Stack with Active Ingredient Callouts  fits=conditional
+   [10/17] 1082225920855959  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [11/17] 1691527748573903  strength=0.7  candidate:Product with Active Ingredient Callouts & Offer  fits=conditional
+   [12/17] 28634430602884199  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [13/17] 1472186114773386  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [14/17] 1419898363428649  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [15/17] 27682693748074779  strength=0.8  candidate:Problem Visualization with Solution & Ingredient  fits=conditional
+   [16/17] 28525595207126930  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [17/17] 1437765254899397  strength=0.8  candidate:Product with Environmental Context & Benefit Callouts  fits=yes
+>> Plum Goodness: 20 new / 20 ads
+   [1/20] 2330082697829086  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [2/20] 1049440181226449  strength=0.7  candidate:Product with Flavor Immersion & Offer  fits=conditional
+   [3/20] 29078658675068257  strength=0.7  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [4/20] 1832127558205880  strength=0.7  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [5/20] 1126148589879302  strength=0.7  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [6/20] 1100909372507847  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [7/20] 953137374457575  strength=0.7  candidate:Product in Dynamic Water Splash  fits=conditional
+   [8/20] 1122822983740130  strength=0.8  candidate:Lifestyle with Value-Add Offer  fits=conditional
+   [9/20] 1332928645701036  strength=0.8  candidate:Product Under Refreshing Downpour  fits=conditional
+   [10/20] 4012918322346933  strength=0.6  candidate:Product with Clinical & Customer Validation  fits=conditional
+   [11/20] 1678926229829214  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [12/20] 4453208054922836  strength=0.6  candidate:Product with Overflowing Benefit Visual  fits=conditional
+   [13/20] 1034959745689234  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [14/20] 1084803000556857  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [15/20] 1577819707041400  strength=0.8  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [16/20] 1411330874389104  strength=0.8  candidate:Hero Product with Raw Ingredient Piles  fits=conditional
+   [17/20] 1252893426963728  strength=0.6  candidate:Product Stack Showcase with Water Elements  fits=conditional
+   [18/20] 1003535522301086  strength=0.8  candidate:Product with Dynamic Liquid Immersion  fits=conditional
+   [19/20] 2124084351538316  strength=0.8  candidate:Product in Water with Ingredient Callout  fits=conditional
+   [20/20] 885867787622834  strength=0.9  candidate:Before-After User Transformation with Product & Data  fits=no
+>> Mamaearth: 25 new / 25 ads
+   [1/25] 1075745838336039  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [2/25] 1812630633525285  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [3/25] 1053972904197815  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [4/25] 1382432659979096  strength=0.8  candidate:Magnified Problem-Solution with Product & Offer  fits=no
+   [5/25] 2566342537112911  strength=0.8  candidate:Problem-Solution with Hero Product & Ingredients  fits=conditional
+   [6/25] 1599372244884933  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [7/25] 2340143996813502  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [8/25] 1543777220241219  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [9/25] 1569099194165455  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [10/25] 1368549828722547  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [11/25] 1676178096803866  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [12/25] 1600977295074020  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [13/25] 1064486643029090  strength=0.7  candidate:Product with Shade Swatch & Universal Appeal  fits=no
+   [14/25] 1783903766368739  strength=0.7  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [15/25] 1026884296774770  strength=0.7  candidate:Hero Product with Raw Ingredient Display  fits=yes
+   [16/25] 28480258071628947  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [17/25] 1055848060562085  strength=0.7  candidate:Product on Problematic Skin with Benefit Question  fits=conditional
+   [18/25] 1395995478647853  strength=None  noise (?)  fits=None
+   [19/25] 1073801662035606  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [20/25] 1074709335139682  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [21/25] 2138362556890266  strength=0.9  candidate:Before-After User Transformation with Product  fits=conditional
+   [22/25] 1111363504827752  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [23/25] 1393154673019061  strength=0.6  candidate:Product Pair with Promotional Offer  fits=conditional
+   [24/25] 4587571974891860  strength=0.6  candidate:Product Pair with Promotional Offer  fits=yes
+   [25/25] 1023449794073645  strength=0.8  candidate:Product as Personal Essential  fits=conditional
+>> Inde Wild: 8 new / 8 ads
+   [1/8] 2016214625745687  strength=0.7  candidate:Sensory Immersion with Product & Natural Elements  fits=conditional
+   [2/8] 1950509952311648  strength=0.8  candidate:Product as Sensory Experience with Natural Elements  fits=conditional
+   [3/8] 1985825822122328  strength=0.7  candidate:Gourmet Plating Showcase  fits=conditional
+   [4/8] 1552075133356065  strength=0.7  candidate:Artisanal Food Preparation Showcase  fits=conditional
+   [5/8] 1015452904841071  strength=0.7  candidate:Gourmet Dish with Natural Element  fits=conditional
+   [6/8] 1084567687639848  strength=0.7  candidate:Gourmet Plating with Natural Elements  fits=conditional
+   [7/8] 1397314692326933  strength=0.7  candidate:Gourmet Dish with Natural Elements  fits=conditional
+   [8/8] 1456502672967545  strength=0.7  candidate:Aspirational Dining Experience  fits=conditional
+>> Dr Sheths: 17 new / 17 ads
+   [1/17] 1981539089087518  strength=0.6  candidate:Product Pair with Promotional Offer  fits=yes
+   [2/17] 1334001568811204  strength=0.6  candidate:Hero Product with Scientific Context & Offer  fits=conditional
+   [3/17] 2596897400761875  strength=0.6  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [4/17] 3061410514202376  strength=0.6  candidate:Product Pair with Promotional Offer  fits=yes
+   [5/17] 1548158530396777  strength=None  noise (?)  fits=None
+   [6/17] 1793932905187364  strength=0.7  candidate:Product with Benefit & Feature Callouts  fits=conditional
+   [7/17] 2315574475858090  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [8/17] 4661054927495657  strength=0.7  candidate:Hero Product with Lab-Context Ingredients  fits=conditional
+   [9/17] 1087765566952903  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [10/17] 1451386466836116  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [11/17] 1434554391875998  strength=0.7  candidate:Hero Product with Scientific Endorsement & Offer  fits=conditional
+   [12/17] 1807339227188012  strength=0.6  candidate:Hero Product with Scientific Context & Offer  fits=conditional
+   [13/17] 1066548645988268  strength=0.5  candidate:Product Pair with Promotional Offer  fits=yes
+   [14/17] 1345722951105837  strength=0.6  candidate:Product Pair with Promotional Offer  fits=conditional
+   [15/17] 959228556569542  strength=0.7  candidate:Product with Scientific Context & Offer  fits=conditional
+   [16/17] 28369159829431365  strength=0.6  candidate:Hero Product with Scientific Context & Offer  fits=conditional
+   [17/17] 2105613350069872  strength=0.7  candidate:Hero Product with Lab-Tested Ingredients  fits=conditional
+>> Hyphen Skincare: 22 new / 22 ads
+   [1/22] 2091502705069965  strength=0.7  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [2/22] 2796597110712852  strength=0.7  candidate:Product Stack Showcase with Offer  fits=conditional
+   [3/22] 2522896991508014  strength=0.7  candidate:Confident User with Product Pair & Offer  fits=conditional
+   [4/22] 1074722652181704  strength=0.7  candidate:Confident User with Product Pair & Offer  fits=conditional
+   [5/22] 1015448168175919  strength=0.7  candidate:Confident User with Product & Brand Authority  fits=conditional
+   [6/22] 2551614721965127  strength=0.6  candidate:Product Pair with Benefit Callouts & Offer  fits=yes
+   [7/22] 1225765679732536  strength=0.7  candidate:Product Line with Promotional Offer  fits=yes
+   [8/22] 1624457692599507  strength=0.6  candidate:Product Pair with Benefit Callouts & Offer  fits=conditional
+   [9/22] 1558267052076153  strength=0.7  candidate:Confident User with Product & Promotional Offer  fits=conditional
+   [10/22] 2029578084404264  strength=0.8  candidate:Problem-Solution with Key Ingredient Callout  fits=yes
+   [11/22] 1811609410193103  strength=0.8  candidate:Product with Targeted Benefit Callouts  fits=conditional
+   [12/22] 1806162910684868  strength=0.7  pile-vs-one  fits=yes
+   [13/22] 28371243445820832  strength=0.7  pile-vs-one  fits=conditional
+   [14/22] 1383556336614987  strength=0.7  candidate:Confident User with Product & Benefit Callouts  fits=conditional
+   [15/22] 1961855077834326  strength=0.6  candidate:Hero Product with Dynamic Ingredient Swirl  fits=conditional
+   [16/22] 1075089095276605  strength=0.8  candidate:Problem-Solution with Key Ingredient System  fits=conditional
+   [17/22] 1613217503867523  strength=0.8  candidate:Hero Product with Dual-Phase Ingredient Callouts  fits=conditional
+   [18/22] 2856573971377039  strength=0.7  candidate:Product Stack Showcase with Offer  fits=conditional
+   [19/22] 1088613826921700  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [20/22] 1800492751127411  strength=0.7  candidate:Product Pair with Promotional Offer  fits=conditional
+   [21/22] 1051787870996075  strength=0.8  candidate:Product with Before-After Skin Conditions  fits=no
+   [22/22] 1607623580990209  strength=0.8  candidate:Dual-Phase Product with Benefit Callouts  fits=conditional
+>> Conscious Chemist: 24 new / 24 ads
+   [1/24] 768969136238014  strength=0.9  candidate:Before-After User Transformation with Product  fits=no
+   [2/24] 2842378326160871  strength=0.7  candidate:Product Pair with Promotional Offer  fits=yes
+   [3/24] 1769187557765313  strength=0.8  candidate:Product Duo with Efficacy Callouts & Bubbles  fits=conditional
+   [4/24] 28418284354439242  strength=0.7  candidate:Product Duo with Benefit Callouts & Technology  fits=conditional
+   [5/24] 2508531352940570  strength=0.8  candidate:Before-After User Transformation with Product  fits=conditional
+   [6/24] 1600526978161339  strength=0.7  candidate:Product Stack Showcase with Limited-Time Offer  fits=yes
+   [7/24] 1597464998429550  strength=None  noise (?)  fits=None
+   [8/24] 853316034515830  strength=None  noise (?)  fits=None
+   [9/24] 1599265371926243  strength=None  noise (?)  fits=None
+   [10/24] 1788128632879655  strength=None  noise (?)  fits=None
+   [11/24] 2850312345334222  strength=None  noise (?)  fits=None
+   [12/24] 1400903558622132  strength=None  noise (?)  fits=None
+   [13/24] 2297236397754208  strength=None  noise (?)  fits=None
+   [14/24] 1350567987064560  strength=None  noise (?)  fits=None
+   [15/24] 2249646835828832  strength=None  noise (?)  fits=None
+   [16/24] 1067366322846427  strength=None  noise (?)  fits=None
+   [17/24] 1373567998216949  strength=None  noise (?)  fits=None
+   [18/24] 1101102572604835  strength=None  noise (?)  fits=None
+   [19/24] 1728278171787931  strength=None  noise (?)  fits=None
+   [20/24] 4105905439709898  strength=None  noise (?)  fits=None
+   [21/24] 1037955659032830  strength=None  noise (?)  fits=None
+   [22/24] 3733126146836860  strength=None  noise (?)  fits=None
+   [23/24] 2338183437010038  strength=None  noise (?)  fits=None
+   [24/24] 1484207046802516  strength=None  noise (?)  fits=None
+Traceback (most recent call last):
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\scripts\resume_new_brands.py", line 41, in <module>
+    main()
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\scripts\resume_new_brands.py", line 33, in main
+    analyze.run(new_terms)
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\analyze.py", line 307, in run
+    store.matches_save(competitor, results)
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\store.py", line 476, in matches_save
+    _sb_call(op)
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\store.py", line 123, in _sb_call
+    raise last_err
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\store.py", line 115, in _sb_call
+    return op(sb)
+  File "C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\rootfinder\store.py", line 475, in op
+    sb.table("matches").upsert(rows[i:i + 200]).execute()
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\postgrest\_sync\request_builder.py", line 90, in execute
+    r = send_with_retry(self.request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\postgrest\_sync\request_builder.py", line 51, in send_with_retry
+    resp = req.send(headers)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\postgrest\base_request_builder.py", line 90, in send
+    return self.session.request(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 11001] getaddrinfo failed

@@ -13,6 +13,8 @@ google-genai>=1.0
 
 # Data / storage
 supabase>=2.15
+google-cloud-firestore>=2.19
+boto3>=1.35
 pillow>=10.0
 
 # Shared
