@@ -28,7 +28,7 @@
     </form>
 
     <div id="queue"
-         hx-get="/queue?fit={{ fit }}&brand={{ brand }}" hx-trigger="every 60s" hx-swap="innerHTML"
+         hx-get="/queue?fit={{ fit }}&brand={{ brand }}" hx-trigger="every 60s [document.visibilityState==='visible']" hx-swap="innerHTML"
          hx-sync="this:replace">
       {% include "_queue.html" %}
     </div>
