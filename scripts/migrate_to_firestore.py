@@ -64,40 +64,73 @@ def main() -> None:
     }, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  backed up to {backup}", flush=True)
 
-    # -- images: re-host every distinct Supabase Storage URL on R2, rewrite references --
-    url_map: dict[str, str] = {}
+    # -- images: re-host every distinct image on R2 (parallel, idempotent), rewrite references --
+    from concurrent.futures import ThreadPoolExecutor
 
-    def _rehost(url: str | None) -> str | None:
-        if not url or not url.startswith("http"):
-            return url
-        if url in url_map:
-            return url_map[url]
-        marker = "/storage/v1/object/public/" + store.BUCKET + "/"
-        if marker not in url:
-            return url  # not a Supabase Storage URL, leave as-is
-        key = url.split(marker, 1)[-1]
+    marker = "/storage/v1/object/public/" + store.BUCKET + "/"
+
+    def _rehost(url: str) -> str:
+        """Return the R2 URL for `url` (a Supabase Storage URL or a local file path)."""
         try:
-            data = requests.get(url, timeout=20).content
-            ext = "." + key.rsplit(".", 1)[-1].lower() if "." in key else ".jpg"
-            new_url = store._upload_image_bytes(data, key, ext)
+            if url.startswith("http"):
+                if marker not in url:
+                    return url
+                key = url.split(marker, 1)[-1]
+            else:
+                lp = Path(url)
+                if not lp.exists():
+                    return url
+                key = f"{lp.parent.name}/{lp.name}"
+            new_url = f"{store.R2_PUBLIC_URL}/{key}"
+            try:
+                store._r2().head_object(Bucket=store.R2_BUCKET, Key=key)
+                return new_url                                  # already copied on a previous run
+            except Exception:  # noqa: BLE001
+                pass
+            if url.startswith("http"):
+                data = requests.get(url, timeout=30).content
+                ext = "." + key.rsplit(".", 1)[-1].lower() if "." in key else ".jpg"
+                return store._upload_image_bytes(data, key, ext) or url
+            return store.put_image(url, key) or url
         except Exception as e:  # noqa: BLE001
             print(f"  rehost failed for {url}: {e}", flush=True)
-            new_url = url
-        url_map[url] = new_url or url
-        return url_map[url]
+            return url
 
-    print("Re-hosting images to R2 (this is the slow part)...", flush=True)
-    for i, m in enumerate(matches_rows, 1):
+    all_urls: set[str] = set()
+    for m in matches_rows:
         if m.get("image_url"):
-            m["image_url"] = _rehost(m["image_url"])
-        if i % 50 == 0:
-            print(f"  {i}/{len(matches_rows)} matches' images checked", flush=True)
+            all_urls.add(m["image_url"])
     for r in roots:
         for coll in ("competitor_examples", "our_executions"):
             for e in (r.get(coll) or []):
                 if e.get("image_url"):
-                    e["image_url"] = _rehost(e["image_url"])
-    print(f"  {len(url_map)} distinct images re-hosted to R2", flush=True)
+                    all_urls.add(e["image_url"])
+    for c in cands:
+        for e in (c.get("examples") or []):
+            if e.get("image_url"):
+                all_urls.add(e["image_url"])
+    print(f"Re-hosting {len(all_urls)} distinct images to R2 (parallel)...", flush=True)
+    url_map: dict[str, str] = {}
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        for i, (u, new_u) in enumerate(zip(all_urls, ex.map(_rehost, all_urls)), 1):
+            url_map[u] = new_u
+            if i % 100 == 0:
+                print(f"  {i}/{len(all_urls)} images done", flush=True)
+    moved = sum(1 for u, n in url_map.items() if u != n)
+    print(f"  {moved} images now on R2, {len(url_map) - moved} left unchanged", flush=True)
+
+    for m in matches_rows:
+        if m.get("image_url"):
+            m["image_url"] = url_map.get(m["image_url"], m["image_url"])
+    for r in roots:
+        for coll in ("competitor_examples", "our_executions"):
+            for e in (r.get(coll) or []):
+                if e.get("image_url"):
+                    e["image_url"] = url_map.get(e["image_url"], e["image_url"])
+    for c in cands:
+        for e in (c.get("examples") or []):
+            if e.get("image_url"):
+                e["image_url"] = url_map.get(e["image_url"], e["image_url"])
 
     print("Writing to Firestore...", flush=True)
     for ad_id, d in decisions.items():

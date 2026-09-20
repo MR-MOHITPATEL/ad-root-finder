@@ -1,0 +1,10 @@
+C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\google\api_core\_python_version_support.py:275: FutureWarning: You are using a Python version (3.10.11) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
+  warnings.warn(message, FutureWarning)
+C:\Users\mahar\AppData\Local\Programs\Python\Python310\lib\site-packages\google\api_core\_python_version_support.py:275: FutureWarning: You are using a Python version (3.10.11) which Google will stop supporting in new releases of google.cloud.firestore_v1 once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.cloud.firestore_v1 past that date.
+  warnings.warn(message, FutureWarning)
+Reading from Supabase...
+  86 decisions, 5 roots, 976 candidates, 1000 ledger rows, 2294 matches
+  backed up to C:\Users\mahar\Documents\Projects\ZenJeevani\themes_roots_claude\competitor-ad-intel\data\rf\supabase_backup.json
+Re-hosting 2373 distinct images to R2 (parallel)...
+  rehost failed for https://qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/arjuna_tea/1395553991931882_0.jpg: ('Connection broken: IncompleteRead(2116954 bytes read, 61256 more expected)', IncompleteRead(2116954 bytes read, 61256 more expected))  rehost failed for https://qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1515373939961480_0.jpg: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+

@@ -675,10 +675,43 @@ def matches_save(competitor: str, records: list[dict]) -> None:
 _MIME = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp"}
 
 
+_MAX_SIDE = 1080        # ad creatives are viewed as small cards; 1080px is plenty
+_SHRINK_ABOVE = 150_000  # bytes -- don't touch images that are already small
+
+
+def shrink_image(data: bytes, ext: str) -> bytes:
+    """Downscale to _MAX_SIDE and recompress (same format). Returns the original
+    bytes if it can't be decoded or the result isn't meaningfully smaller."""
+    if len(data) <= _SHRINK_ABOVE:
+        return data
+    try:
+        import io
+
+        from PIL import Image
+        img = Image.open(io.BytesIO(data))
+        fmt = (img.format or "").upper()
+        if max(img.size) > _MAX_SIDE:
+            img.thumbnail((_MAX_SIDE, _MAX_SIDE), Image.LANCZOS)
+        out = io.BytesIO()
+        if fmt in ("JPEG", "JPG") or ext in (".jpg", ".jpeg"):
+            img.convert("RGB").save(out, "JPEG", quality=82, optimize=True, progressive=True)
+        elif fmt == "WEBP" or ext == ".webp":
+            img.save(out, "WEBP", quality=82)
+        elif fmt == "PNG" or ext == ".png":
+            img.save(out, "PNG", optimize=True)
+        else:
+            return data
+        smaller = out.getvalue()
+        return smaller if len(smaller) < len(data) * 0.9 else data
+    except Exception:  # noqa: BLE001
+        return data
+
+
 def _upload_image_bytes(data: bytes, key: str, ext: str) -> str | None:
     """Try R2 first, then Supabase Storage. Returns the public URL, or None if
     neither backend is configured (caller falls back to local files)."""
     mime = _MIME.get(ext, "image/jpeg")
+    data = shrink_image(data, ext)
     if _r2():
         try:
             _r2().put_object(Bucket=R2_BUCKET, Key=key, Body=data, ContentType=mime)
