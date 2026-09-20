@@ -30,6 +30,17 @@ app = FastAPI(title="Ad Root Finder")
 templates = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 templates.env.globals["comp"] = comp
 
+
+def _imgsrc(path: str) -> str:
+    """Hosted images (R2) are loaded straight from their public URL; only local
+    files go through /img. Skips a redirect hop per image."""
+    from urllib.parse import quote
+    p = path or ""
+    return p if p.startswith("http") else "/img?path=" + quote(p, safe="")
+
+
+templates.env.filters["imgsrc"] = _imgsrc
+
 _APP_PASSWORD = os.getenv("APP_PASSWORD", "").strip()
 
 

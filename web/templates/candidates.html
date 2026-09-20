@@ -51,7 +51,7 @@
   {% set imgs = c.examples|selectattr('image_url')|list %}
   {% if imgs %}
   <div style="display:grid; grid-template-columns:repeat(8,1fr); gap:.4rem; margin-top:.8rem">
-    {% for e in imgs[:16] %}<img class="shot" src="/img?path={{ e.image_url|urlencode }}" alt="">{% endfor %}
+    {% for e in imgs[:16] %}<img class="shot" src="{{ e.image_url|imgsrc }}" loading="lazy" decoding="async" alt="">{% endfor %}
   </div>
   {% endif %}
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:1rem">

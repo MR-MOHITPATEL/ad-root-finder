@@ -47,7 +47,7 @@
   <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:.6rem; margin-top:1rem">
     {% for e in imgs[:24] %}
     <div style="position:relative">
-      <img class="shot" src="/img?path={{ e.image_url|urlencode }}" alt="">
+      <img class="shot" src="{{ e.image_url|imgsrc }}" loading="lazy" decoding="async" alt="">
       <div class="muted" style="font-size:.72rem; margin-top:.15rem">
         {{ e.brand or e.note or 'example' }}{% if e.manual %} · added{% endif %}
       </div>

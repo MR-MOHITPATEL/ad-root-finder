@@ -8,3 +8,39 @@ Reading from Supabase...
 Re-hosting 2373 distinct images to R2 (parallel)...
   rehost failed for https://qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/arjuna_tea/1395553991931882_0.jpg: ('Connection broken: IncompleteRead(2116954 bytes read, 61256 more expected)', IncompleteRead(2116954 bytes read, 61256 more expected))  rehost failed for https://qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/kapiva/1515373939961480_0.jpg: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 
+  100/2373 images done
+  200/2373 images done
+  300/2373 images done
+  400/2373 images done
+  500/2373 images done
+  600/2373 images done
+  700/2373 images done
+  800/2373 images done
+  900/2373 images done
+  1000/2373 images done
+  1100/2373 images done
+  1200/2373 images done
+  1300/2373 images done
+  1400/2373 images done
+  1500/2373 images done
+  1600/2373 images done
+  1700/2373 images done
+  1800/2373 images done
+  1900/2373 images done
+  rehost failed for https://qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/insight_cosmetics/1040649498699711_0.jpg: HTTPSConnectionPool(host='qbivdsztqwfgpwqzgxkd.supabase.co', port=443): Read timed out.
+  2000/2373 images done
+  rehost failed for https://qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/reginald_men/1062738349731303_0.jpg: ('Connection broken: IncompleteRead(30085 bytes read, 3564689 more expected)', IncompleteRead(30085 bytes read, 3564689 more expected))
+  rehost failed for https://qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/zandu/1386490550334606_0.jpg: ('Connection broken: IncompleteRead(651264 bytes read, 95364 more expected)', IncompleteRead(651264 bytes read, 95364 more expected))
+  rehost failed for https://qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/reginald_men/2064396867780748_0.jpg: ('Connection broken: IncompleteRead(1599296 bytes read, 657803 more expected)', IncompleteRead(1599296 bytes read, 657803 more expected))  rehost failed for https://qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/forest_essentials/1089376850235266_0.jpg: ('Connection broken: IncompleteRead(1683456 bytes read, 536705 more expected)', IncompleteRead(1683456 bytes read, 536705 more expected))
+
+  2100/2373 images done
+  rehost failed for https://qbivdsztqwfgpwqzgxkd.supabase.co/storage/v1/object/public/ad-images/man_matters/2091583931406828_0.jpg: ('Connection broken: IncompleteRead(156179 bytes read, 431582 more expected)', IncompleteRead(156179 bytes read, 431582 more expected))
+  2200/2373 images done
+  2300/2373 images done
+  2365 images now on R2, 8 left unchanged
+Writing to Firestore...
+  86 decisions written
+  5 roots, 976 candidates written
+  1000 ledger rows written
+  2294 matches written across 84 competitors
+done -- verify with `python -c "from rootfinder import store; print(store.mode(), len(store.matches_all()))"`
