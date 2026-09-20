@@ -44,12 +44,21 @@ def _now() -> str:
 # far more often than they change, so cache each whole-table read briefly
 # and drop the cache the moment something writes to that table.
 _CACHE_TTL = 20  # seconds
+# Firestore bills per document read and a full matches/candidates/ledger load is
+# thousands of reads, so hold reads much longer there. Our own writes still
+# invalidate immediately (_cache_clear); only data written by another process
+# (the local scan) shows up after the TTL.
+_CACHE_TTL_FIRESTORE = 300
 _cache: dict[str, tuple[float, object]] = {}
+
+
+def _ttl() -> int:
+    return _CACHE_TTL_FIRESTORE if os.getenv("GCP_SERVICE_ACCOUNT_JSON", "").strip() else _CACHE_TTL
 
 
 def _cache_get(key: str):
     hit = _cache.get(key)
-    if hit and time.monotonic() - hit[0] < _CACHE_TTL:
+    if hit and time.monotonic() - hit[0] < _ttl():
         return deepcopy(hit[1])
     return None
 
@@ -76,7 +85,10 @@ def _firestore():
     from google.oauth2 import service_account
     info = json.loads(creds_json)
     creds = service_account.Credentials.from_service_account_info(info)
-    return firestore.Client(project=project, credentials=creds)
+    # The console lets you name the first database anything; ours is literally
+    # "default" (no parentheses), which isn't the SDK's implicit "(default)".
+    database = os.getenv("GCP_FIRESTORE_DATABASE", "(default)").strip() or "(default)"
+    return firestore.Client(project=project, credentials=creds, database=database)
 
 
 # ── Cloudflare R2 client (S3-compatible) ────────────────────────────────────
