@@ -53,7 +53,7 @@ _cache: dict[str, tuple[float, object]] = {}
 
 
 def _ttl() -> int:
-    return _CACHE_TTL_FIRESTORE if os.getenv("GCP_SERVICE_ACCOUNT_JSON", "").strip() else _CACHE_TTL
+    return _CACHE_TTL_FIRESTORE if _gcp_creds_json() else _CACHE_TTL
 
 
 def _cache_get(key: str):
@@ -75,15 +75,26 @@ def _cache_clear(*keys: str) -> None:
 
 # ── Firestore client ─────────────────────────────────────────────────────────
 
+def _gcp_creds_json() -> str:
+    """Service-account JSON from GCP_SERVICE_ACCOUNT_JSON_B64 (base64 -- immune to the
+    quote/backslash mangling hosting env editors do to raw JSON) or, failing that,
+    GCP_SERVICE_ACCOUNT_JSON (raw JSON)."""
+    b64 = os.getenv("GCP_SERVICE_ACCOUNT_JSON_B64", "").strip()
+    if b64:
+        import base64
+        return base64.b64decode(b64).decode("utf-8")
+    return os.getenv("GCP_SERVICE_ACCOUNT_JSON", "").strip()
+
+
 @lru_cache(maxsize=1)
 def _firestore():
     project = os.getenv("GCP_PROJECT_ID", "").strip()
-    creds_json = os.getenv("GCP_SERVICE_ACCOUNT_JSON", "").strip()
+    creds_json = _gcp_creds_json()
     if not (project and creds_json):
         return None
     from google.cloud import firestore
     from google.oauth2 import service_account
-    info = json.loads(creds_json)
+    info = json.loads(creds_json, strict=False)
     creds = service_account.Credentials.from_service_account_info(info)
     # The console lets you name the first database anything; ours is literally
     # "default" (no parentheses), which isn't the SDK's implicit "(default)".
